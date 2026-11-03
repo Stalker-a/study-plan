@@ -1,0 +1,470 @@
+{
+  "pass_percent": 70,
+  "levels": {
+    "1": "База",
+    "2": "Основной курс",
+    "3": "Продвинутый"
+  },
+  "books": {
+    "abbott": {"match": "Abbott - Understanding Analysis", "title": "Abbott — Understanding Analysis", "role": "учебник"},
+    "rudin": {"match": "Rudin - Principles", "title": "Rudin — Principles of Mathematical Analysis", "role": "учебник", "note": "Скан без закладок. Сложная, читать после Зорича/Abbott."},
+    "demid": {"match": "Демидович - Сборник", "title": "Демидович — Сборник задач по матанализу", "role": "задачник"},
+    "zorich1": {"match": "Зорич - Математический анализ, часть 1", "title": "Зорич — Математический анализ, ч. 1", "role": "учебник"},
+    "zorich2": {"match": "Зорич - Математический анализ, часть 2", "title": "Зорич — Математический анализ, ч. 2", "role": "учебник"},
+    "fiht1": {"match": "Фихтенгольц - Курс дифференциального и интегрального исчисления, том 1", "title": "Фихтенгольц — Курс, т. 1", "role": "справочник", "note": "Подробный курс с массой примеров — открывай по оглавлению, когда тема не идёт."},
+    "fiht2": {"match": "Фихтенгольц - Курс дифференциального и интегрального исчисления, том 2", "title": "Фихтенгольц — Курс, т. 2", "role": "справочник"},
+    "fiht3": {"match": "Фихтенгольц - Курс дифференциального и интегрального исчисления, том 3", "title": "Фихтенгольц — Курс, т. 3", "role": "справочник"},
+    "axler": {"match": "Axler - Linear Algebra Done Right", "title": "Axler — Linear Algebra Done Right", "role": "учебник"},
+    "provenzi": {"match": "Provenzi - An Introduction to Linear Algebra", "title": "Provenzi — An Introduction to Linear Algebra", "role": "конспект лекций", "note": "Короткий курс на английском с упражнениями после каждой главы."},
+    "strang": {"match": "Strang - Linear Algebra and Its Applications", "title": "Strang — Linear Algebra and Its Applications", "role": "учебник", "note": "Закладки в PDF битые, глав по страницам пока нет."},
+    "bekl": {"match": "Беклемишев - Курс", "title": "Беклемишев — Курс аналитической геометрии и линейной алгебры", "role": "учебник"},
+    "beklz": {"match": "Беклемишева, Петрович, Чубаров", "title": "Беклемишева и др. — Сборник задач по АГ и ЛА", "role": "задачник"},
+    "prasolov": {"match": "Прасолов - Задачи по планиметрии", "title": "Прасолов — Задачи по планиметрии", "role": "задачник"},
+    "halliday": {"match": "Halliday, Resnick, Walker", "title": "Halliday, Resnick, Walker — Fundamentals of Physics", "role": "учебник"},
+    "kleppner": {"match": "Kleppner, Kolenkow", "title": "Kleppner, Kolenkow — An Introduction to Mechanics", "role": "учебник", "note": "Механика продвинутого уровня, после Halliday."},
+    "purcell": {"match": "Purcell, Morin", "title": "Purcell, Morin — Electricity and Magnetism", "role": "учебник"},
+    "irodov": {"match": "Иродов - Задачи", "title": "Иродов — Задачи по общей физике", "role": "задачник", "note": "Ответы и решения — с печатной стр. 340 (стр. 339 в читалке)."},
+    "savel": {"match": "Савельев - Курс общей физики, том 1", "title": "Савельев — Курс общей физики, т. 1", "role": "учебник"},
+    "sivukhin1": {"match": "Сивухин - Общий курс физики, том 1", "title": "Сивухин — Общий курс физики, т. 1", "role": "учебник"},
+    "sivukhin2": {"match": "Сивухин - Общий курс физики, том 2", "title": "Сивухин — Общий курс физики, т. 2", "role": "учебник"},
+    "sivukhin3": {"match": "Сивухин - Общий курс физики, том 3 - Электричество (1983).pdf", "title": "Сивухин — Общий курс физики, т. 3. Электричество", "role": "учебник"},
+    "sivukhin4": {"match": "Сивухин - Общий курс физики, том 4", "title": "Сивухин — Общий курс физики, т. 4. Оптика", "role": "учебник"},
+    "sivukhin5": {"match": "Сивухин - Общий курс физики, том 5", "title": "Сивухин — Общий курс физики, т. 5. Атомная и ядерная физика", "role": "учебник"},
+    "kr": {"match": "Kernighan, Ritchie", "title": "Kernighan, Ritchie — The C Programming Language", "role": "учебник"},
+    "lutz": {"match": "Lutz - Learning Python", "title": "Lutz — Learning Python (4th ed)", "role": "учебник", "note": "Издание 2009 года (Python 2.6/3.0). Основы актуальны, но сверяйся с docs.python.org."},
+    "silb": {"match": "Silberschatz, Korth, Sudarshan", "title": "Silberschatz — Database System Concepts", "role": "учебник"},
+    "morg": {"match": "Моргунов - PostgreSQL", "title": "Моргунов — PostgreSQL. Основы языка SQL", "role": "учебник"},
+    "rogov": {"match": "Рогов - PostgreSQL", "title": "Рогов — PostgreSQL 18 изнутри", "role": "учебник"},
+    "grok": {"match": "Bhargava - Grokking Algorithms", "title": "Bhargava — Grokking Algorithms", "role": "учебник"},
+    "clrs": {"match": "Cormen, Leiserson", "title": "Cormen и др. — Introduction to Algorithms (CLRS)", "role": "учебник"},
+    "mcs": {"match": "Lehman, Leighton, Meyer", "title": "Lehman, Leighton, Meyer — Mathematics for CS", "role": "учебник"}
+  },
+  "subjects": [
+    {
+      "id": "prog",
+      "short": "Программирование",
+      "accent": "#6366F1",
+      "glyph": "</>",
+      "title": "Программирование (C, Python)",
+      "topics": [
+        {"id": "c1", "level": 1, "title": "C: первое знакомство", "goal": "Писать простые программы на C: переменные, циклы, посимвольный ввод-вывод, массивы, функции.",
+         "read": [{"book": "kr", "page": 9, "to": 34, "what": "Глава 1. A Tutorial Introduction"}],
+         "problems": [
+           {"book": "kr", "page": 11, "text": "Упражнения 1-1…1-24 по ходу главы 1. Минимум: 1-3, 1-8, 1-9, 1-12, 1-13, 1-19."},
+           {"text": "Своя задача: программа читает текст со stdin и печатает число строк, слов, символов и самое длинное слово."}
+         ]},
+        {"id": "c2", "level": 1, "title": "C: типы, операторы и выражения", "goal": "Понимать типы и их размеры, приведение типов, целочисленное деление, побитовые операции и приоритеты.",
+         "read": [{"book": "kr", "page": 35, "to": 51, "what": "Глава 2. Types, Operators and Expressions"}],
+         "problems": [
+           {"book": "kr", "page": 35, "text": "Упражнения 2-1…2-10. Минимум: 2-1, 2-3, 2-6, 2-9."},
+           {"text": "Своя задача: функция print_bits(unsigned x), печатающая число в двоичном виде только через побитовые операции."}
+         ]},
+        {"id": "c3", "level": 1, "title": "C: управляющие конструкции", "goal": "Уверенно использовать if/else, switch, while, for, do-while, break, continue.",
+         "read": [{"book": "kr", "page": 52, "to": 61, "what": "Глава 3. Control Flow"}],
+         "problems": [
+           {"book": "kr", "page": 52, "text": "Упражнения 3-1…3-6."},
+           {"text": "Своя задача: решето Эратосфена — вывести все простые числа до N (N вводится с клавиатуры)."}
+         ]},
+        {"id": "c4", "level": 1, "title": "C: функции, области видимости, препроцессор", "goal": "Разбивать программу на функции и файлы, понимать extern/static, макросы и рекурсию.",
+         "read": [{"book": "kr", "page": 62, "to": 82, "what": "Глава 4. Functions and Program Structure"}],
+         "problems": [
+           {"book": "kr", "page": 62, "text": "Упражнения 4-1…4-14. Минимум: 4-1, 4-3, 4-12, 4-14."},
+           {"text": "Своя задача: разнеси решето из темы c3 на main.c, primes.c и primes.h и собери через gcc main.c primes.c."}
+         ]},
+        {"id": "py1", "level": 1, "title": "Python: запуск программ, базовые типы, динамическая типизация", "goal": "Понимать, как Python выполняет код, знать встроенные типы и модель «имя → объект».",
+         "read": [{"book": "lutz", "page": 74, "to": 205, "what": "Главы 2–6 (How Python Runs Programs … Dynamic Typing Interlude)"}],
+         "problems": [
+           {"book": "lutz", "page": 121, "text": "Упражнения в конце части I. Решения — приложение B (стр. 1152)."},
+           {"text": "Своя задача: проверь в интерпретаторе 10 примеров с is и ==, int и float, изменяемыми и неизменяемыми объектами; запиши, что удивило."}
+         ]},
+        {"id": "py2", "level": 1, "title": "Python: строки, списки, словари, кортежи, файлы", "goal": "Свободно работать со срезами, методами строк, списками, словарями и файлами.",
+         "read": [{"book": "lutz", "page": 206, "to": 311, "what": "Главы 7–9 (Strings; Lists and Dictionaries; Tuples, Files…)"}],
+         "problems": [
+           {"book": "lutz", "page": 304, "text": "Упражнения в конце части II."},
+           {"text": "Своя задача: частотный словарь слов текстового файла — топ-10 слов без учёта регистра и знаков препинания."}
+         ]},
+        {"id": "py3", "level": 1, "title": "Python: инструкции, циклы, итерации и генераторы списков", "goal": "Писать циклы и генераторы списков, понимать for/else, распаковку и протокол итерации.",
+         "read": [{"book": "lutz", "page": 312, "to": 445, "what": "Главы 10–15 (Statements and Syntax)"}],
+         "problems": [
+           {"book": "lutz", "page": 441, "text": "Упражнения в конце части III."},
+           {"text": "Своя задача: перепиши 5 своих циклов в виде генераторов списков/словарей и наоборот."}
+         ]},
+        {"id": "c5", "level": 2, "title": "C: указатели и массивы", "goal": "Понимать адреса, арифметику указателей, связь массивов и указателей, строки, указатели на функции.",
+         "read": [{"book": "kr", "page": 83, "to": 113, "what": "Глава 5. Pointers and Arrays"}],
+         "problems": [
+           {"book": "kr", "page": 83, "text": "Упражнения 5-1…5-20. Минимум: 5-3, 5-5, 5-7, 5-13."},
+           {"text": "Своя задача: свои my_strlen, my_strcpy, my_strcmp, my_strcat — только на указателях, без индексов."}
+         ]},
+        {"id": "c6", "level": 2, "title": "C: структуры, typedef, объединения", "goal": "Строить структуры данных на struct и указателях, понимать union и typedef.",
+         "read": [{"book": "kr", "page": 114, "to": 134, "what": "Глава 6. Structures"}],
+         "problems": [
+           {"book": "kr", "page": 114, "text": "Упражнения 6-1…6-6."},
+           {"text": "Своя задача: односвязный список — добавить, удалить, развернуть, освободить память. Проверь утечки (-fsanitize=address или valgrind)."}
+         ]},
+        {"id": "c7", "level": 2, "title": "C: ввод-вывод и файлы", "goal": "Работать с printf/scanf, файлами, stderr и кодами возврата.",
+         "read": [{"book": "kr", "page": 135, "to": 150, "what": "Глава 7. Input and Output"}],
+         "problems": [
+           {"book": "kr", "page": 135, "text": "Упражнения 7-1…7-9."},
+           {"text": "Своя задача: утилита копирования файла: аргументы из командной строки, ошибки — в stderr, ненулевой код возврата при ошибке."}
+         ]},
+        {"id": "py4", "level": 2, "title": "Python: функции, области видимости, аргументы", "goal": "Понимать LEGB, замыкания, global/nonlocal, *args/**kwargs, lambda.",
+         "read": [{"book": "lutz", "page": 446, "to": 579, "what": "Главы 16–20 (Functions)"}],
+         "problems": [
+           {"book": "lutz", "page": 575, "text": "Упражнения в конце части IV."},
+           {"text": "Своя задача: декоратор-счётчик вызовов на замыкании (nonlocal) и функция с *args/**kwargs, логирующая аргументы."}
+         ]},
+        {"id": "py5", "level": 2, "title": "Python: модули и пакеты", "goal": "Организовывать код в модули и пакеты, понимать импорт и __name__.",
+         "read": [{"book": "lutz", "page": 580, "to": 659, "what": "Главы 21–24 (Modules)"}],
+         "problems": [
+           {"book": "lutz", "page": 656, "text": "Упражнения в конце части V."}
+         ]},
+        {"id": "c8", "level": 3, "title": "C: интерфейс UNIX — дескрипторы, системные вызовы, аллокатор", "goal": "Понимать низкоуровневый ввод-вывод и устройство malloc.",
+         "read": [{"book": "kr", "page": 151, "to": 167, "what": "Глава 8. The UNIX System Interface"}],
+         "note": "Системные вызовы удобнее пробовать в Linux или WSL.",
+         "problems": [
+           {"book": "kr", "page": 151, "text": "Упражнения 8-1…8-8."}
+         ]},
+        {"id": "py6", "level": 3, "title": "Python: классы и ООП", "goal": "Проектировать классы, понимать наследование, self, атрибуты класса и экземпляра, перегрузку операторов.",
+         "read": [{"book": "lutz", "page": 660, "to": 873, "what": "Главы 25–31 (Classes and OOP)"}],
+         "problems": [
+           {"book": "lutz", "page": 867, "text": "Упражнения в конце части VI."},
+           {"text": "Своя задача: класс Vector с +, -, *, ==, len(), repr() и тестами на assert."}
+         ]},
+        {"id": "py7", "level": 3, "title": "Python: исключения", "goal": "Правильно ловить и создавать исключения, понимать try/except/else/finally.",
+         "read": [{"book": "lutz", "page": 874, "to": 943, "what": "Главы 32–35 (Exceptions)"}],
+         "problems": [
+           {"book": "lutz", "page": 942, "text": "Упражнения в конце части VII."}
+         ]}
+      ]
+    },
+    {
+      "id": "db",
+      "short": "Базы данных",
+      "accent": "#0EA5E9",
+      "glyph": "SQL",
+      "title": "Базы данных (PostgreSQL)",
+      "topics": [
+        {"id": "db1", "level": 1, "title": "Введение в базы данных и SQL", "goal": "Знать, что такое СУБД, реляционная модель, ключи и SQL.",
+         "read": [{"book": "morg", "page": 14, "to": 25, "what": "Глава 1. Введение в базы данных и SQL"},
+                  {"book": "silb", "page": 30, "to": 63, "what": "Chapter 1. Introduction (по желанию)"}],
+         "problems": [{"book": "morg", "page": 24, "text": "Контрольные вопросы и задания к главе 1."}]},
+        {"id": "db2", "level": 1, "title": "Рабочая среда и основные операции", "goal": "Поставить PostgreSQL, работать в psql, делать SELECT/INSERT/UPDATE/DELETE.",
+         "read": [{"book": "morg", "page": 26, "to": 51, "what": "Главы 2–3. Создание рабочей среды, основные операции с таблицами"}],
+         "problems": [
+           {"book": "morg", "page": 30, "text": "Задания к главе 2: установи PostgreSQL и учебную базу, как описано в главе."},
+           {"book": "morg", "page": 49, "text": "Контрольные вопросы и задания к главе 3."}
+         ]},
+        {"id": "db3", "level": 1, "title": "Типы данных PostgreSQL", "goal": "Выбирать подходящие типы: числа, строки, даты, boolean, массивы, JSON.",
+         "read": [{"book": "morg", "page": 52, "to": 95, "what": "Глава 4. Типы данных СУБД PostgreSQL"}],
+         "problems": [{"book": "morg", "page": 74, "text": "Контрольные вопросы и задания к главе 4 (стр. 74–95): сделай не меньше половины."}]},
+        {"id": "db4", "level": 1, "title": "Определение данных: таблицы, ограничения, представления", "goal": "Создавать схемы с ключами, CHECK, внешними ключами и представлениями.",
+         "read": [{"book": "morg", "page": 96, "to": 145, "what": "Глава 5. Основы языка определения данных"}],
+         "problems": [
+           {"book": "morg", "page": 134, "text": "Контрольные вопросы и задания к главе 5."},
+           {"text": "Своя задача: спроектируй схему для своего учёта расходов (категории, траты, бюджет на месяц) с ограничениями и внешними ключами."}
+         ]},
+        {"id": "db5", "level": 2, "title": "Запросы: соединения, подзапросы, агрегаты", "goal": "Писать JOIN, GROUP BY/HAVING, подзапросы, CTE и оконные функции.",
+         "read": [{"book": "morg", "page": 146, "to": 211, "what": "Глава 6. Запросы"},
+                  {"book": "silb", "page": 94, "to": 153, "what": "Chapter 3. Introduction to SQL"}],
+         "problems": [
+           {"book": "morg", "page": 193, "text": "Контрольные вопросы и задания к главе 6 — главная практика по SQL, сделай как можно больше."},
+           {"book": "silb", "page": 144, "text": "Practice Exercises к главе 3."}
+         ]},
+        {"id": "db6", "level": 2, "title": "Изменение данных", "goal": "INSERT … RETURNING, ON CONFLICT, UPDATE/DELETE с соединениями, COPY.",
+         "read": [{"book": "morg", "page": 212, "to": 241, "what": "Глава 7. Изменение данных"}],
+         "problems": [{"book": "morg", "page": 227, "text": "Контрольные вопросы и задания к главе 7."}]},
+        {"id": "db7", "level": 2, "title": "Индексы", "goal": "Понимать, когда индекс помогает, а когда мешает; составные индексы и индексы по выражениям.",
+         "read": [{"book": "morg", "page": 242, "to": 255, "what": "Глава 8. Индексы"}],
+         "problems": [{"book": "morg", "page": 251, "text": "Контрольные вопросы и задания к главе 8."}]},
+        {"id": "db8", "level": 2, "title": "Транзакции", "goal": "Знать ACID, уровни изоляции и аномалии.",
+         "read": [{"book": "morg", "page": 256, "to": 293, "what": "Глава 9. Транзакции"}],
+         "problems": [{"book": "morg", "page": 281, "text": "Контрольные вопросы и задания к главе 9 — делай в двух окнах psql одновременно."}]},
+        {"id": "db9", "level": 2, "title": "Реляционная модель и проектирование БД", "goal": "Реляционная алгебра, ключи, E-R-модель, функциональные зависимости, нормальные формы.",
+         "read": [{"book": "silb", "page": 66, "to": 93, "what": "Chapter 2. Introduction to the Relational Model"},
+                  {"book": "silb", "page": 270, "to": 331, "what": "Chapter 6. Database Design Using the E-R Model"},
+                  {"book": "silb", "page": 332, "to": 393, "what": "Chapter 7. Relational Database Design"}],
+         "problems": [
+           {"book": "silb", "page": 88, "text": "Practice Exercises к главе 2."},
+           {"book": "silb", "page": 382, "text": "Practice Exercises к главе 7 (нормализация)."}
+         ]},
+        {"id": "db10", "level": 3, "title": "Производительность и EXPLAIN", "goal": "Читать планы запросов, понимать статистику и стоимость.",
+         "read": [{"book": "morg", "page": 294, "to": 328, "what": "Глава 10. Повышение производительности"},
+                  {"book": "rogov", "page": 320, "to": 346, "what": "Глава 16. Этапы выполнения запросов"}],
+         "problems": [{"book": "morg", "page": 318, "text": "Контрольные вопросы и задания к главе 10."}]},
+        {"id": "db11", "level": 3, "title": "MVCC, изоляция и очистка изнутри", "goal": "Понимать версии строк, снимки данных, VACUUM и автоочистку.",
+         "read": [{"book": "rogov", "page": 48, "to": 170, "what": "Главы 2–7 (Изоляция … Автоочистка)"}],
+         "problems": [{"text": "Своя задача: повтори эксперименты из глав 2–4 в двух сеансах psql (смотри xmin/xmax через pageinspect или системные столбцы) и запиши выводы."}]},
+        {"id": "db12", "level": 3, "title": "Индексы изнутри: B-дерево, GiST, GIN, BRIN", "goal": "Понимать устройство индексов и выбирать тип под задачу.",
+         "read": [{"book": "rogov", "page": 395, "to": 438, "what": "Главы 19–20. Индексные методы доступа, индексное сканирование"},
+                  {"book": "rogov", "page": 524, "to": 555, "what": "Глава 25. B-дерево"},
+                  {"book": "rogov", "page": 613, "to": 670, "what": "Главы 28–29. GIN и BRIN"}],
+         "problems": [{"text": "Своя задача: на таблице в 1 млн строк сравни через EXPLAIN ANALYZE поиск без индекса, с B-tree и с BRIN по монотонному столбцу."}]}
+      ]
+    },
+    {
+      "id": "calc",
+      "short": "Матанализ",
+      "accent": "#8B5CF6",
+      "glyph": "∫",
+      "title": "Математический анализ",
+      "topics": [
+        {"id": "an1", "level": 1, "title": "Множества, логика, функции", "goal": "Свободно работать с кванторами, операциями над множествами, отображениями и мощностью.",
+         "read": [{"book": "zorich1", "page": 13, "to": 43, "what": "Глава I. Некоторые общематематические понятия и обозначения"}],
+         "problems": [{"book": "demid", "page": 25, "text": "Отдел I, §3 «Понятие функции» (стр. 25–34)."}]},
+        {"id": "an2", "level": 1, "title": "Действительные числа", "goal": "Аксиоматика ℝ, sup/inf, принцип Архимеда, полнота.",
+         "read": [{"book": "zorich1", "page": 44, "to": 83, "what": "Глава II. Действительные (вещественные) числа"},
+                  {"book": "abbott", "page": 14, "to": 50, "what": "Chapter 1. The Real Numbers"}],
+         "problems": [{"book": "demid", "page": 7, "text": "Отдел I, §1 «Вещественные числа» (стр. 7–11): индукция, неравенства, sup/inf."}]},
+        {"id": "an3", "level": 1, "title": "Предел последовательности", "goal": "Определение предела на ε-языке, теорема Вейерштрасса, число e, критерий Коши.",
+         "read": [{"book": "zorich1", "page": 84, "to": 149, "what": "Глава III. Предел — §1 (предел последовательности)"},
+                  {"book": "abbott", "page": 51, "to": 96, "what": "Chapter 2. Sequences and Series"}],
+         "problems": [{"book": "demid", "page": 12, "text": "Отдел I, §2 «Теория последовательностей» (стр. 12–24)."}]},
+        {"id": "an4", "level": 1, "title": "Предел функции", "goal": "Предел функции, замечательные пределы, сравнение функций (o, O, ~).",
+         "read": [{"book": "zorich1", "page": 84, "to": 149, "what": "Глава III. Предел — §2 (предел функции)"},
+                  {"book": "abbott", "page": 122, "to": 155, "what": "Chapter 4. Functional Limits and Continuity"}],
+         "problems": [
+           {"book": "demid", "page": 47, "text": "Отдел I, §5 «Предел функции» (стр. 47–71)."},
+           {"book": "demid", "page": 72, "text": "Отдел I, §6 «О-символика» (стр. 72–76)."}
+         ]},
+        {"id": "an5", "level": 1, "title": "Непрерывные функции", "goal": "Точки разрыва, теоремы Больцано–Коши и Вейерштрасса, равномерная непрерывность.",
+         "read": [{"book": "zorich1", "page": 150, "to": 171, "what": "Глава IV. Непрерывные функции"}],
+         "problems": [
+           {"book": "demid", "page": 77, "text": "Отдел I, §7 «Непрерывность функции» (стр. 77–86)."},
+           {"book": "demid", "page": 90, "text": "Отдел I, §9 «Равномерная непрерывность» (стр. 90–93)."}
+         ]},
+        {"id": "an6", "level": 2, "title": "Производная и дифференциал", "goal": "Техника дифференцирования, производные высших порядков, дифференциал.",
+         "read": [{"book": "zorich1", "page": 172, "to": 316, "what": "Глава V. Дифференциальное исчисление — §1–2"},
+                  {"book": "abbott", "page": 156, "to": 178, "what": "Chapter 5. The Derivative"}],
+         "problems": [{"book": "demid", "page": 96, "text": "Отдел II, §1–5 (стр. 96–133): производная, дифференциал, высшие порядки."}]},
+        {"id": "an7", "level": 2, "title": "Теоремы о среднем, Тейлор, Лопиталь", "goal": "Теоремы Ролля, Лагранжа, Коши; формула Тейлора; раскрытие неопределённостей.",
+         "read": [{"book": "zorich1", "page": 172, "to": 316, "what": "Глава V — §3 (основные теоремы дифференциального исчисления)"}],
+         "problems": [
+           {"book": "demid", "page": 134, "text": "Отдел II, §6 «Теоремы Ролля, Лагранжа и Коши»."},
+           {"book": "demid", "page": 147, "text": "Отдел II, §9 «Раскрытие неопределённостей»."},
+           {"book": "demid", "page": 151, "text": "Отдел II, §10 «Формула Тейлора»."}
+         ]},
+        {"id": "an8", "level": 2, "title": "Исследование функций и графики", "goal": "Монотонность, экстремумы, выпуклость, асимптоты, построение графиков.",
+         "read": [{"book": "zorich1", "page": 172, "to": 316, "what": "Глава V — §3–4 (исследование функций)"}],
+         "problems": [
+           {"book": "demid", "page": 140, "text": "Отдел II, §7–8: монотонность, неравенства, выпуклость, точки перегиба."},
+           {"book": "demid", "page": 156, "text": "Отдел II, §11–13: экстремумы, графики, задачи на максимум и минимум."}
+         ]},
+        {"id": "an9", "level": 2, "title": "Неопределённый интеграл", "goal": "Табличные интегралы, замена переменной, по частям, рациональные функции.",
+         "read": [{"book": "zorich1", "page": 172, "to": 316, "what": "Глава V — последний § (первообразная)"}],
+         "problems": [{"book": "demid", "page": 172, "text": "Отдел III, §1–6 (стр. 172–203): решай понемногу из каждого параграфа."}]},
+        {"id": "an10", "level": 2, "title": "Определённый интеграл и приложения", "goal": "Интеграл Римана, формула Ньютона–Лейбница, несобственные интегралы, площади и объёмы.",
+         "read": [{"book": "zorich1", "page": 317, "to": 389, "what": "Глава VI. Интеграл"},
+                  {"book": "abbott", "page": 224, "to": 257, "what": "Chapter 7. The Riemann Integral"}],
+         "problems": [
+           {"book": "demid", "page": 204, "text": "Отдел IV, §1–4 (стр. 204–229): вычисление и несобственные интегралы."},
+           {"book": "demid", "page": 230, "text": "Отдел IV, §5–9 (стр. 230–241): площади, длины, объёмы."}
+         ]},
+        {"id": "an11", "level": 3, "title": "Числовые ряды", "goal": "Признаки сходимости, абсолютная и условная сходимость.",
+         "read": [{"book": "zorich1", "page": 84, "to": 149, "what": "Глава III — раздел о числовых рядах"},
+                  {"book": "abbott", "page": 51, "to": 96, "what": "Chapter 2 — Series"}],
+         "problems": [{"book": "demid", "page": 246, "text": "Отдел V, §1–3 (стр. 246–266): числовые ряды."}]},
+        {"id": "an12", "level": 3, "title": "Функциональные и степенные ряды", "goal": "Равномерная сходимость, радиус сходимости, ряды Тейлора.",
+         "read": [{"book": "zorich2", "page": 351, "to": 390, "what": "Глава XVI. Равномерная сходимость и основные операции анализа"},
+                  {"book": "abbott", "page": 179, "to": 223, "what": "Chapter 6. Sequences and Series of Functions"}],
+         "problems": [{"book": "demid", "page": 267, "text": "Отдел V, §4–5 (стр. 267–295): функциональные и степенные ряды."}]},
+        {"id": "an13", "level": 3, "title": "Функции многих переменных", "goal": "Частные производные, дифференциал, градиент, экстремумы.",
+         "read": [{"book": "zorich1", "page": 390, "to": 573, "what": "Главы VII–VIII. Функции многих переменных"}],
+         "problems": [
+           {"book": "demid", "page": 318, "text": "Отдел VI, §1–2 (стр. 318–337): пределы, частные производные, дифференциал."},
+           {"book": "demid", "page": 370, "text": "Отдел VI, §7: экстремумы функций нескольких переменных."}
+         ]}
+      ]
+    },
+    {
+      "id": "linal",
+      "short": "Линал и геометрия",
+      "accent": "#F59E0B",
+      "glyph": "λ",
+      "title": "Линейная алгебра и геометрия",
+      "topics": [
+        {"id": "la1", "level": 1, "title": "Векторная алгебра", "goal": "Базис, координаты, скалярное, векторное и смешанное произведения.",
+         "read": [{"book": "bekl", "page": 5, "to": 51, "what": "Глава I. Векторная алгебра"}],
+         "problems": [{"book": "beklz", "page": 10, "text": "Глава I, §1–4 (стр. 10–30)."}]},
+        {"id": "la2", "level": 1, "title": "Прямые и плоскости", "goal": "Уравнения прямых и плоскостей, расстояния и углы.",
+         "read": [{"book": "bekl", "page": 52, "to": 88, "what": "Глава II. Прямые линии и плоскости"}],
+         "problems": [{"book": "beklz", "page": 31, "text": "Глава II, §5–6 (стр. 31–55)."}]},
+        {"id": "la3", "level": 1, "title": "Матрицы и определители", "goal": "Операции с матрицами, обратная матрица, определитель, ранг.",
+         "read": [{"book": "bekl", "page": 159, "to": 211, "what": "Глава V. Матрицы — §1–5"}],
+         "problems": [{"book": "beklz", "page": 132, "text": "Глава VI, §14–16 (стр. 132–166): определители, операции с матрицами, ранг."}]},
+        {"id": "la4", "level": 1, "title": "Системы линейных уравнений", "goal": "Метод Гаусса, теорема Кронекера–Капелли, общее решение, ФСР.",
+         "read": [{"book": "bekl", "page": 212, "to": 222, "what": "Глава V, §6. Системы линейных уравнений"},
+                  {"book": "provenzi", "page": 87, "to": 112, "what": "Chapter 3. Resolution of linear systems (по-английски, коротко)"}],
+         "problems": [{"book": "beklz", "page": 167, "text": "Глава VII (стр. 167–179)."}]},
+        {"id": "la5", "level": 2, "title": "Кривые и поверхности второго порядка", "goal": "Канонические уравнения эллипса, гиперболы, параболы и поверхностей.",
+         "read": [{"book": "bekl", "page": 89, "to": 132, "what": "Глава III. Линии и поверхности второго порядка"}],
+         "problems": [
+           {"book": "beklz", "page": 56, "text": "Глава III «Кривые второго порядка»."},
+           {"book": "beklz", "page": 81, "text": "Глава IV «Поверхности второго порядка»."}
+         ]},
+        {"id": "la6", "level": 2, "title": "Линейные пространства", "goal": "Линейная независимость, базис, размерность, подпространства, сумма и пересечение.",
+         "read": [{"book": "bekl", "page": 223, "to": 242, "what": "Глава VI. Линейные пространства — начало"},
+                  {"book": "provenzi", "page": 5, "to": 37, "what": "Chapter 1. Vector spaces (по-английски, коротко)"},
+                  {"book": "axler", "page": 15, "to": 64, "what": "Chapters 1–2. Vector Spaces; Finite-Dimensional Vector Spaces"}],
+         "problems": [{"book": "beklz", "page": 180, "text": "Глава VIII, §20–22."}]},
+        {"id": "la7", "level": 2, "title": "Линейные отображения, собственные векторы", "goal": "Матрица отображения, ядро и образ, собственные значения, диагонализация.",
+         "read": [{"book": "bekl", "page": 243, "to": 277, "what": "Глава VI — линейные отображения и преобразования"},
+                  {"book": "provenzi", "page": 38, "to": 86, "what": "Chapter 2. Linear maps and matrices (по-английски, коротко)"},
+                  {"book": "axler", "page": 65, "to": 132, "what": "Chapter 3. Linear Maps"},
+                  {"book": "axler", "page": 146, "to": 194, "what": "Chapter 5. Eigenvalues and Eigenvectors"}],
+         "problems": [
+           {"book": "beklz", "page": 195, "text": "Глава IX «Линейные отображения и преобразования»."},
+           {"book": "beklz", "page": 217, "text": "§24 «Инвариантные подпространства, собственные векторы и собственные значения»."}
+         ]},
+        {"id": "la8", "level": 3, "title": "Евклидовы пространства и ортогональность", "goal": "Скалярное произведение, Грам–Шмидт, ортогональные и самосопряжённые преобразования.",
+         "read": [{"book": "bekl", "page": 308, "to": 354, "what": "Глава VII. Евклидовы и унитарные пространства"},
+                  {"book": "axler", "page": 195, "to": 310, "what": "Chapters 6–7. Inner Product Spaces; Operators on Inner Product Spaces"}],
+         "problems": [
+           {"book": "beklz", "page": 237, "text": "Глава X «Евклидовы и унитарные пространства»."},
+           {"book": "beklz", "page": 266, "text": "Глава XI «Линейные преобразования евклидовых и унитарных пространств»."}
+         ]},
+        {"id": "la9", "level": 3, "title": "Билинейные и квадратичные формы", "goal": "Матрица формы, приведение к каноническому виду, критерий Сильвестра.",
+         "read": [{"book": "bekl", "page": 278, "to": 307, "what": "Глава VI — билинейные и квадратичные функции, жорданова форма"}],
+         "problems": [{"book": "beklz", "page": 293, "text": "Глава XII «Функции на линейном пространстве»."}]},
+        {"id": "la10", "level": 3, "title": "Олимпиадная планиметрия", "goal": "Подобие, вписанные углы, окружности — уровень олимпиадных задач.",
+         "read": [{"book": "prasolov", "page": 11, "to": 80, "what": "Главы 1–3: подобные треугольники, вписанный угол, окружности"}],
+         "problems": [
+           {"book": "prasolov", "page": 11, "text": "Глава 1 «Подобные треугольники» (решения — со стр. 20)."},
+           {"book": "prasolov", "page": 30, "text": "Глава 2 «Вписанный угол» (решения — со стр. 42)."},
+           {"book": "prasolov", "page": 55, "text": "Глава 3 «Окружности» (решения — со стр. 66)."}
+         ]}
+      ]
+    },
+    {
+      "id": "algo",
+      "short": "Алгоритмы",
+      "accent": "#10B981",
+      "glyph": "O(n)",
+      "title": "Алгоритмы и дискретная математика",
+      "topics": [
+        {"id": "al1", "level": 1, "title": "Что такое алгоритм, O-большое, бинарный поиск", "goal": "Оценивать сложность, понимать асимптотические обозначения.",
+         "read": [{"book": "grok", "page": 27, "to": 46, "what": "Chapter 1. Introduction to algorithms"},
+                  {"book": "clrs", "page": 64, "to": 85, "what": "Chapter 3. Growth of Functions"}],
+         "problems": [{"book": "grok", "page": 35, "text": "Упражнения главы 1 (ответы — приложение C, стр. 303)."}]},
+        {"id": "al2", "level": 1, "title": "Массивы, списки, простые сортировки", "goal": "Сравнивать массивы и связные списки, знать сортировки выбором, вставками, слиянием.",
+         "read": [{"book": "grok", "page": 47, "to": 66, "what": "Chapter 2. Selection sort"},
+                  {"book": "clrs", "page": 37, "to": 63, "what": "Chapter 2. Getting Started"}],
+         "problems": [
+           {"book": "grok", "page": 59, "text": "Упражнения главы 2."},
+           {"text": "Своя задача: реализуй сортировку вставками и слиянием (на C или Python) и сравни время на 10⁵ случайных чисел."}
+         ]},
+        {"id": "al3", "level": 1, "title": "Рекурсия, разделяй и властвуй, quicksort", "goal": "Писать рекурсивные функции, понимать стек вызовов и рекуррентные соотношения.",
+         "read": [{"book": "grok", "page": 67, "to": 102, "what": "Chapters 3–4. Recursion; Quicksort"},
+                  {"book": "clrs", "page": 191, "to": 211, "what": "Chapter 7. Quicksort"}],
+         "problems": [{"book": "grok", "page": 89, "text": "Упражнения главы 4."}]},
+        {"id": "al4", "level": 1, "title": "Хеш-таблицы", "goal": "Понимать хеш-функции, коллизии, коэффициент заполнения.",
+         "read": [{"book": "grok", "page": 103, "to": 126, "what": "Chapter 5. Hash tables"},
+                  {"book": "clrs", "page": 274, "to": 306, "what": "Chapter 11. Hash Tables"}],
+         "problems": [
+           {"book": "grok", "page": 110, "text": "Упражнения главы 5."},
+           {"text": "Своя задача: хеш-таблица с цепочками на C (вставка, поиск, удаление, рост таблицы)."}
+         ]},
+        {"id": "al5", "level": 1, "title": "Доказательства, логика, индукция", "goal": "Строить доказательства: от противного, по индукции; работать с логическими формулами.",
+         "read": [{"book": "mcs", "page": 13, "to": 48, "what": "Chapters 1–2. What is a Proof?; Well Ordering Principle"},
+                  {"book": "mcs", "page": 49, "to": 88, "what": "Chapter 3. Logical Formulas"},
+                  {"book": "mcs", "page": 123, "to": 180, "what": "Chapter 5. Induction"}],
+         "problems": [{"book": "mcs", "page": 123, "text": "Problems в конце глав 1, 3 и 5 (Class Problems и Homework Problems)."}]},
+        {"id": "al6", "level": 2, "title": "Графы, поиск в ширину и глубину", "goal": "Представления графов, BFS, DFS, топологическая сортировка.",
+         "read": [{"book": "grok", "page": 127, "to": 146, "what": "Chapter 6. Breadth-first search"},
+                  {"book": "clrs", "page": 610, "to": 644, "what": "Chapter 22. Elementary Graph Algorithms"},
+                  {"book": "mcs", "page": 401, "to": 480, "what": "Chapter 11. Simple Graphs (по желанию)"}],
+         "problems": [
+           {"book": "grok", "page": 136, "text": "Упражнения главы 6."},
+           {"book": "clrs", "page": 610, "text": "Exercises 22.1–22.4 по выбору (5–6 штук)."}
+         ]},
+        {"id": "al7", "level": 2, "title": "Деревья: BST и сбалансированные деревья", "goal": "Двоичные деревья поиска, обходы, AVL и красно-чёрные деревья.",
+         "read": [{"book": "grok", "page": 147, "to": 190, "what": "Chapters 7–8. Trees; Balanced trees"},
+                  {"book": "clrs", "page": 307, "to": 359, "what": "Chapters 12–13. BST; Red-Black Trees"}],
+         "problems": [{"text": "Своя задача: BST на C или Python — вставка, поиск, удаление, три обхода, высота дерева."}]},
+        {"id": "al8", "level": 2, "title": "Кратчайшие пути: Дейкстра", "goal": "Алгоритм Дейкстры, его ограничения, Беллман–Форд.",
+         "read": [{"book": "grok", "page": 191, "to": 216, "what": "Chapter 9. Dijkstra's algorithm"},
+                  {"book": "clrs", "page": 664, "to": 704, "what": "Chapter 24. Single-Source Shortest Paths"}],
+         "problems": [{"text": "Своя задача: Дейкстра на куче (heapq) для графа из файла; выведи путь, а не только длину."}]},
+        {"id": "al9", "level": 2, "title": "Жадные алгоритмы и динамическое программирование", "goal": "Отличать задачи для жадного алгоритма и для ДП, строить таблицу ДП.",
+         "read": [{"book": "grok", "page": 217, "to": 254, "what": "Chapters 10–11. Greedy algorithms; Dynamic programming"},
+                  {"book": "clrs", "page": 380, "to": 471, "what": "Chapters 15–16. Dynamic Programming; Greedy Algorithms"}],
+         "problems": [
+           {"book": "grok", "page": 221, "text": "Упражнения главы 10."},
+           {"text": "Своя задача: реализуй размен монет (минимум монет), рюкзак 0/1 и LCS через ДП."}
+         ]},
+        {"id": "al10", "level": 2, "title": "Комбинаторика", "goal": "Правила суммы и произведения, сочетания, перестановки, включения-исключения.",
+         "read": [{"book": "mcs", "page": 559, "to": 634, "what": "Chapter 14. Cardinality Rules"}],
+         "problems": [{"book": "mcs", "page": 559, "text": "Problems в конце главы 14."}]},
+        {"id": "al11", "level": 3, "title": "Кучи и сортировки", "goal": "Двоичная куча, heapsort, нижняя оценка сортировок сравнением, сортировка подсчётом.",
+         "read": [{"book": "clrs", "page": 172, "to": 190, "what": "Chapter 6. Heapsort"},
+                  {"book": "clrs", "page": 212, "to": 233, "what": "Chapter 8. Sorting in Linear Time"}],
+         "problems": [{"book": "clrs", "page": 172, "text": "Exercises 6.1–6.5 и 8.1–8.2 по выбору."}]},
+        {"id": "al12", "level": 3, "title": "Теория чисел", "goal": "НОД, алгоритм Евклида, сравнения по модулю, обратный элемент, RSA.",
+         "read": [{"book": "mcs", "page": 251, "to": 324, "what": "Chapter 8. Number Theory"},
+                  {"book": "clrs", "page": 947, "to": 1005, "what": "Chapter 31. Number-Theoretic Algorithms (по желанию)"}],
+         "problems": [{"book": "mcs", "page": 251, "text": "Problems в конце главы 8."}]},
+        {"id": "al13", "level": 3, "title": "Теория вероятностей", "goal": "Вероятностные пространства, условная вероятность, случайные величины, матожидание.",
+         "read": [{"book": "mcs", "page": 675, "to": 796, "what": "Chapters 16–18. Events and Probability Spaces … Random Variables"}],
+         "problems": [{"book": "mcs", "page": 675, "text": "Problems в конце глав 16–18."}]},
+        {"id": "al14", "level": 3, "title": "NP-полнота", "goal": "Классы P и NP, сводимость, NP-полные задачи.",
+         "read": [{"book": "clrs", "page": 1069, "to": 1126, "what": "Chapter 34. NP-Completeness"},
+                  {"book": "grok", "page": 293, "to": 302, "what": "Appendix B. NP-hard problems"}],
+         "problems": [{"book": "clrs", "page": 1069, "text": "Exercises 34.1–34.2 по выбору."}]}
+      ]
+    },
+    {
+      "id": "phys",
+      "short": "Физика",
+      "accent": "#F43F5E",
+      "glyph": "ħ",
+      "title": "Физика",
+      "topics": [
+        {"id": "ph1", "level": 1, "title": "Кинематика", "goal": "Равноускоренное движение, векторы, движение тела, брошенного под углом.",
+         "read": [{"book": "halliday", "page": 39, "to": 119, "what": "Chapters 2–4. Motion Along a Straight Line; Vectors; Motion in 2D and 3D"}],
+         "problems": [
+           {"book": "irodov", "page": 6, "text": "Раздел 1.1 «Кинематика»: реши 10–15 задач."},
+           {"book": "halliday", "page": 39, "text": "Problems в конце глав 2 и 4 (ответы на нечётные — стр. 1411)."}
+         ]},
+        {"id": "ph2", "level": 1, "title": "Законы Ньютона, силы, трение", "goal": "Составлять уравнения движения, работать с трением и наклонной плоскостью.",
+         "read": [{"book": "halliday", "page": 120, "to": 174, "what": "Chapters 5–6. Force and Motion I–II"}],
+         "problems": [{"book": "irodov", "page": 15, "text": "Раздел 1.2 «Основное уравнение динамики»."}]},
+        {"id": "ph3", "level": 1, "title": "Работа и энергия", "goal": "Работа, мощность, кинетическая и потенциальная энергия, закон сохранения энергии.",
+         "read": [{"book": "halliday", "page": 175, "to": 239, "what": "Chapters 7–8. Kinetic Energy and Work; Potential Energy"},
+                  {"book": "savel", "page": 83, "to": 136, "what": "Глава 3. Законы сохранения"}],
+         "problems": [{"book": "irodov", "page": 24, "text": "Раздел 1.3 «Законы сохранения импульса, энергии и момента импульса» — задачи на энергию."}]},
+        {"id": "ph4", "level": 1, "title": "Импульс и центр масс", "goal": "Закон сохранения импульса, упругие и неупругие удары, центр масс.",
+         "read": [{"book": "halliday", "page": 240, "to": 282, "what": "Chapter 9. Center of Mass and Linear Momentum"}],
+         "problems": [{"book": "irodov", "page": 24, "text": "Раздел 1.3 — задачи на импульс и удары."}]},
+        {"id": "ph5", "level": 2, "title": "Вращение твёрдого тела", "goal": "Момент инерции, момент силы, момент импульса, качение.",
+         "read": [{"book": "halliday", "page": 283, "to": 352, "what": "Chapters 10–11. Rotation; Rolling, Torque, Angular Momentum"}],
+         "problems": [{"book": "irodov", "page": 48, "text": "Раздел 1.5 «Динамика твёрдого тела»."}]},
+        {"id": "ph6", "level": 2, "title": "Гравитация", "goal": "Закон всемирного тяготения, законы Кеплера, космические скорости.",
+         "read": [{"book": "halliday", "page": 380, "to": 411, "what": "Chapter 13. Gravitation"},
+                  {"book": "savel", "page": 239, "to": 263, "what": "Глава 7. Гравитация"}],
+         "problems": [{"book": "irodov", "page": 44, "text": "Раздел 1.4 «Всемирное тяготение»."}]},
+        {"id": "ph7", "level": 2, "title": "Колебания", "goal": "Гармонические колебания, маятники, затухание, резонанс.",
+         "read": [{"book": "halliday", "page": 439, "to": 469, "what": "Chapter 15. Oscillations"},
+                  {"book": "savel", "page": 264, "to": 307, "what": "Глава 8. Колебательное движение"}],
+         "problems": [{"book": "irodov", "page": 154, "text": "Раздел 3.1 «Механические колебания»."}]},
+        {"id": "ph8", "level": 2, "title": "Термодинамика и молекулярная физика", "goal": "Уравнение состояния, первое и второе начала, цикл Карно, энтропия.",
+         "read": [{"book": "halliday", "page": 540, "to": 634, "what": "Chapters 18–20. Temperature, Heat, Kinetic Theory, Entropy"},
+                  {"book": "sivukhin2", "page": 28, "to": 177, "what": "Главы I–III. Температура; первое и второе начала"}],
+         "problems": [{"book": "irodov", "page": 291, "text": "Разделы 6.1–6.4 (часть 6 «Физика макросистем»)."}]},
+        {"id": "ph9", "level": 3, "title": "Электростатика", "goal": "Закон Кулона, поле и потенциал, теорема Гаусса, конденсаторы.",
+         "read": [{"book": "halliday", "page": 635, "to": 770, "what": "Chapters 21–25. Coulomb's Law … Capacitance"},
+                  {"book": "purcell", "page": 25, "to": 147, "what": "Chapters 1–2. Electrostatics; The electric potential"},
+                  {"book": "sivukhin3", "page": 19, "to": 174, "what": "Глава I. Электрическое поле (по-русски, подробно)"}],
+         "problems": [{"book": "irodov", "page": 80, "text": "Разделы 2.1–2.3: поле в вакууме, проводники и диэлектрики, ёмкость."}]},
+        {"id": "ph10", "level": 3, "title": "Постоянный ток и цепи", "goal": "Закон Ома, правила Кирхгофа, мощность, ЭДС.",
+         "read": [{"book": "halliday", "page": 771, "to": 828, "what": "Chapters 26–27. Current and Resistance; Circuits"},
+                  {"book": "purcell", "page": 201, "to": 258, "what": "Chapter 4. Electric currents"},
+                  {"book": "sivukhin3", "page": 175, "to": 213, "what": "Глава II. Электрический ток"}],
+         "problems": [{"book": "irodov", "page": 103, "text": "Раздел 2.4 «Электрический ток»."}]},
+        {"id": "ph11", "level": 3, "title": "Магнитное поле и индукция", "goal": "Сила Лоренца, закон Био–Савара, закон Фарадея, правило Ленца.",
+         "read": [{"book": "halliday", "page": 829, "to": 928, "what": "Chapters 28–30. Magnetic Fields … Induction and Inductance"},
+                  {"book": "purcell", "page": 301, "to": 411, "what": "Chapters 6–7. The magnetic field; Electromagnetic induction"},
+                  {"book": "sivukhin3", "page": 214, "to": 381, "what": "Главы III–IV. Магнитное поле; Уравнения Максвелла"}],
+         "problems": [{"book": "irodov", "page": 116, "text": "Разделы 2.5–2.6: магнитное поле, электромагнитная индукция."}]}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% from "_ui.html" import icon, ring, glyph, meter, cover %}
+{% block title %}Обзор{% endblock %}
+{% block content %}
+<header class="page-header">
+  <div>
+    <div class="eyebrow">{{ today }}</div>
+    <h1>{{ greeting }}</h1>
+    <p>{% if done %}Пройдено {{ done }} {{ done|plural('тема', 'темы', 'тем') }} из {{ total }}. Держи темп — понемногу каждый день.{% else %}Начни с проверки уровня: она подскажет, с какой темы стартовать в каждом предмете.{% endif %}</p>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="card stat">
+    <span class="stat-label">{{ icon('target', 14) }}Пройдено тем</span>
+    <span class="stat-value">{{ done }}<small>/ {{ total }}</small></span>
+    {{ meter((100 * done / total)|round|int if total else 0, 'thin') }}
+  </div>
+  <div class="card stat">
+    <span class="stat-label"><span class="stat-flame">{{ icon('flame', 14) }}</span>Серия</span>
+    <span class="stat-value">{{ streak }}<small>{{ streak|plural('день', 'дня', 'дней') }}</small></span>
+    <span class="text-xs faint">{{ 'Есть занятие сегодня или вчера' if streak else 'Сделай что-нибудь сегодня' }}</span>
+  </div>
+  <div class="card stat">
+    <span class="stat-label">{{ icon('quiz', 14) }}Тестов за 7 дней</span>
+    <span class="stat-value">{{ week_attempts }}</span>
+    <span class="text-xs faint">включая проверки уровня</span>
+  </div>
+  <div class="card stat">
+    <span class="stat-label">{{ icon('clock', 14) }}Средний результат</span>
+    <span class="stat-value">{% if average is not none %}{{ average }}<small>%</small>{% else %}—{% endif %}</span>
+    <span class="text-xs faint">по последним 10 тестам</span>
+  </div>
+</div>
+
+<div class="grid-main section">
+  <div>
+    {% if reading %}
+    {% set r = reading[0] %}
+    <a class="card continue" href="{{ url_for('site.read', bid=r.book.id, page=r.page) }}">
+      <span class="cover">{{ cover(r.book, book_accent(r.book), compact=true) }}</span>
+      <div class="continue-body">
+        <div class="eyebrow">{{ icon('book', 14) }}Продолжить чтение</div>
+        <h3 style="margin-top: 4px">{{ r.book.title }}</h3>
+        <div class="text-sm muted num" style="margin-top: 2px">Страница {{ r.page }}</div>
+      </div>
+      <span class="btn btn-primary btn-sm">Открыть{{ icon('arrow-right', 14) }}</span>
+    </a>
+    {% endif %}
+
+    {% if needs_placement %}
+    <div class="callout" style="margin-top: {{ '12px' if reading else '0' }}">
+      <span class="callout-icon">{{ icon('target', 18) }}</span>
+      <div>
+        <h3>Определи стартовый уровень</h3>
+        <p>9 вопросов на предмет — и сайт покажет, какие темы можно пропустить.</p>
+        <div class="chips">
+          {% for s in needs_placement %}
+          <a class="chip" style="--c: {{ s.subject.accent }}" href="{{ url_for('site.placement', sid=s.subject.id) }}">{{ glyph(s.subject, 'sm') }}{{ s.subject.short }}</a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <section class="section">
+      <div class="section-head"><h2>Предметы</h2><span class="muted">{{ summaries|length }} направлений</span></div>
+      <div class="subject-grid">
+        {% for s in summaries %}
+        <a class="card subject-card" style="--c: {{ s.subject.accent }}" href="{{ url_for('site.subject', sid=s.subject.id) }}">
+          <div class="subject-top">
+            {{ glyph(s.subject) }}
+            <h3>{{ s.subject.title }}<div class="muted num">{{ s.done }} из {{ s.total }} {{ s.total|plural('темы', 'тем', 'тем') }}</div></h3>
+            {{ ring(s.percent, 44, 4) }}
+          </div>
+          <div class="subject-next">
+            {% if not s.placement %}
+              {{ icon('target', 14) }}<span>Сначала — проверка уровня</span>
+            {% elif s.next %}
+              {{ icon('arrow-right', 14) }}<span>Дальше: <b>{{ s.next.title }}</b></span>
+            {% else %}
+              {{ icon('check', 14) }}<span>Все темы пройдены</span>
+            {% endif %}
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+
+  <aside>
+    <div class="card">
+      <div class="card-header"><h2>Последние тесты</h2></div>
+      <div class="list">
+        {% for a in attempts %}
+        <a class="list-item" href="{{ url_for('site.result', aid=a.id) }}">
+          <div class="grow">
+            <div class="title">{{ a.title }}</div>
+            <div class="sub">{{ a.created_at[8:10] }}.{{ a.created_at[5:7] }} · {{ a.created_at[11:16] }}</div>
+          </div>
+          <span class="score-pill {{ 'score-good' if a.percent >= pass_percent else 'score-bad' }}">{{ a.percent }}%</span>
+        </a>
+        {% else %}
+        <div class="list-empty">Пока пусто. Результаты появятся после первого теста.</div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if reading|length > 1 %}
+    <div class="card" style="margin-top: 16px">
+      <div class="card-header"><h2>Недавно читал</h2><a class="card-link" href="{{ url_for('site.catalog') }}">Каталог{{ icon('chevron-right', 14) }}</a></div>
+      <div class="list">
+        {% for r in reading[1:] %}
+        <a class="list-item" href="{{ url_for('site.read', bid=r.book.id, page=r.page) }}">
+          <div class="grow"><div class="title">{{ r.book.title }}</div><div class="sub num">стр. {{ r.page }}</div></div>
+          <span class="chev">{{ icon('chevron-right') }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </aside>
+</div>
+{% endblock %}

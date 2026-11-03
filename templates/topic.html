@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% from "_ui.html" import icon, glyph, status_badge %}
+{% block title %}{{ topic.title }}{% endblock %}
+{% block content %}
+{% set n_done = state.problems_done|length %}
+{% set is_read = state.status in ('read', 'credited') %}
+<div style="--c: {{ subject.accent }}">
+  <nav class="crumbs">
+    <a href="{{ url_for('site.dashboard') }}">Обзор</a>{{ icon('chevron-right', 12) }}
+    <a href="{{ url_for('site.subject', sid=subject.id) }}">{{ subject.title }}</a>{{ icon('chevron-right', 12) }}
+    <span class="num">Тема {{ number }} из {{ count }}</span>
+  </nav>
+
+  <header class="page-header">
+    <div>
+      <div class="eyebrow">{{ glyph(subject, 'sm') }}Уровень {{ topic.level }} · {{ levels[topic.level] }} {{ status_badge(state) }}</div>
+      <h1>{{ topic.title }}</h1>
+      {% if topic.goal %}<p class="topic-goal">{{ topic.goal }}</p>{% endif %}
+      {% if topic.note %}<p class="note">{{ icon('sparkle', 14) }}{{ topic.note }}</p>{% endif %}
+    </div>
+  </header>
+
+  <div class="grid-main">
+    <div>
+      <section class="card step {{ 'is-done' if is_read }}">
+        <div class="step-head">
+          <span class="step-num">{% if is_read %}{{ icon('check', 14) }}{% else %}1{% endif %}</span>
+          <h2>Прочитать</h2>
+          <span class="muted">{{ reading|length }} {{ reading|length|plural('источник', 'источника', 'источников') }}</span>
+        </div>
+        {% for item in reading %}
+          <div class="resource">{% include "_item.html" %}</div>
+        {% endfor %}
+        <form method="post" action="{{ url_for('site.topic_status', tid=topic.id) }}" class="step-foot">
+          <input type="hidden" name="csrf" value="{{ csrf_token }}">
+          {% if state.status == 'new' %}
+            <button class="btn btn-primary btn-sm" name="status" value="reading">{{ icon('book', 14) }}Начал читать</button>
+            <button class="btn btn-sm" name="status" value="read">Уже прочитал</button>
+          {% elif state.status == 'reading' %}
+            <button class="btn btn-primary btn-sm" name="status" value="read">{{ icon('check', 14) }}Отметить прочитанным</button>
+            <button class="btn btn-ghost btn-sm" name="status" value="new">Сбросить</button>
+          {% else %}
+            <span class="text-sm muted" style="align-self: center; flex: 1">{{ 'Тема зачтена по проверке уровня' if state.status == 'credited' else 'Отмечено как прочитанное' }}</span>
+            <button class="btn btn-ghost btn-sm" name="status" value="new">Сбросить статус</button>
+          {% endif %}
+        </form>
+      </section>
+
+      <section class="card step {{ 'is-done' if problems and n_done == problems|length }}" id="problems">
+        <div class="step-head">
+          <span class="step-num">{% if problems and n_done == problems|length %}{{ icon('check', 14) }}{% else %}2{% endif %}</span>
+          <h2>Решить задачи</h2>
+          <span class="muted num">{{ n_done }} из {{ problems|length }}</span>
+        </div>
+        {% for item in problems %}
+          {% set done = loop.index0 in state.problems_done %}
+          <div class="resource {{ 'is-done' if done }}">
+            {% include "_item.html" %}
+            <form method="post" action="{{ url_for('site.toggle_problem', tid=topic.id, idx=loop.index0) }}">
+              <input type="hidden" name="csrf" value="{{ csrf_token }}">
+              <button class="check-btn {{ 'is-on' if done }}" aria-label="{{ 'Снять отметку' if done else 'Отметить решённым' }}" title="{{ 'Снять отметку' if done else 'Отметить решённым' }}">{{ icon('check', 16) }}</button>
+            </form>
+          </div>
+        {% endfor %}
+      </section>
+
+      <section class="card step {{ 'is-done' if state.passed }}">
+        <div class="step-head">
+          <span class="step-num">{% if state.passed %}{{ icon('check', 14) }}{% else %}3{% endif %}</span>
+          <h2>Тест по теме</h2>
+          {% if state.best is not none %}<span class="score-pill {{ 'score-good' if state.passed else 'score-bad' }}">лучший {{ (state.best * 100)|round|int }}%</span>{% endif %}
+        </div>
+        <div class="step-foot" style="border-radius: 0 0 var(--r-md) var(--r-md)">
+          {% if topic.questions %}
+            <span class="text-sm muted" style="align-self: center; flex: 1">{{ topic.questions|length }} {{ topic.questions|length|plural('вопрос', 'вопроса', 'вопросов') }} · зачёт от {{ pass_percent }}%</span>
+            <a class="btn {{ 'btn-primary' if is_read and not state.passed else '' }} btn-sm" href="{{ url_for('site.topic_test', tid=topic.id) }}">{{ 'Пройти ещё раз' if state.best is not none else 'Начать тест' }}{{ icon('arrow-right', 14) }}</a>
+          {% else %}
+            <span class="text-sm muted">Вопросов пока нет — тема засчитывается после отметки «прочитано».</span>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+
+    <aside>
+      <div class="card aside-card">
+        <div class="card-header"><h2>Прогресс темы</h2>{{ status_badge(state) }}</div>
+        <ul class="checklist">
+          <li class="{{ 'done' if is_read }}">
+            {% if is_read %}<span class="status status-done">{{ icon('check', 12) }}</span>{% else %}<span class="status status-new"></span>{% endif %}
+            <span class="grow">Прочитано</span>
+          </li>
+          <li class="{{ 'done' if state.passed }}">
+            {% if state.passed %}<span class="status status-done">{{ icon('check', 12) }}</span>{% else %}<span class="status status-new"></span>{% endif %}
+            <span class="grow">Тест от {{ pass_percent }}%</span>
+            {% if state.best is not none %}<span class="text-sm faint num">{{ (state.best * 100)|round|int }}%</span>{% endif %}
+          </li>
+          <li class="{{ 'done' if problems and n_done == problems|length }}">
+            {% if problems and n_done == problems|length %}<span class="status status-done">{{ icon('check', 12) }}</span>{% else %}<span class="status status-new"></span>{% endif %}
+            <span class="grow">Задачи <span class="faint">(по желанию)</span></span>
+            <span class="text-sm faint num">{{ n_done }}/{{ problems|length }}</span>
+          </li>
+        </ul>
+      </div>
+      <nav class="topic-nav">
+        {% if prev_topic %}
+        <a href="{{ url_for('site.topic', tid=prev_topic.id) }}"><span>← Предыдущая</span><b>{{ prev_topic.title }}</b></a>
+        {% endif %}
+        {% if next_topic %}
+        <a class="next" href="{{ url_for('site.topic', tid=next_topic.id) }}"><span>Следующая →</span><b>{{ next_topic.title }}</b></a>
+        {% endif %}
+      </nav>
+    </aside>
+  </div>
+</div>
+{% endblock %}

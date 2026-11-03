@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% from "_ui.html" import icon, meter %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div style="--c: {{ subject.accent }}">
+  <div class="test-head">
+    <div class="test-wrap">
+      <div class="test-head-row">
+        <a class="btn btn-ghost btn-icon btn-sm" href="{{ back_url }}" aria-label="Выйти из теста">{{ icon('x', 18) }}</a>
+        <h1>{{ title }}</h1>
+        <span class="text-sm faint num"><span id="answered">0</span>/{{ questions|length }}</span>
+      </div>
+      <div id="test-meter">{{ meter(0, 'thin') }}</div>
+    </div>
+  </div>
+
+  <form method="post" class="test-wrap" id="test-form">
+    <input type="hidden" name="csrf" value="{{ csrf_token }}">
+    {% if placement %}
+    <div class="callout" style="margin-bottom: 14px">
+      <span class="callout-icon">{{ icon('target', 18) }}</span>
+      <div><h3>Проверка уровня</h3><p style="margin: 0">Вопросы трёх уровней сложности. Не знаешь ответ — оставь пустым: угадывание исказит рекомендацию.</p></div>
+    </div>
+    {% endif %}
+    {% for q in questions %}
+    <fieldset class="card question" data-q>
+      <input type="hidden" name="qid" value="{{ q.id }}">
+      <legend>
+        <div class="q-eyebrow">Вопрос {{ loop.index }} из {{ questions|length }}</div>
+        <div class="q-text">{{ q.q }}</div>
+      </legend>
+      {% if q.code %}<pre><code>{{ q.code }}</code></pre>{% endif %}
+      {% if q.type == 'choice' %}
+        <div class="options">
+          {% for idx, text in q.shuffled %}
+          <label class="option">
+            <input type="radio" name="a_{{ q.id }}" value="{{ idx }}">
+            <span class="option-key">{{ 'ABCDEFGH'[loop.index0] }}</span>
+            <span>{{ text }}</span>
+          </label>
+          {% endfor %}
+        </div>
+      {% elif q.type == 'number' %}
+        <input class="field" type="text" inputmode="decimal" name="a_{{ q.id }}" placeholder="Введи число — дробь через точку или запятую" autocomplete="off">
+      {% else %}
+        <input class="field" type="text" name="a_{{ q.id }}" placeholder="Введи ответ" autocomplete="off" autocapitalize="off" spellcheck="false">
+      {% endif %}
+    </fieldset>
+    {% endfor %}
+
+    <div class="submit-bar">
+      <span class="num">Отвечено <b id="answered-2">0</b> из {{ questions|length }}</span>
+      <button class="btn btn-primary">Проверить{{ icon('arrow-right', 14) }}</button>
+    </div>
+  </form>
+</div>
+<script>
+  // Счётчик отвеченных вопросов и полоска прогресса в шапке теста.
+  (function () {
+    const form = document.getElementById("test-form");
+    const blocks = form.querySelectorAll("[data-q]");
+    const bar = document.querySelector("#test-meter .progress span");
+    const update = () => {
+      let n = 0;
+      blocks.forEach((b) => {
+        const checked = b.querySelector("input[type=radio]:checked");
+        const text = b.querySelector("input.field");
+        if (checked || (text && text.value.trim())) n++;
+      });
+      document.getElementById("answered").textContent = n;
+      document.getElementById("answered-2").textContent = n;
+      bar.style.width = Math.round(100 * n / blocks.length) + "%";
+    };
+    form.addEventListener("input", update);
+    form.addEventListener("change", update);
+  })();
+</script>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Ошибка {{ error.code }}{% endblock %}
+{% macro body() %}
+<div class="empty">
+  <p class="eyebrow" style="justify-content: center">Ошибка {{ error.code }}</p>
+  <h1>{{ 'Страница не найдена' if error.code == 404 else 'Что-то пошло не так' }}</h1>
+  <p style="margin-top: 10px">{{ error.description }}</p>
+  <a class="btn btn-primary" href="{{ url_for('site.dashboard') }}">На главную</a>
+</div>
+{% endmacro %}
+{% block content %}{{ body() }}{% endblock %}
+{% block bare %}<main class="auth">{{ body() }}</main>{% endblock %}

@@ -1,0 +1,96 @@
+{% from "_ui.html" import icon, glyph %}
+<!doctype html>
+<html lang="ru" data-theme="{{ theme }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="{{ '#0e0f13' if theme == 'dark' else '#fafafa' }}">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>{% block title %}Обзор{% endblock %} — Учебный план</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235b5bd6'/%3E%3Ctext x='16' y='22' font-family='Segoe UI,Arial' font-size='17' font-weight='700' fill='white' text-anchor='middle'%3E%D0%A3%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v=css_version) }}">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+{% set current_subject = subject.id if subject is defined and subject else (summary.subject.id if summary is defined else None) %}
+{% if nav_subjects is defined %}
+<div class="app">
+  <aside class="sidebar">
+    <a class="brand" href="{{ url_for('site.dashboard') }}"><span class="brand-mark">У</span>Учебный план</a>
+    <nav class="nav">
+      <a class="nav-item {{ 'active' if request.endpoint == 'site.dashboard' }}" href="{{ url_for('site.dashboard') }}">
+        {{ icon('home') }}<span class="nav-text">Обзор</span>
+      </a>
+      <a class="nav-item {{ 'active' if request.endpoint == 'site.catalog' }}" href="{{ url_for('site.catalog') }}">
+        {{ icon('library') }}<span class="nav-text">Каталог книг</span>
+      </a>
+      {% if nav_last_book %}
+      <a class="nav-item {{ 'active' if request.endpoint == 'site.read' }}" href="{{ url_for('site.read', bid=nav_last_book.book.id) }}">
+        {{ icon('book') }}
+        <span class="nav-text">Читаю сейчас<span class="nav-sub">{{ nav_last_book.book.title }}</span></span>
+      </a>
+      {% endif %}
+    </nav>
+    <div class="nav-label">Предметы</div>
+    <nav class="nav">
+      {% for s in nav_subjects %}
+      <a class="nav-item {{ 'active' if current_subject == s.subject.id }}" href="{{ url_for('site.subject', sid=s.subject.id) }}">
+        {{ glyph(s.subject, 'sm') }}<span class="nav-text">{{ s.subject.short }}</span><span class="nav-meta">{{ s.percent }}%</span>
+      </a>
+      {% endfor %}
+    </nav>
+    <div class="sidebar-footer">
+      <button type="button" class="nav-item" data-theme-toggle>
+        <span class="when-dark">{{ icon('sun') }}</span><span class="when-light">{{ icon('moon') }}</span>
+        <span class="nav-text"><span class="when-dark">Светлая тема</span><span class="when-light">Тёмная тема</span></span>
+      </button>
+      <form method="post" action="{{ url_for('site.logout') }}">
+        <input type="hidden" name="csrf" value="{{ csrf_token }}">
+        <button class="nav-item">{{ icon('logout') }}<span class="nav-text">Выйти</span></button>
+      </form>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="mobile-bar">
+      <a class="brand" href="{{ url_for('site.dashboard') }}"><span class="brand-mark">У</span>Учебный план</a>
+      <div class="btn-row" style="gap: 2px">
+        <button type="button" class="btn btn-ghost btn-icon btn-sm" data-theme-toggle aria-label="Сменить тему">
+          <span class="when-dark">{{ icon('sun', 18) }}</span><span class="when-light">{{ icon('moon', 18) }}</span>
+        </button>
+        <form method="post" action="{{ url_for('site.logout') }}" class="inline">
+          <input type="hidden" name="csrf" value="{{ csrf_token }}">
+          <button class="btn btn-ghost btn-icon btn-sm" aria-label="Выйти">{{ icon('logout', 18) }}</button>
+        </form>
+      </div>
+    </header>
+    <main class="content">
+      {% for m in get_flashed_messages() %}<div class="flash">{{ icon('sparkle') }}{{ m }}</div>{% endfor %}
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+
+  <nav class="tabbar">
+    <a class="tab {{ 'active' if request.endpoint in ('site.dashboard', 'site.subject', 'site.topic', 'site.topic_test', 'site.placement', 'site.result') }}" href="{{ url_for('site.dashboard') }}">{{ icon('home') }}Обзор</a>
+    <a class="tab {{ 'active' if request.endpoint == 'site.catalog' }}" href="{{ url_for('site.catalog') }}">{{ icon('library') }}Каталог</a>
+    {% if nav_last_book %}
+    <a class="tab" href="{{ url_for('site.read', bid=nav_last_book.book.id) }}">{{ icon('book') }}Читать</a>
+    {% endif %}
+  </nav>
+</div>
+{% else %}
+  {% block bare %}{% endblock %}
+{% endif %}
+<script>
+  // Переключатель темы: меняет атрибут сразу и запоминает выбор в cookie на год.
+  document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const root = document.documentElement;
+      const next = root.dataset.theme === "dark" ? "light" : "dark";
+      root.dataset.theme = next;
+      document.cookie = "theme=" + next + "; max-age=31536000; path=/; SameSite=Lax";
+      document.querySelector("meta[name=theme-color]").content = next === "dark" ? "#0e0f13" : "#fafafa";
+    });
+  });
+</script>
+</body>
+</html>

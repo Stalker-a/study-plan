@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Вход{% endblock %}
+{% block bare %}
+<main class="auth">
+  <form method="post" class="card auth-card">
+    <span class="brand-mark">У</span>
+    <h1>С возвращением</h1>
+    <p>Войди, чтобы продолжить учёбу с того места, где остановился.</p>
+    {% for m in get_flashed_messages() %}<div class="flash">{{ m }}</div>{% endfor %}
+    <input type="hidden" name="csrf" value="{{ csrf_token }}">
+    <label class="label" for="password">Пароль</label>
+    <input class="field" id="password" type="password" name="password" autocomplete="current-password" autofocus required>
+    <button class="btn btn-primary btn-lg btn-block">Войти</button>
+  </form>
+</main>
+{% endblock %}

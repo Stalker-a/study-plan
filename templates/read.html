@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% from "_ui.html" import icon %}
+{% block title %}{{ book.title }} · стр. {{ page }}{% endblock %}
+{% block body_class %}is-reader{% endblock %}
+{% block content %}
+<div class="reader-top">
+  <a class="btn btn-ghost btn-icon btn-sm" href="{{ url_for('site.catalog') }}" aria-label="В каталог">{{ icon('arrow-left', 18) }}</a>
+  <span class="reader-title">{{ book.title }}</span>
+  <button type="button" class="btn btn-ghost btn-icon btn-sm" id="dim-toggle" aria-pressed="false"
+          title="Ночной режим страницы" aria-label="Ночной режим страницы">{{ icon('moon', 16) }}</button>
+  <a class="btn btn-ghost btn-sm" href="{{ url_for('site.book_file', bid=book.id) }}#page={{ page }}" target="_blank" rel="noopener"
+     title="Открыть исходный PDF в новой вкладке (с поиском по тексту)">{{ icon('external', 14) }}PDF</a>
+</div>
+
+<div class="reader-stage">
+  <noscript><img class="page-img" alt="Страница {{ page }}" src="{{ url_for('site.page_image', bid=book.id, page=page, w=1000) }}"></noscript>
+  <img id="page" class="page-img" alt="Страница {{ page }}"
+       data-base="{{ url_for('site.page_image', bid=book.id, page=page) }}"
+       data-next="{{ url_for('site.page_image', bid=book.id, page=page + 1) if page < total else '' }}">
+</div>
+
+<div class="pager">
+  <a class="btn btn-ghost btn-icon btn-sm" id="prev" href="{{ url_for('site.read', bid=book.id, page=page - 1) }}"
+     aria-label="Предыдущая страница" {{ 'aria-disabled=true' if page <= 1 }}>{{ icon('chevron-left', 18) }}</a>
+  <form method="get">
+    <input type="number" name="page" value="{{ page }}" min="1" max="{{ total }}" inputmode="numeric" aria-label="Номер страницы">
+    <span>/ {{ total }}</span>
+  </form>
+  <a class="btn btn-ghost btn-icon btn-sm" id="next" href="{{ url_for('site.read', bid=book.id, page=page + 1) }}"
+     aria-label="Следующая страница" {{ 'aria-disabled=true' if page >= total }}>{{ icon('chevron-right', 18) }}</a>
+</div>
+<script>
+  // Разрешение под экран, предзагрузка следующей страницы, стрелки и свайпы.
+  (function () {
+    const img = document.getElementById("page");
+
+    // Ночной режим страницы: по умолчанию включён в тёмной теме, выбор запоминается в браузере.
+    const stage = document.querySelector(".reader-stage");
+    const dimButton = document.getElementById("dim-toggle");
+    let saved = null;
+    try { saved = localStorage.getItem("page-dim"); } catch (e) { /* приватный режим */ }
+    const applyDim = (on) => {
+      stage.classList.toggle("is-dim", on);
+      dimButton.setAttribute("aria-pressed", on ? "true" : "false");
+    };
+    applyDim(saved === null ? document.documentElement.dataset.theme === "dark" : saved === "1");
+    dimButton.addEventListener("click", () => {
+      const on = !stage.classList.contains("is-dim");
+      applyDim(on);
+      try { localStorage.setItem("page-dim", on ? "1" : "0"); } catch (e) { /* не страшно */ }
+    });
+
+    const width = Math.min(1800, Math.round(img.parentElement.clientWidth * (window.devicePixelRatio || 1)));
+    const w = Math.max(400, Math.round(width / 100) * 100);
+    img.src = img.dataset.base + "?w=" + w;
+    if (img.dataset.next) new Image().src = img.dataset.next + "?w=" + w;
+
+    const go = (id) => {
+      const a = document.getElementById(id);
+      if (a.getAttribute("aria-disabled") !== "true") location.href = a.href;
+    };
+    document.addEventListener("keydown", (e) => {
+      if (e.target.tagName === "INPUT") return;
+      if (e.key === "ArrowRight") go("next");
+      if (e.key === "ArrowLeft") go("prev");
+    });
+    let startX = null, startY = null;
+    img.addEventListener("touchstart", (e) => {
+      if (e.touches.length !== 1) { startX = null; return; }  // щипок для масштаба — не листаем
+      startX = e.touches[0].clientX; startY = e.touches[0].clientY;
+    }, { passive: true });
+    img.addEventListener("touchend", (e) => {
+      if (startX === null || (window.visualViewport && window.visualViewport.scale > 1.05)) return;
+      const dx = e.changedTouches[0].clientX - startX, dy = e.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) > 70 && Math.abs(dx) > 2 * Math.abs(dy)) go(dx < 0 ? "next" : "prev");
+    });
+  })();
+</script>
+{% endblock %}

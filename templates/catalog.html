@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% from "_ui.html" import icon, cover %}
+{% block title %}Каталог{% endblock %}
+{% block content %}
+{% set total_books = folders.values()|map('length')|sum %}
+<header class="page-header">
+  <div>
+    <div class="eyebrow">{{ icon('library', 14) }}Библиотека</div>
+    <h1>Каталог книг</h1>
+    <p class="num">{{ total_books }} {{ total_books|plural('книга', 'книги', 'книг') }} в {{ folders|length }} {{ folders|length|plural('разделе', 'разделах', 'разделах') }}. Нажми на книгу — она откроется прямо здесь, на странице, где ты остановился.</p>
+  </div>
+</header>
+
+{% if not folders %}
+  <div class="flash">В папке {{ books_dir }} не найдено PDF/DJVU. Проверь BOOKS_DIR в .env.</div>
+{% else %}
+<label class="search">
+  {{ icon('search', 16) }}
+  <input type="search" id="book-search" placeholder="Поиск по названию или автору" autocomplete="off">
+</label>
+{% endif %}
+
+{% for folder, books in folders.items() %}
+<section class="section shelf-section">
+  <div class="section-head"><h2>{{ folder or 'Без раздела' }}</h2><span class="muted num">{{ books|length }}</span></div>
+  <div class="shelf">
+    {% for b in books %}
+    <div class="book-tile" data-title="{{ (b.title ~ ' ' ~ b.path.stem)|lower }}">
+      <a class="cover" href="{{ url_for('site.read', bid=b.id) }}" aria-label="{{ b.title }}">
+        {{ cover(b, book_accent(b)) }}
+        {% if positions.get(b.id) %}<span class="book-bookmark num">{{ positions[b.id] }}</span>{% endif %}
+      </a>
+      <a class="book-title" href="{{ url_for('site.read', bid=b.id) }}">{{ b.title }}</a>
+      <div class="book-meta">
+        {% if b.meta.role %}<span>{{ b.meta.role|capitalize }}</span>{% endif %}
+        <span class="num">{{ '%.0f'|format(b.size_mb) }} МБ</span>
+        {% if b.is_pdf %}
+        <a href="{{ url_for('site.book_file', bid=b.id) }}" target="_blank" rel="noopener" title="Открыть исходный PDF в новой вкладке" aria-label="Открыть исходный PDF">{{ icon('external', 13) }}</a>
+        {% else %}
+        <a href="{{ url_for('site.book_file', bid=b.id) }}" title="Скачать файл" aria-label="Скачать файл">{{ icon('download', 13) }}</a>
+        {% endif %}
+      </div>
+      {% if not b.is_pdf %}<div class="book-note">DJVU: только скачать и открыть в читалке с поддержкой DjVu.</div>{% endif %}
+      {% if b.meta.note %}<div class="book-note">{{ b.meta.note }}</div>{% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endfor %}
+<script>
+  // Мгновенный фильтр по названию; пустые разделы скрываются.
+  (function () {
+    const input = document.getElementById("book-search");
+    if (!input) return;
+    input.addEventListener("input", () => {
+      const q = input.value.trim().toLowerCase();
+      document.querySelectorAll(".shelf-section").forEach((section) => {
+        let visible = 0;
+        section.querySelectorAll(".book-tile").forEach((tile) => {
+          const show = !q || tile.dataset.title.includes(q);
+          tile.hidden = !show;
+          visible += show;
+        });
+        section.hidden = visible === 0;
+      });
+    });
+  })();
+</script>
+{% endblock %}

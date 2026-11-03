@@ -1,0 +1,21 @@
+{# Ресурс темы: книга со страницами или своя задача. item — результат _resolve_item. #}
+{% from "_ui.html" import icon, cover %}
+{% if item.book_id %}
+  <a class="cover" href="{{ item.url }}" tabindex="-1" style="width: 40px">{{ cover(item.book_obj, subject.accent, compact=true) }}</a>
+{% else %}
+  <span class="resource-own">{{ icon('pencil', 16) }}</span>
+{% endif %}
+<div class="resource-body">
+  {% if item.book_title %}
+    {% if item.url %}<a class="resource-title" href="{{ item.url }}">{{ item.book_title }}</a>
+    {% else %}<span class="resource-title">{{ item.book_title }}</span>{% endif %}
+    <div class="resource-pages">
+      {% if item.page %}стр. {{ item.page }}{% if item.to %}–{{ item.to }}{% endif %}
+      {% elif not item.missing %}страница не указана — открой по оглавлению{% endif %}
+      {% if item.missing %}<span class="badge badge-warning">файла нет в папке</span>{% endif %}
+    </div>
+  {% else %}
+    <span class="resource-title">Своя задача</span>
+  {% endif %}
+  <div class="resource-text">{{ item.what or item.text }}</div>
+</div>

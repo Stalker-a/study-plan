@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% from "_ui.html" import icon, ring, meter %}
+{% block title %}Результат{% endblock %}
+{% block content %}
+{% set good = a.percent >= pass_percent %}
+<div style="--c: {{ subject.accent if subject else 'var(--brand)' }}" class="test-wrap">
+  <nav class="crumbs">
+    <a href="{{ back_url }}">{{ icon('arrow-left', 12) }}</a>
+    <a href="{{ back_url }}">{{ 'К теме' if a.kind == 'topic' else 'К предмету' }}</a>
+  </nav>
+
+  <div class="card result-hero {{ 'tone-good' if good or a.kind == 'placement' else 'tone-bad' }}">
+    <span class="ring-xl">{{ ring(a.percent, 112, 8) }}</span>
+    {% if a.kind == 'topic' %}
+      <h1>{{ 'Тест сдан' if good else 'Пока не сдан' }}</h1>
+      <p class="num">{{ a.score }} / {{ a.total }} верно · {{ a.title }}</p>
+      <p>{% if good %}Отлично. Если ещё не отметил тему прочитанной — сделай это, и она засчитается.{% else %}Для зачёта нужно {{ pass_percent }}%. Разбери ошибки ниже, перечитай нужные места и попробуй снова.{% endif %}</p>
+      <div class="btn-row">
+        <a class="btn {{ '' if good else 'btn-primary' }}" href="{{ url_for('site.topic_test', tid=a.ref) }}">{{ icon('retry', 14) }}Пройти ещё раз</a>
+        <a class="btn {{ 'btn-primary' if good else '' }}" href="{{ back_url }}">К теме{{ icon('arrow-right', 14) }}</a>
+      </div>
+    {% else %}
+      {% set rec = a.details.recommended %}
+      <h1>Старт с уровня {{ rec }}</h1>
+      <p class="num">{{ a.score }} / {{ a.total }} верно · {{ a.title }}</p>
+      <p>Рекомендую начать с уровня «{{ levels[rec] }}».{% if rec > 1 %} Темы уровней ниже можно зачесть сразу — снять зачёт у любой темы можно позже.{% endif %}</p>
+      <div class="btn-row">
+        {% if rec > 1 %}
+        <form method="post" action="{{ url_for('site.apply_placement', sid=a.ref) }}" class="inline">
+          <input type="hidden" name="csrf" value="{{ csrf_token }}">
+          <input type="hidden" name="level" value="{{ rec }}">
+          <button class="btn btn-primary">{{ icon('check', 14) }}Зачесть темы ниже уровня {{ rec }}</button>
+        </form>
+        {% endif %}
+        <a class="btn" href="{{ back_url }}">К предмету</a>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if a.kind == 'placement' %}
+  <div class="card section">
+    <div class="card-header"><h2>По уровням</h2><span class="text-sm faint">зачёт от {{ pass_percent }}%</span></div>
+    <div class="level-bars">
+      {% for level, stats in a.details.by_level.items()|sort %}
+      {% set pct = (100 * stats[0] / stats[1])|round|int %}
+      <div class="{{ 'tone-good' if pct >= pass_percent else 'tone-bad' }}">
+        <div class="level-bar-head"><span>Уровень {{ level }} · {{ levels[level|int] }}</span><span class="num muted">{{ stats[0] }} из {{ stats[1] }}</span></div>
+        {{ meter(pct) }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="section-head section"><h2>Разбор ответов</h2><span class="muted num">{{ a.details.answers|selectattr('ok')|list|length }} из {{ a.total }} верно</span></div>
+  <div class="card">
+    {% for ans in a.details.answers %}
+    <div class="review {{ 'ok' if ans.ok else 'fail' }}">
+      <span class="review-icon">{{ icon('check' if ans.ok else 'x', 13) }}</span>
+      <div class="review-body">
+        <div class="review-q">{{ ans.q }}</div>
+        {% if ans.code %}<pre><code>{{ ans.code }}</code></pre>{% endif %}
+        {% if ans.ok %}
+          <div class="answer-row"><span class="k">Ответ</span><span class="right">{{ ans.given }}</span></div>
+        {% else %}
+          <div class="answer-row"><span class="k">Твой ответ</span><span class="{{ 'wrong' if ans.given != '—' else 'faint' }}">{{ ans.given }}</span></div>
+          <div class="answer-row"><span class="k">Правильно</span><span class="right">{{ ans.correct }}</span></div>
+        {% endif %}
+        {% if ans.explain %}<div class="explain">{{ ans.explain }}</div>{% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

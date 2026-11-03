@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% from "_ui.html" import icon, ring, glyph, meter, status_icon %}
+{% block title %}{{ summary.subject.title }}{% endblock %}
+{% block content %}
+{% set subj = summary.subject %}
+<div style="--c: {{ subj.accent }}">
+  <nav class="crumbs"><a href="{{ url_for('site.dashboard') }}">Обзор</a>{{ icon('chevron-right', 12) }}<span>{{ subj.title }}</span></nav>
+
+  <header class="subject-hero">
+    {{ glyph(subj, 'lg') }}
+    <div class="grow">
+      <h1>{{ subj.title }}</h1>
+      <p class="num">{{ summary.done }} из {{ summary.total }} {{ summary.total|plural('темы', 'тем', 'тем') }} пройдено · {{ levels|length }} {{ levels|length|plural('уровень', 'уровня', 'уровней') }}</p>
+    </div>
+    <span class="ring-lg">{{ ring(summary.percent, 64, 5) }}</span>
+  </header>
+
+  {% set p = summary.placement %}
+  {% if p %}
+  <div class="card card-pad" style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap">
+    <span class="callout-icon" style="background: var(--c)">{{ icon('target', 18) }}</span>
+    <div style="flex: 1; min-width: 200px">
+      <h3>Стартовый уровень: {{ p.details.recommended }} · {{ levels[p.details.recommended] }}</h3>
+      <div class="text-sm muted num">Проверка уровня: {{ p.score }} из {{ p.total }}</div>
+    </div>
+    <div class="btn-row">
+      <a class="btn btn-sm" href="{{ url_for('site.result', aid=p.id) }}">Разбор</a>
+      <a class="btn btn-sm btn-ghost" href="{{ url_for('site.placement', sid=subj.id) }}">{{ icon('retry', 14) }}Пройти заново</a>
+    </div>
+  </div>
+  {% else %}
+  <div class="callout">
+    <span class="callout-icon">{{ icon('target', 18) }}</span>
+    <div>
+      <h3>Узнай свой стартовый уровень</h3>
+      <p>{{ subj.placement|length }} вопросов трёх уровней сложности, около 10 минут. Темы ниже твоего уровня можно будет зачесть сразу.</p>
+      <a class="btn btn-primary btn-sm" href="{{ url_for('site.placement', sid=subj.id) }}">Пройти проверку{{ icon('arrow-right', 14) }}</a>
+    </div>
+  </div>
+  {% endif %}
+
+  {% set ns = namespace(n=0) %}
+  {% for level, topics in by_level.items() %}
+  {% set ls = level_stats[level] %}
+  <section class="level">
+    <div class="level-head">
+      <span class="level-num">{{ level }}</span>
+      <h2>{{ levels[level] }}</h2>
+      <span class="text-sm faint num">{{ ls.done }}/{{ ls.total }}</span>
+      {{ meter((100 * ls.done / ls.total)|round|int, 'thin') }}
+    </div>
+    <div class="card list">
+      {% for t in topics %}
+        {% set ns.n = ns.n + 1 %}
+        {% set st = progress.state(t) %}
+        {% set is_next = summary.next and summary.next.id == t.id %}
+        <a class="list-item topic-item {{ 'is-next' if is_next }}" href="{{ url_for('site.topic', tid=t.id) }}">
+          <span class="idx">{{ ns.n }}</span>
+          {{ status_icon(st) }}
+          <div class="grow">
+            {% if is_next %}<div class="next-tag">Следующая</div>{% endif %}
+            <div class="title">{{ t.title }}</div>
+          </div>
+          {% if st.best is not none %}
+            <span class="score-pill {{ 'score-good' if st.passed else 'score-bad' }}">{{ (st.best * 100)|round|int }}%</span>
+          {% endif %}
+          <span class="chev">{{ icon('chevron-right') }}</span>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+</div>
+{% endblock %}
