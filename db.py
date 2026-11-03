@@ -6,7 +6,19 @@ from datetime import datetime, timedelta
 
 from flask import g
 
-SCHEMA = """
+ATTEMPTS_TABLE = """
+CREATE TABLE IF NOT EXISTS attempts (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    kind       TEXT NOT NULL CHECK (kind IN ('topic', 'placement', 'bank')),
+    ref        TEXT NOT NULL,          -- id темы или id предмета
+    score      INTEGER NOT NULL,
+    total      INTEGER NOT NULL,
+    details    TEXT NOT NULL,          -- JSON: ответы и итоги по уровням
+    created_at TEXT NOT NULL
+);
+"""
+
+SCHEMA = ATTEMPTS_TABLE + """
 CREATE TABLE IF NOT EXISTS topic_status (
     topic_id   TEXT PRIMARY KEY,
     status     TEXT NOT NULL CHECK (status IN ('new', 'reading', 'read', 'credited')),
@@ -17,15 +29,6 @@ CREATE TABLE IF NOT EXISTS problem_done (
     idx      INTEGER NOT NULL,
     done_at  TEXT NOT NULL,
     PRIMARY KEY (topic_id, idx)
-);
-CREATE TABLE IF NOT EXISTS attempts (
-    id         INTEGER PRIMARY KEY AUTOINCREMENT,
-    kind       TEXT NOT NULL CHECK (kind IN ('topic', 'placement')),
-    ref        TEXT NOT NULL,          -- id темы или id предмета
-    score      INTEGER NOT NULL,
-    total      INTEGER NOT NULL,
-    details    TEXT NOT NULL,          -- JSON: ответы и итоги по уровням
-    created_at TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS attempts_ref ON attempts (kind, ref);
 CREATE TABLE IF NOT EXISTS book_position (
@@ -42,7 +45,24 @@ def now() -> str:
 
 def init(path: str) -> None:
     with closing(sqlite3.connect(path)) as conn:
+        _allow_bank_attempts(conn)
         conn.executescript(SCHEMA)
+
+
+def _allow_bank_attempts(conn) -> None:
+    """В старых базах CHECK у attempts не знает вид 'bank'. SQLite не меняет CHECK на месте —
+    пересоздаём таблицу с теми же данными в одной транзакции."""
+    row = conn.execute("SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'attempts'").fetchone()
+    if row is None or "'bank'" in row[0]:
+        return
+    conn.executescript(
+        "BEGIN;"
+        "ALTER TABLE attempts RENAME TO attempts_old;"
+        + ATTEMPTS_TABLE +
+        "INSERT INTO attempts SELECT * FROM attempts_old;"
+        "DROP TABLE attempts_old;"
+        "COMMIT;"
+    )
 
 
 def get(path: str) -> sqlite3.Connection:
@@ -141,6 +161,12 @@ def last_placements(conn) -> dict[str, dict]:
         "(SELECT MAX(id) FROM attempts WHERE kind = 'placement' GROUP BY ref)"
     )
     return {r["ref"]: {**dict(r), "details": json.loads(r["details"])} for r in rows}
+
+
+def bank_attempts(conn, subject_id: str) -> list[dict]:
+    """Все попытки тестов из банка по предмету, от старых к новым."""
+    rows = conn.execute("SELECT * FROM attempts WHERE kind = 'bank' AND ref = ? ORDER BY id", (subject_id,))
+    return [{**dict(r), "details": json.loads(r["details"])} for r in rows]
 
 
 def recent_attempts(conn, limit: int = 6) -> list[dict]:

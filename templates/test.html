@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_ui.html" import icon, meter %}
+{% from "_ui.html" import icon, meter, tr, lang_switch %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 <div style="--c: {{ subject.accent }}">
@@ -8,6 +8,7 @@
       <div class="test-head-row">
         <a class="btn btn-ghost btn-icon btn-sm" href="{{ back_url }}" aria-label="Выйти из теста">{{ icon('x', 18) }}</a>
         <h1>{{ title }}</h1>
+        {% if bilingual %}{{ lang_switch() }}{% endif %}
         <span class="text-sm faint num"><span id="answered">0</span>/{{ questions|length }}</span>
       </div>
       <div id="test-meter">{{ meter(0, 'thin') }}</div>
@@ -27,7 +28,7 @@
       <input type="hidden" name="qid" value="{{ q.id }}">
       <legend>
         <div class="q-eyebrow">Вопрос {{ loop.index }} из {{ questions|length }}</div>
-        <div class="q-text">{{ q.q }}</div>
+        <div class="q-text">{{ tr(q.q) }}</div>
       </legend>
       {% if q.code %}<pre><code>{{ q.code }}</code></pre>{% endif %}
       {% if q.type == 'choice' %}
@@ -36,12 +37,14 @@
           <label class="option">
             <input type="radio" name="a_{{ q.id }}" value="{{ idx }}">
             <span class="option-key">{{ 'ABCDEFGH'[loop.index0] }}</span>
-            <span>{{ text }}</span>
+            <span class="option-text {{ 'is-code' if q.code_options }}">{{ tr(text) }}</span>
           </label>
           {% endfor %}
         </div>
       {% elif q.type == 'number' %}
         <input class="field" type="text" inputmode="decimal" name="a_{{ q.id }}" placeholder="Введи число — дробь через точку или запятую" autocomplete="off">
+      {% elif q.strict %}
+        <input class="field is-code" type="text" name="a_{{ q.id }}" placeholder="Как в Python: 'abc', [1, 2], True" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
       {% else %}
         <input class="field" type="text" name="a_{{ q.id }}" placeholder="Введи ответ" autocomplete="off" autocapitalize="off" spellcheck="false">
       {% endif %}

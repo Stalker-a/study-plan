@@ -19,6 +19,7 @@ from flask import (Blueprint, Flask, Response, abort, current_app, flash, g, red
                    render_template, request, send_file, session, url_for)
 
 import db
+from bank import LANGS, SIZES, QuestionBank, mastered_ids, pick
 from content import (ContentError, Curriculum, Library, Subject, Topic, check_answer,
                      correct_answer_text, given_answer_text, prepare_questions)
 from reader import PdfRenderer
@@ -43,6 +44,7 @@ def create_app() -> Flask:
         raise SystemExit("Задай в .env пароль SITE_PASSWORD длиной от 8 символов (пример — .env.example).")
     try:
         curriculum = Curriculum()
+        question_bank = QuestionBank([s.id for s in curriculum.subjects], curriculum.levels)
     except ContentError as e:
         raise SystemExit(f"Ошибка в файлах content/: {e}")
 
@@ -62,6 +64,7 @@ def create_app() -> Flask:
         "curriculum": curriculum,
         "library": Library(books_dir, curriculum.books),
         "renderer": PdfRenderer(),
+        "bank": question_bank,
     }
     db.init(app.config["DB_PATH"])
     app.teardown_appcontext(db.close)
@@ -238,7 +241,8 @@ THEMES = ("dark", "light")
 def inject_theme():
     """Тема из cookie (ставит переключатель на странице); по умолчанию тёмная."""
     theme = request.cookies.get("theme")
-    return {"theme": theme if theme in THEMES else "dark"}
+    qlang = request.cookies.get("qlang")  # язык вопросов из банка, переключатель RU/EN
+    return {"theme": theme if theme in THEMES else "dark", "qlang": qlang if qlang in LANGS else "ru"}
 
 
 @bp.app_context_processor
@@ -306,7 +310,8 @@ def _describe_attempt(a: dict) -> dict:
         title = topic.title if topic else a["ref"]
     else:
         subject = cur().subject_by_id.get(a["ref"])
-        title = "Проверка уровня: " + (subject.title if subject else a["ref"])
+        prefix = "Тест: " if a["kind"] == "bank" else "Проверка уровня: "
+        title = prefix + (subject.title if subject else a["ref"])
     return {**a, "title": title, "percent": round(100 * a["score"] / a["total"]) if a["total"] else 0}
 
 
@@ -424,6 +429,7 @@ def _grade(questions: list[dict]) -> tuple[int, list[dict]]:
             "id": q["id"], "q": q["q"], "code": q.get("code"), "level": q.get("level"),
             "ok": check_answer(q, raw), "given": given_answer_text(q, raw),
             "correct": correct_answer_text(q), "explain": q.get("explain", ""),
+            "mono": bool(q.get("code_options") or q.get("strict")),  # ответы-код показать моноширинным
         })
     return sum(a["ok"] for a in answers), answers
 
@@ -442,13 +448,15 @@ def _recommend_level(by_level: dict[str, list[int]]) -> int:
 def result(aid):
     attempt = db.get_attempt(conn(), aid) or abort(404)
     attempt = {**attempt, **_describe_attempt({k: attempt[k] for k in ("kind", "ref", "score", "total")})}
-    back_url = (url_for("site.topic", tid=attempt["ref"]) if attempt["kind"] == "topic"
-                else url_for("site.subject", sid=attempt["ref"]))
+    back_url = {"topic": lambda: url_for("site.topic", tid=attempt["ref"]),
+                "placement": lambda: url_for("site.subject", sid=attempt["ref"]),
+                "bank": lambda: url_for("site.tests")}[attempt["kind"]]()
     if attempt["kind"] == "topic" and attempt["ref"] in cur().topics:
         subj = cur().subject_by_id[cur().topics[attempt["ref"]].subject_id]
     else:
         subj = cur().subject_by_id.get(attempt["ref"])
-    return render_template("result.html", a=attempt, back_url=back_url, subject=subj)
+    return render_template("result.html", a=attempt, back_url=back_url, subject=subj,
+                           nav_section="tests" if attempt["kind"] == "bank" else None)
 
 
 @bp.route("/placement/<sid>/apply", methods=["POST"])
@@ -461,6 +469,59 @@ def apply_placement(sid):
     db.credit_topics(conn(), lower)
     flash(f"Зачтено тем: {len(lower)}. Начинай с уровня {level}.")
     return redirect(url_for("site.subject", sid=sid))
+
+
+# ---------- Тесты из открытых банков ----------
+
+def qbank() -> QuestionBank:
+    return current_app.extensions["study"]["bank"]
+
+
+@bp.route("/tests")
+def tests():
+    c = conn()
+    cards = []
+    for subj in cur().subjects:
+        questions = qbank().questions(subj.id)
+        if not questions:
+            continue
+        attempts = db.bank_attempts(c, subj.id)
+        last = attempts[-1] if attempts else None
+        cards.append({
+            "subject": subj, "total": len(questions), "levels": qbank().level_counts(subj.id),
+            "mastered": len(mastered_ids(attempts) & {q["id"] for q in questions}),
+            "attempts": len(attempts), "last": _describe_attempt(last) if last else None,
+        })
+    return render_template("tests.html", cards=cards, sizes=SIZES, nav_section="tests")
+
+
+@bp.route("/tests/<sid>", methods=["GET", "POST"])
+def bank_test(sid):
+    subj = cur().subject_by_id.get(sid) or abort(404)
+    pool = qbank().questions(sid)
+    if not pool:
+        abort(404)
+    if request.method == "POST":
+        # Форма отправляется на тот же адрес с ?level=&n= — по ним строится кнопка «Ещё тест».
+        score, answers = _grade(pool)
+        retry = {k: v for k, v in request.args.items() if k in ("level", "n")}
+        details = {"answers": answers, "retry": retry}
+        attempt_id = db.save_attempt(conn(), "bank", sid, score, len(answers), details)
+        return redirect(url_for("site.result", aid=attempt_id))
+
+    level = request.args.get("level", type=int)
+    level = level if level in cur().levels else None
+    size = request.args.get("n", type=int)
+    size = size if size in SIZES else SIZES[0]
+    questions = qbank().questions(sid, level)
+    if not questions:
+        flash("На этом уровне вопросов нет — выбери другой.")
+        return redirect(url_for("site.tests"))
+    chosen = pick(questions, size, mastered_ids(db.bank_attempts(conn(), sid)))
+    title = f"Тест: {subj.title}" + (f" · уровень {level}" if level else "")
+    return render_template("test.html", title=title, questions=prepare_questions(chosen),
+                           back_url=url_for("site.tests"), subject=subj, bilingual=True,
+                           nav_section="tests")
 
 
 # ---------- Книги ----------

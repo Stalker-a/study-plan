@@ -1,6 +1,6 @@
 {% from "_ui.html" import icon, glyph %}
 <!doctype html>
-<html lang="ru" data-theme="{{ theme }}">
+<html lang="ru" data-theme="{{ theme }}" data-qlang="{{ qlang }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v=css_version) }}">
 </head>
 <body class="{% block body_class %}{% endblock %}">
-{% set current_subject = subject.id if subject is defined and subject else (summary.subject.id if summary is defined else None) %}
+{% set in_tests = nav_section is defined and nav_section == 'tests' %}
+{% set current_subject = None if in_tests else (subject.id if subject is defined and subject else (summary.subject.id if summary is defined else None)) %}
 {% if nav_subjects is defined %}
 <div class="app">
   <aside class="sidebar">
@@ -22,6 +23,9 @@
       </a>
       <a class="nav-item {{ 'active' if request.endpoint == 'site.catalog' }}" href="{{ url_for('site.catalog') }}">
         {{ icon('library') }}<span class="nav-text">Каталог книг</span>
+      </a>
+      <a class="nav-item {{ 'active' if in_tests }}" href="{{ url_for('site.tests') }}">
+        {{ icon('tests') }}<span class="nav-text">Тесты</span>
       </a>
       {% if nav_last_book %}
       <a class="nav-item {{ 'active' if request.endpoint == 'site.read' }}" href="{{ url_for('site.read', bid=nav_last_book.book.id) }}">
@@ -70,8 +74,9 @@
   </div>
 
   <nav class="tabbar">
-    <a class="tab {{ 'active' if request.endpoint in ('site.dashboard', 'site.subject', 'site.topic', 'site.topic_test', 'site.placement', 'site.result') }}" href="{{ url_for('site.dashboard') }}">{{ icon('home') }}Обзор</a>
+    <a class="tab {{ 'active' if request.endpoint in ('site.dashboard', 'site.subject', 'site.topic', 'site.topic_test', 'site.placement', 'site.result') and not in_tests }}" href="{{ url_for('site.dashboard') }}">{{ icon('home') }}Обзор</a>
     <a class="tab {{ 'active' if request.endpoint == 'site.catalog' }}" href="{{ url_for('site.catalog') }}">{{ icon('library') }}Каталог</a>
+    <a class="tab {{ 'active' if in_tests }}" href="{{ url_for('site.tests') }}">{{ icon('tests') }}Тесты</a>
     {% if nav_last_book %}
     <a class="tab" href="{{ url_for('site.read', bid=nav_last_book.book.id) }}">{{ icon('book') }}Читать</a>
     {% endif %}
@@ -89,6 +94,14 @@
       root.dataset.theme = next;
       document.cookie = "theme=" + next + "; max-age=31536000; path=/; SameSite=Lax";
       document.querySelector("meta[name=theme-color]").content = next === "dark" ? "#0e0f13" : "#fafafa";
+    });
+  });
+  // Язык вопросов из банка (RU/EN): переключается мгновенно, ответы в форме не теряются.
+  document.querySelectorAll("[data-qlang-set]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const lang = button.dataset.qlangSet;
+      document.documentElement.dataset.qlang = lang;
+      document.cookie = "qlang=" + lang + "; max-age=31536000; path=/; SameSite=Lax";
     });
   });
 </script>

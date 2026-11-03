@@ -222,7 +222,8 @@ def check_answer(q: dict, raw: str | None) -> bool:
             return False
         return abs(value - q["answer"]) <= q.get("tol", 1e-9)
     accepted = q["answer"] if isinstance(q["answer"], list) else [q["answer"]]
-    return _normalize(raw) in {_normalize(a) for a in accepted}
+    normalize = _normalize_strict if q.get("strict") else _normalize
+    return normalize(raw) in {normalize(a) for a in accepted}
 
 
 def correct_answer_text(q: dict) -> str:
@@ -242,3 +243,8 @@ def given_answer_text(q: dict, raw: str | None) -> str:
 
 def _normalize(text: str) -> str:
     return " ".join(text.lower().split())
+
+
+def _normalize_strict(text: str) -> str:
+    """Для вывода программ: регистр важен, пробелы и вид кавычек — нет ([1,2] == [1, 2], "a" == 'a')."""
+    return "".join(text.split()).replace('"', "'")

@@ -1,0 +1,774 @@
+{
+ "questions": [
+  {
+   "id": "high-school-computer-science-31",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Что растёт асимптотически быстрее всего?",
+    "en": "Which is the largest asymptotically?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "O(1)",
+     "O(n)",
+     "O(n²)",
+     "O(log n)"
+    ],
+    "en": [
+     "O(1)",
+     "O(n)",
+     "O(n²)",
+     "O(log n)"
+    ]
+   }
+  },
+  {
+   "id": "high-school-computer-science-52",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Что растёт асимптотически медленнее всего?",
+    "en": "Which is the smallest asymptotically?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "O(1)",
+     "O(n)",
+     "O(n²)",
+     "O(log n)"
+    ],
+    "en": [
+     "O(1)",
+     "O(n)",
+     "O(n²)",
+     "O(log n)"
+    ]
+   }
+  },
+  {
+   "id": "high-school-computer-science-43",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "В отсортированном списке из 120 целых чисел ищут значение 100 самым эффективным алгоритмом. Сколько элементов придётся проверить в худшем случае?",
+    "en": "A sorted list of 120 integers is to be searched to determine whether the value 100 is in the list. Assuming that the most efficient searching algorithm is used, what is the maximum number of elements that must be examined?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "7",
+     "8",
+     "20",
+     "100"
+    ],
+    "en": [
+     "7",
+     "8",
+     "20",
+     "100"
+    ]
+   },
+   "explain": "Бинарный поиск: 2⁷ = 128 ≥ 121."
+  },
+  {
+   "id": "high-school-computer-science-78",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Отсортированный список из 500 элементов. Какое число ближе всего к наибольшему количеству элементов, просматриваемых бинарным поиском?",
+    "en": "A sorted list of numbers contains 500 elements. Which of the following is closest to the maximum number of list elements that will be examined when performing a binary search for a value in the list?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "10",
+     "50",
+     "250",
+     "500"
+    ],
+    "en": [
+     "10",
+     "50",
+     "250",
+     "500"
+    ]
+   },
+   "explain": "log₂ 500 ≈ 9."
+  },
+  {
+   "id": "high-school-computer-science-48",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Программист выбирает между линейным и бинарным поиском в отсортированном списке. Что верно?",
+    "en": "A programmer is deciding between using a linear or binary search to find a target value in a sorted list. Which of the following is true?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Бинарный поиск всегда требует меньше сравнений, чем линейный.",
+     "Обычно преимущество бинарного поиска растёт с ростом размера списка.",
+     "Линейный поиск обычно быстрее, потому что его код короче.",
+     "Линейный поиск лучше, если искомого значения может не оказаться в списке."
+    ],
+    "en": [
+     "In all cases, a binary search of a sorted list requires fewer comparisons than a linear search.",
+     "Generally, the advantage of using a binary search over a linear search increases as the size of the list increases.",
+     "A linear search will generally run faster than a binary search because a linear search requires fewer lines of code to implement.",
+     "Using a linear search is preferable to using a binary search if there is a chance that the target may not be found in the list."
+    ]
+   },
+   "explain": "Если элемент первый, линейный поиск найдёт его за одно сравнение, поэтому «всегда» неверно."
+  },
+  {
+   "id": "high-school-computer-science-14",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Код Хаффмана присваивает частым значениям короткие коды, а редким — длинные. Для чего он подходит?",
+    "en": "Huffman coding assigns unique variable-length codes to input values based on the frequency of occurrence of each value. Frequently occurring values are assigned codes that contain fewer bits than values that occur less frequently, which are assigned codes that contain more bits. Which of the following best describes an appropriate use of Huffman coding?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Расшифровка",
+     "Эффективная сортировка",
+     "Сжатие без потерь",
+     "Сжатие с потерями"
+    ],
+    "en": [
+     "Decryption",
+     "Efficient sorting",
+     "Lossless compression",
+     "Lossy compression"
+    ]
+   }
+  },
+  {
+   "id": "high-school-computer-science-25",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Интернет-магазин обозначает товары 6-битными двоичными кодами и думает перейти на 7-битные. Что это даст?",
+    "en": "An online store uses 6-bit binary sequences to identify each unique item for sale. The store plans to increase the number of items it sells and is considering using 7-bit binary sequences. Which of the following best describes the result of using 7-bit sequences instead of 6- bit sequences?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Можно будет различить на 2 товара больше",
+     "Можно будет различить на 10 товаров больше",
+     "Можно будет различить в 2 раза больше товаров",
+     "Можно будет различить в 10 раз больше товаров"
+    ],
+    "en": [
+     "2 more items can be uniquely identified.",
+     "10 more items can be uniquely identified.",
+     "2 times as many items can be uniquely identified.",
+     "10 times as many items can be uniquely identified."
+    ]
+   },
+   "explain": "2⁷ / 2⁶ = 2."
+  },
+  {
+   "id": "high-school-computer-science-36",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Номера студентов хранятся в двоичном виде и растут на 1. Последний номер — 1001 0011. Какой будет следующий?",
+    "en": "Each student that enrolls at a school is assigned a unique ID number, which is stored as a binary number. The ID numbers increase sequentially by 1 with each newly enrolled student. If the ID number assigned to the last student who enrolled was the binary number 1001 0011, what binary number will be assigned to the next student who enrolls?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "1001 0100",
+     "1001 0111",
+     "1101 0100",
+     "1101 0111"
+    ],
+    "en": [
+     "1001 0100",
+     "1001 0111",
+     "1101 0100",
+     "1101 0111"
+    ]
+   }
+  },
+  {
+   "id": "high-school-computer-science-62",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Числа: двоичное 1100, десятичное 11, шестнадцатеричное D. Как они упорядочены по возрастанию?",
+    "en": "Consider the following numbers: binary 1100, decimal 11, hexadecimal D. Which of the following lists the numbers in order from least to greatest?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Двоичное 1100, десятичное 11, шестнадцатеричное D",
+     "Десятичное 11, двоичное 1100, шестнадцатеричное D",
+     "Десятичное 11, шестнадцатеричное D, двоичное 1100",
+     "Шестнадцатеричное D, десятичное 11, двоичное 1100"
+    ],
+    "en": [
+     "Binary 1100, Decimal 11, Hexadecimal D",
+     "Decimal 11, Binary 1100, Hexadecimal D",
+     "Decimal 11, Hexadecimal D, Binary 1100",
+     "Hexadecimal D, Decimal 11, Binary 1100"
+    ]
+   },
+   "explain": "11 < 12 < 13."
+  },
+  {
+   "id": "high-school-computer-science-46",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "В модели RGB для красного, зелёного и синего хранится значение от 0 до 255. Сколько бит нужно для одного цвета?",
+    "en": "The color of a pixel can be represented using the RGB (Red, Green, Blue) color model, which stores values for red, green, and blue, each ranging from 0 to 255. How many bits (binary digits) would be needed to represent a color in the RGB model?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "8",
+     "16",
+     "24",
+     "32"
+    ],
+    "en": [
+     "8",
+     "16",
+     "24",
+     "32"
+    ]
+   },
+   "explain": "3 канала × 8 бит."
+  },
+  {
+   "id": "college-computer-science-32",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Боб загадал число от 1 до 1000. Мэри задаёт вопросы «да/нет», Боб всегда отвечает честно. Сколько вопросов понадобится Мэри при оптимальной стратегии в худшем случае?",
+    "en": "Bob writes down a number between 1 and 1,000. Mary must identify that number by asking \"yes/no\" questions of Bob. Mary knows that Bob always tells the truth. If Mary uses an optimal strategy, then she will determine the answer at the end of exactly how many questions in the worst case?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "1000",
+     "999",
+     "500",
+     "10"
+    ],
+    "en": [
+     "1,000",
+     "999",
+     "500",
+     "10"
+    ]
+   },
+   "explain": "2¹⁰ = 1024 ≥ 1000."
+  },
+  {
+   "id": "college-computer-science-46",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Какое десятичное число точно представимо в двоичной записи?",
+    "en": "Which of the following decimal numbers has an exact representation in binary notation?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "0,1",
+     "0,2",
+     "0,3",
+     "0,5"
+    ],
+    "en": [
+     "0.1",
+     "0.2",
+     "0.3",
+     "0.5"
+    ]
+   },
+   "explain": "0,5 = 2⁻¹; остальные дают бесконечные двоичные дроби."
+  },
+  {
+   "id": "college-computer-science-54",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Стек с операциями Push, Pop, Top, IsEmpty. Какое равенство НЕ соответствует обычной семантике стека?",
+    "en": "Consider the following equations concerning a stack module that has the operations Push, Pop, Top, and IsEmpty. Which of the equations does NOT represent the conventional semantics of a stack?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "IsEmpty(Push(Stack, Elem)) = true",
+     "Pop(Push(Stack, Elem)) = Stack",
+     "Top(Push(Stack, Elem)) = Elem",
+     "IsEmpty(Push(Push(Stack, Elem1), Elem2)) = false"
+    ],
+    "en": [
+     "IsEmpty(Push(Stack,Elem)) = true",
+     "Pop(Push(Stack,Elem)) = Stack",
+     "Top(Push(Stack,Elem)) = Elem",
+     "IsEmpty(Push(Push(Stack,Elem1),Elem2)) = false"
+    ]
+   }
+  },
+  {
+   "id": "college-computer-science-10",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Сортировка слиянием делит список пополам, рекурсивно сортирует половины и сливает их. На каких структурах она работает за O(n log n)?\nI. Односвязный список\nII. Двусвязный список\nIII. Массив",
+    "en": "Mergesort works by splitting a list of n numbers in half, sorting each half recursively, and merging the two halves. Which of the following data structures will allow mergesort to work in O(n log n) time?\nI. A singly linked list\nII. A doubly linked list\nIII. An array"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "Ни на одной",
+     "Только III",
+     "I и II",
+     "I, II и III"
+    ],
+    "en": [
+     "None",
+     "III only",
+     "I and II only",
+     "I, II, and III"
+    ]
+   }
+  },
+  {
+   "id": "college-computer-science-27",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "У какого алгоритма время в худшем случае Θ(n²), а в среднем Θ(n log n)?",
+    "en": "Which of the following algorithms has running time Θ(n²) in the worst case but Θ(n log n) on average?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "Пузырьковая сортировка",
+     "Сортировка слиянием",
+     "Пирамидальная сортировка",
+     "Быстрая сортировка"
+    ],
+    "en": [
+     "Bubblesort",
+     "Mergesort",
+     "Heapsort",
+     "Quicksort"
+    ]
+   }
+  },
+  {
+   "id": "college-computer-science-53",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "У какой сортировки и среднее, и худшее время O(n log n)?",
+    "en": "Which of the following sorting algorithms has average-case and worst-case running times of O(n log n)?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Пузырьковая",
+     "Вставками",
+     "Слиянием",
+     "Быстрая"
+    ],
+    "en": [
+     "Bubble sort",
+     "Insertion sort",
+     "Merge sort",
+     "Quicksort"
+    ]
+   }
+  },
+  {
+   "id": "college-computer-science-75",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Хеш-таблицы дают эффективное в среднем решение всех задач, КРОМЕ:",
+    "en": "Hash tables can contribute to an efficient average-case solution for all of the problems described below EXCEPT:"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Подсчёт различных значений среди n ключей",
+     "Динамический словарь: вставка, удаление, поиск",
+     "Поиск по диапазону: все записи с ключом между a и b",
+     "Таблица символов: по идентификатору найти тип и адрес"
+    ],
+    "en": [
+     "Counting distinct values: Given a set of n keys, determine the number of distinct key values.",
+     "Dynamic dictionary: Support the operations of insert, delete, and search in a dictionary.",
+     "Range search: Given values a and b, find all the records whose key value is in the range a, b.",
+     "Symbol table lookup: Given a program identifier, find its type and address."
+    ]
+   },
+   "explain": "Хеш разрушает порядок ключей; для диапазонов нужно дерево поиска."
+  },
+  {
+   "id": "college-computer-science-44",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "G = (V, E) — связный неориентированный граф. Что обязательно верно?\nI. Сумма степеней всех вершин чётна.\nII. |E| ≥ |V| − 1.\nIII. В G есть вершина степени 1.",
+    "en": "For a connected, undirected graph G = (V, E), which of the following must be true?\nI. The sum of degree(v) over all v ∈ V is even.\nII. |E| ≥ |V| − 1.\nIII. G has at least one vertex with degree 1."
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "Только I",
+     "Только II",
+     "Только III",
+     "I и II"
+    ],
+    "en": [
+     "I only",
+     "II only",
+     "III only",
+     "I and II"
+    ]
+   },
+   "explain": "III неверно: в цикле все степени равны 2."
+  },
+  {
+   "id": "college-computer-science-59",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "G = (V, E) — конечный ориентированный ациклический граф, |E| > 0. Что обязательно верно?\nI. Есть вершина без входящих рёбер.\nII. Есть вершина без исходящих рёбер.\nIII. Есть изолированная вершина.",
+    "en": "Let G = (V, E) be a finite directed acyclic graph with |E| > 0. Which of the following must be true?\nI. G has a vertex with no incoming edge.\nII. G has a vertex with no outgoing edge.\nIII. G has an isolated vertex, that is, one with neither an incoming edge nor an outgoing edge."
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "Только I",
+     "Только II",
+     "Только III",
+     "I и II"
+    ],
+    "en": [
+     "I only",
+     "II only",
+     "III only",
+     "I and II only"
+    ]
+   }
+  },
+  {
+   "id": "college-computer-science-80",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Эйлеров цикл проходит по каждому ребру ровно один раз. В каком графе он обязательно есть?\nI. Полный граф на 12 вершинах\nII. Полный граф на 13 вершинах\nIII. Дерево на 13 вершинах",
+    "en": "An Euler circuit of an undirected graph is a circuit in which each edge of the graph appears exactly once. Which of the following undirected graphs must have an Euler circuit?\nI. A complete graph with 12 vertices\nII. A complete graph with 13 vertices\nIII. A tree with 13 vertices"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Только I",
+     "Только II",
+     "Только III",
+     "I и II"
+    ],
+    "en": [
+     "I only",
+     "II only",
+     "III only",
+     "I and II"
+    ]
+   },
+   "explain": "Нужны чётные степени: в K₁₃ они равны 12, в K₁₂ — 11; в дереве нет циклов."
+  },
+  {
+   "id": "college-computer-science-86",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Какие задачи решаются стандартным жадным алгоритмом?\nI. Минимальное остовное дерево\nII. Максимальная клика\nIII. Максимальный поток",
+    "en": "Which of the following problems can be solved by a standard greedy algorithm?\nI. Finding a minimum spanning tree in an undirected graph with positive-integer edge weights\nII. Finding a maximum clique in an undirected graph\nIII. Finding a maximum flow from a source node to a sink node in a directed graph with positive-integer edge capacities"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "Только I",
+     "Только II",
+     "Только III",
+     "I и II"
+    ],
+    "en": [
+     "I only",
+     "II only",
+     "III only",
+     "I and II only"
+    ]
+   },
+   "explain": "Краскал и Прим жадные; клика NP-трудна; для потока нужен Форд — Фалкерсон."
+  },
+  {
+   "id": "college-computer-science-19",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Процедура P рекурсивна и гарантированно завершается. Что обязательно верно?\nI. У P есть локальная переменная.\nII. У P есть путь выполнения без рекурсивного вызова.\nIII. P обращается к глобальной переменной или имеет хотя бы один параметр.",
+    "en": "Let P be a procedure that for some inputs calls itself (i.e., is recursive). If P is guaranteed to terminate, which of the following statements must be true?\nI. P has a local variable.\nII. P has an execution path where it does not call itself.\nIII. P either refers to a global variable or has at least one parameter."
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "Только I",
+     "Только II",
+     "I и II",
+     "II и III"
+    ],
+    "en": [
+     "I only",
+     "II only",
+     "I and II only",
+     "II and III only"
+    ]
+   },
+   "explain": "Нужен базовый случай (II), и что-то должно меняться между вызовами (III)."
+  },
+  {
+   "id": "college-computer-science-5",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Неориентированные графы на 10 вершинах с 6 рёбрами, без петель и кратных рёбер. M и m — наибольшее и наименьшее число компонент связности. Что верно?",
+    "en": "Consider the collection of all undirected graphs with 10 nodes and 6 edges. Let M and m, respectively, be the maximum and minimum number of connected components in any graph in the collection. If a graph has no selfloops and there is at most one edge between any pair of nodes, which of the following is true?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "M = 10, m = 10",
+     "M = 10, m = 1",
+     "M = 7, m = 4",
+     "M = 6, m = 4"
+    ],
+    "en": [
+     "M = 10, m = 10",
+     "M = 10, m = 1",
+     "M = 7, m = 4",
+     "M = 6, m = 4"
+    ]
+   },
+   "explain": "M: все 6 рёбер в K₄, плюс 6 изолированных вершин. m: лес с 6 рёбрами — 10 − 6 = 4 компоненты."
+  },
+  {
+   "id": "college-computer-science-63",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Какая возможность языка требует стекового распределения памяти вместо статического?",
+    "en": "Which of the following language features requires that stack-based storage allocation be used rather than static allocation?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "Рекурсивные процедуры",
+     "Произвольные goto",
+     "Двумерные массивы",
+     "Функции с целыми значениями"
+    ],
+    "en": [
+     "Recursive procedures",
+     "Arbitrary goto's",
+     "Two-dimensional arrays",
+     "Integer-valued functions"
+    ]
+   }
+  },
+  {
+   "id": "high-school-computer-science-94",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Большой массив сортируют по возрастанию. «Перемещение» — это обмен или присваивание элемента. Что верно?",
+    "en": "A large list of numbers is to be sorted into ascending order. Assuming that a “data movement” is a swap or reassignment of an element, which of the following is a true statement?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Если массив изначально отсортирован по убыванию, вставки эффективнее выбора.",
+     "Число сравнений в сортировке выбором не зависит от исходного порядка.",
+     "Число сравнений в сортировке вставками не зависит от исходного порядка.",
+     "Число перемещений в сортировке выбором зависит от исходного порядка."
+    ],
+    "en": [
+     "If the array is initially sorted in descending order, then insertion sort will be more efficient than selection sort.",
+     "The number of comparisons for selection sort is independent of the initial arrangement of elements.",
+     "The number of comparisons for insertion sort is independent of the initial arrangement of elements.",
+     "The number of data movements in selection sort depends on the initial arrangement of elements."
+    ]
+   },
+   "explain": "Выбор всегда делает n(n − 1)/2 сравнений."
+  },
+  {
+   "id": "high-school-computer-science-49",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Какая функция растёт медленнее всех?",
+    "en": "Which types of functions grow the slowest?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "O(log eᴺ)",
+     "O(log N)",
+     "O(log log N)",
+     "O(N)"
+    ],
+    "en": [
+     "O(log eᴺ)",
+     "O(log N)",
+     "O(log log N)",
+     "O(N)"
+    ]
+   },
+   "explain": "log eᴺ = N."
+  },
+  {
+   "id": "college-computer-science-21",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Какая задача для неориентированного графа G сейчас решается за полиномиальное время?",
+    "en": "Of the following problems concerning a given undirected graph G, which is currently known to be solvable in polynomial time?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Найти самый длинный простой цикл",
+     "Найти самый короткий цикл",
+     "Найти ВСЕ остовные деревья",
+     "Найти наибольшую клику"
+    ],
+    "en": [
+     "Finding a longest simple cycle in G",
+     "Finding a shortest cycle in G",
+     "Finding ALL spanning trees of G",
+     "Finding a largest clique in G"
+    ]
+   },
+   "explain": "Кратчайший цикл ищется поиском в ширину из каждой вершины. Остовных деревьев может быть экспоненциально много."
+  },
+  {
+   "id": "college-computer-science-92",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "G — связный неориентированный граф, a и b — различные вершины. P₁ — найти кратчайший простой путь из a в b, P₂ — найти самый длинный простой путь. Что верно?",
+    "en": "Let G = (V, E) be a connected, undirected graph, and let a and b be two distinct vertices in V. Let P₁ be the problem of finding a shortest simple path between a and b, and let P₂ be the problem of finding a longest simple path between a and b. Which of the following statements about P₁ and P₂ is true?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Обе задачи решаются за полиномиальное время.",
+     "P₁ решается за полиномиальное время, для P₂ это неизвестно.",
+     "Для P₁ это неизвестно, P₂ решается за полиномиальное время.",
+     "Неизвестно ни для одной."
+    ],
+    "en": [
+     "Both P₁ and P₂ can be solved in polynomial time.",
+     "P₁ can be solved in polynomial time but P₂ is not known to be solvable in polynomial time.",
+     "P₁ is not known to be solvable in polynomial time but P₂ can be solved in polynomial time.",
+     "It is not known whether either P₁ or P₂ can be solved in polynomial time."
+    ]
+   },
+   "explain": "Самый длинный путь обобщает гамильтонов путь — NP-трудно."
+  },
+  {
+   "id": "college-computer-science-84",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "f(2N + 1) = f(2N) = f(N) + log N для N ≥ 1, f(1) = 0. Какая оценка f(N) сверху лучшая?",
+    "en": "Of the following, which gives the best upper bound for the value of f(N) where f is a solution to the recurrence f(2N + 1) = f(2N) = f(N) + log N for N ≥ 1, with f(1) = 0?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "O(log N)",
+     "O(N log N)",
+     "O(log N) + O(1)",
+     "O((log N)²)"
+    ],
+    "en": [
+     "O(log N)",
+     "O(N log N)",
+     "O(log N) + O(1)",
+     "O((log N)²)"
+    ]
+   },
+   "explain": "log N + log(N/2) + … — около log N слагаемых по ≤ log N."
+  },
+  {
+   "id": "college-computer-science-23",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Какое значение ближе всего к доле внутренних (нелистовых) вершин среди всех вершин полного K-арного дерева глубины N?",
+    "en": "Of the following, which best approximates the ratio of the number of nonterminal nodes to the total number of nodes in a complete K-ary tree of depth N?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "1/K",
+     "(K − 1)/K",
+     "log₁₀(1/N)",
+     "(N − 1)/m"
+    ],
+    "en": [
+     "1/K",
+     "(K − 1)/K",
+     "log₁₀(1/N)",
+     "(N − 1)/m"
+    ]
+   },
+   "explain": "Листьев K^N, внутренних (K^N − 1)/(K − 1); доля ≈ 1/K."
+  }
+ ]
+}

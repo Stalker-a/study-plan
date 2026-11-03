@@ -1,0 +1,1036 @@
+{
+ "questions": [
+  {
+   "id": "conceptual-physics-0",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Сила 10 Н направлена под углом 45° к горизонту. Её горизонтальная составляющая примерно равна",
+    "en": "A 10-N force at an angle 45° above the horizontal has a horizontal component of about"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "7 Н",
+     "5 Н",
+     "10 Н",
+     "12 Н"
+    ],
+    "en": [
+     "7 N",
+     "5 N",
+     "10 N",
+     "12 N"
+    ]
+   },
+   "explain": "10 · cos 45° ≈ 7,07 Н."
+  },
+  {
+   "id": "conceptual-physics-1",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Полностью погружённое тело всегда вытесняет свой собственный",
+    "en": "A completely submerged object always displaces its own"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "вес жидкости",
+     "объём жидкости",
+     "плотность жидкости",
+     "всё перечисленное"
+    ],
+    "en": [
+     "weight of fluid.",
+     "volume of fluid.",
+     "density of fluid.",
+     "All of these."
+    ]
+   },
+   "explain": "Вытесняется объём, равный объёму тела; вес вытесненной жидкости равен весу тела только при плавании."
+  },
+  {
+   "id": "conceptual-physics-4",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "ЭДС индукции в проволочной рамке возникает, когда магнитное поле внутри рамки",
+    "en": "A voltage will be induced in a wire loop when the magnetic field within that loop"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "изменяется",
+     "становится параллельным электрическому полю",
+     "становится перпендикулярным электрическому полю",
+     "превращается в магнитную энергию"
+    ],
+    "en": [
+     "changes",
+     "aligns with the electric field",
+     "is at right angles to the electric field",
+     "converts to magnetic energy"
+    ]
+   },
+   "explain": "Закон Фарадея: ЭДС = −dΦ/dt."
+  },
+  {
+   "id": "conceptual-physics-5",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Из этих цветов наибольшая энергия фотона у",
+    "en": "Among these colors, the one that has the most energy per photon is"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "красного",
+     "жёлто-зелёного",
+     "синего",
+     "фиолетового"
+    ],
+    "en": [
+     "red",
+     "yellow-green",
+     "blue",
+     "violet"
+    ]
+   },
+   "explain": "E = hν: у фиолетового частота наибольшая."
+  },
+  {
+   "id": "conceptual-physics-7",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Повышающий трансформатор в электрической цепи может повысить",
+    "en": "A step-up transformer in an electric circuit can step up"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "напряжение",
+     "энергию",
+     "и то и другое",
+     "ни то ни другое"
+    ],
+    "en": [
+     "voltage",
+     "energy",
+     "Both of these",
+     "Neither of these"
+    ]
+   },
+   "explain": "Энергия не может вырасти — растёт напряжение, а ток во вторичной обмотке падает."
+  },
+  {
+   "id": "conceptual-physics-9",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Волна переносит",
+    "en": "A wave transfers"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "амплитуду",
+     "длину волны",
+     "частоту",
+     "энергию"
+    ],
+    "en": [
+     "amplitude",
+     "wavelength",
+     "frequency",
+     "energy"
+    ]
+   }
+  },
+  {
+   "id": "conceptual-physics-10",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Две разнесённые заряженные частицы отпускают из состояния покоя, и ускорение у обеих сразу начинает расти. Значит, знаки их зарядов",
+    "en": "Immediately after two separated charged particles are released from rest, both increase in acceleration. The sign of charge of the particles is therefore"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "одинаковые",
+     "противоположные",
+     "возможно и то и другое",
+     "нужно больше данных"
+    ],
+    "en": [
+     "the same",
+     "opposite",
+     "Either of these",
+     "Need more information"
+    ]
+   },
+   "explain": "Ускорение растёт, значит сила растёт, а расстояние уменьшается — частицы притягиваются."
+  },
+  {
+   "id": "conceptual-physics-11",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Поверхность Земли теряет энергию в космос в основном за счёт",
+    "en": "The surface of planet Earth loses energy to outer space due mostly to"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "теплопроводности",
+     "конвекции",
+     "излучения",
+     "радиоактивности"
+    ],
+    "en": [
+     "conduction",
+     "convection",
+     "radiation",
+     "radioactivity"
+    ]
+   },
+   "explain": "В вакууме тепло передаётся только излучением."
+  },
+  {
+   "id": "conceptual-physics-12",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "В последовательной цепи ток через одну лампу 2 А. Ток через соседнюю лампу",
+    "en": "In a series circuit, if the current in one lamp is 2 A, the current in the lamp next to it is"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "вдвое меньше, 1 А",
+     "2 А",
+     "зависит от того, какая лампа ближе к батарее",
+     "данных недостаточно"
+    ],
+    "en": [
+     "half, 1 A",
+     "2 A",
+     "Depends on which lamp is closer to the battery",
+     "Not enough information to say"
+    ]
+   }
+  },
+  {
+   "id": "conceptual-physics-13",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Мигающий источник света приближается к тебе всё быстрее. Частота вспышек, которую ты видишь,",
+    "en": "As a blinking light source approaching you gains speed, you see the frequency of flashes"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "увеличивается",
+     "уменьшается",
+     "не меняется",
+     "ничего из перечисленного"
+    ],
+    "en": [
+     "increase.",
+     "decrease.",
+     "remain unchanged.",
+     "None of these."
+    ]
+   },
+   "explain": "Эффект Доплера."
+  },
+  {
+   "id": "conceptual-physics-14",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Без сопротивления воздуха мяч массы m подбросили вверх на высоту 20 м. На высоте 10 м, на полпути вверх, равнодействующая сила на мяч равна",
+    "en": "In the absence of air resistance a ball of mass m is tossed upward to reach a height of 20 m. At the 10-m position half way up the net force on the ball is"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "2mg",
+     "mg",
+     "mg/2",
+     "mg/4"
+    ],
+    "en": [
+     "2mg",
+     "mg",
+     "mg/2",
+     "mg/4"
+    ]
+   },
+   "explain": "В полёте на мяч действует только сила тяжести mg."
+  },
+  {
+   "id": "conceptual-physics-15",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Пемза — вулканическая порода, которая плавает в воде. По сравнению с водой её плотность",
+    "en": "Pumice is a volcanic rock that floats in water. The density of pumice compared with that of water is"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "меньше",
+     "такая же",
+     "больше",
+     "её нет, потому что пемза тонет"
+    ],
+    "en": [
+     "less.",
+     "equal.",
+     "greater.",
+     "none because it sinks."
+    ]
+   }
+  },
+  {
+   "id": "conceptual-physics-17",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "По сравнению со звуком сирены стоящей пожарной машины у звука приближающейся машины больше",
+    "en": "Compared with the sound you hear from the siren of a stationary fire engine the sound you hear when it approaches you has an increased"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "скорость",
+     "частота",
+     "длина волны",
+     "всё перечисленное"
+    ],
+    "en": [
+     "speed",
+     "frequency",
+     "wavelength",
+     "All of these"
+    ]
+   }
+  },
+  {
+   "id": "high-school-physics-0",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Обкладки конденсатора заряжены до разности потенциалов 5 В. Ёмкость 2 мФ. Каков заряд положительной обкладки?",
+    "en": "The plates of a capacitor are charged to a potential difference of 5 V. If the capacitance is 2 mF, what is the charge on the positive plate?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "0,005 Кл",
+     "0,01 Кл",
+     "0,02 Кл",
+     "0,5 Кл"
+    ],
+    "en": [
+     "0.005 C",
+     "0.01 C",
+     "0.02 C",
+     "0.5 C"
+    ]
+   },
+   "explain": "q = CU = 2·10⁻³ · 5 = 0,01 Кл."
+  },
+  {
+   "id": "high-school-physics-8",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Брусок массы m скользит по горизонтальной поверхности с начальной скоростью v0. На него действуют только тяжесть и сила со стороны поверхности, коэффициент трения скольжения μ. Какой путь он пройдёт до остановки?",
+    "en": "A box of mass m slides on a horizontal surface with initial speed v0. It feels no forces other than gravity and the force from the surface. If the coefficient of kinetic friction between the box and the surface is μ, how far does the box slide before coming to rest?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "v0²/(2μg)",
+     "v0²/(μg)",
+     "2v0²/(μg)",
+     "mv0²/(μg)"
+    ],
+    "en": [
+     "v0^2/(2μg)",
+     "v0^2/(μg)",
+     "2v0^2/(μg)",
+     "mv0^2/(μg)"
+    ]
+   },
+   "explain": "Замедление μg, путь v0²/(2μg)."
+  },
+  {
+   "id": "high-school-physics-9",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Мяч, лежащий на земле, пинают со скоростью 10 м/с под углом 30° к горизонту. Найди полное время полёта (сопротивлением воздуха пренебречь).",
+    "en": "A soccer ball, at rest on the ground, is kicked with an initial velocity of 10 m/s at a launch angle of 30°. Calculate its total flight time, assuming that air resistance is negligible."
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "0,5 с",
+     "1 с",
+     "2 с",
+     "4 с"
+    ],
+    "en": [
+     "0.5 s",
+     "1 s",
+     "2 s",
+     "4 s"
+    ]
+   },
+   "explain": "t = 2v·sin α / g = 2 · 10 · 0,5 / 10 = 1 с."
+  },
+  {
+   "id": "high-school-physics-13",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Сплошной шар (I = 0,06 кг·м²) свободно вращается вокруг оси через центр с угловой скоростью 20 рад/с. Его хотят остановить силой трения 2,0 Н, приложенной к поверхности на расстоянии 0,30 м от центра. Сколько времени займёт остановка?",
+    "en": "A solid sphere (I = 0.06 kg·m^2) spins freely around an axis through its center at an angular speed of 20 rad/s. It is desired to bring the sphere to rest by applying a friction force of magnitude 2.0 N to the sphere’s outer surface, a distance of 0.30 m from the sphere’s center. How much time will it take the sphere to come to rest?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "4 с",
+     "2 с",
+     "0,06 с",
+     "0,03 с"
+    ],
+    "en": [
+     "4 s",
+     "2 s",
+     "0.06 s",
+     "0.03 s"
+    ]
+   },
+   "explain": "M = 2 · 0,3 = 0,6 Н·м; ε = M/I = 10 рад/с²; t = ω/ε = 2 с."
+  },
+  {
+   "id": "high-school-physics-14",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Радиус Марса примерно вдвое меньше земного, масса — примерно в 10 раз меньше. Какое значение ближе всего к напряжённости гравитационного поля у поверхности Марса?",
+    "en": "The radius of Mars is about half that of Earth; the mass of Mars is about one-tenth that of Earth. Which of the following is closest to the gravitational field at the surface of Mars?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "10 Н/кг",
+     "4 Н/кг",
+     "2 Н/кг",
+     "0,5 Н/кг"
+    ],
+    "en": [
+     "10 N/kg",
+     "4 N/kg",
+     "2 N/kg",
+     "0.5 N/kg"
+    ]
+   },
+   "explain": "g ~ M/R²: 9,8 · 0,1 / 0,25 ≈ 3,9 Н/кг."
+  },
+  {
+   "id": "high-school-physics-15",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Над бесконечной плоскостью с поверхностной плотностью заряда σ электрическое поле направлено вверх и равно σ/2ε₀. Каковы величина и направление поля под плоскостью?",
+    "en": "Above an infinitely large plane carrying charge density σ, the electric field points up and is equal to σ/2εo. What is the magnitude and direction of the electric field below the plane?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "σ/2ε₀, вниз",
+     "σ/2ε₀, вверх",
+     "σ/ε₀, вниз",
+     "σ/ε₀, вверх"
+    ],
+    "en": [
+     "σ/2εo, down",
+     "σ/2εo, up",
+     "σ/εo, down",
+     "σ/εo, up"
+    ]
+   },
+   "explain": "Поле симметрично и направлено от плоскости в обе стороны."
+  },
+  {
+   "id": "high-school-physics-16",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Пучок электронов летит со скоростью 10⁷ м/с. Его хотят завернуть в окружность магнитным полем Земли 5·10⁻⁵ Тл. Каким будет радиус окружности?",
+    "en": "A beam of electrons has speed 10^7 m/s. It is desired to use the magnetic field of the Earth, 5 × 10−5 T, to bend the electron beam into a circle. What will be the radius of this circle?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "1 нм",
+     "1 мкм",
+     "1 мм",
+     "1 м"
+    ],
+    "en": [
+     "1 nm",
+     "1 μm",
+     "1 mm",
+     "1 m"
+    ]
+   },
+   "explain": "r = mv/(eB) = 9,1·10⁻³¹ · 10⁷ / (1,6·10⁻¹⁹ · 5·10⁻⁵) ≈ 1 м."
+  },
+  {
+   "id": "high-school-physics-17",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Предмет стоит в 100 см от плоского зеркала. Какое расстояние от предмета до его изображения?",
+    "en": "An object is placed 100 cm from a plane mirror. How far is the image from the object?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "50 см",
+     "100 см",
+     "200 см",
+     "300 см"
+    ],
+    "en": [
+     "50 cm",
+     "100 cm",
+     "200 cm",
+     "300 cm"
+    ]
+   }
+  },
+  {
+   "id": "high-school-physics-20",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Газ совершает цикл расширения-сжатия. На P-V диаграмме цикл идёт против часовой стрелки, работа по модулю 300 Дж. Каков теплообмен за цикл?",
+    "en": "A gas undergoes an expansion-compression cycle. If, plotted on a P-V diagram, the cycle is counterclockwise and the work is 300 J in magnitude, what was the heat transfer during this cycle?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "300 Дж получено системой",
+     "300 Дж отдано системой",
+     "600 Дж получено системой",
+     "600 Дж отдано системой"
+    ],
+    "en": [
+     "300 J into the system",
+     "300 J out of the system",
+     "600 J into the system",
+     "600 J out of the system"
+    ]
+   },
+   "explain": "Против часовой стрелки работа газа отрицательна; ΔU = 0 за цикл, значит Q = A = −300 Дж."
+  },
+  {
+   "id": "high-school-physics-21",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Идеальная батарея постоянного напряжения V питает цепь с общим сопротивлением R. Что будет с полной мощностью, если R удвоить?",
+    "en": "An ideal battery of constant voltage V supplies current to a circuit that has total resistance R. If R is doubled, what will happen to the total power dissipated by the circuit?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Удвоится",
+     "Учетверится",
+     "Уменьшится вдвое",
+     "Не изменится"
+    ],
+    "en": [
+     "It will double.",
+     "It will quadruple.",
+     "It will be halved.",
+     "It will remain the same."
+    ]
+   },
+   "explain": "P = V²/R."
+  },
+  {
+   "id": "high-school-physics-22",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Длина волны ультрафиолета около 6·10⁻⁸ м. Какова его частота?",
+    "en": "Ultraviolet light has a wavelength of about 6 × 10^-8 m. What is the frequency of this light?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "5·10¹⁵ Гц",
+     "0,5 Гц",
+     "2 Гц",
+     "20 Гц"
+    ],
+    "en": [
+     "5 × 10^15 Hz",
+     "0.5 Hz",
+     "2 Hz",
+     "20 Hz"
+    ]
+   },
+   "explain": "ν = c/λ = 3·10⁸ / 6·10⁻⁸ = 5·10¹⁵ Гц."
+  },
+  {
+   "id": "high-school-physics-26",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Жидкость с постоянным расходом течёт по трубе разного диаметра. Где диаметр 2 см, скорость 18 м/с. Какова скорость там, где диаметр 3 см?",
+    "en": "A liquid flows at a constant flow rate through a pipe with circular cross-sections of varying diameters. At one point in the pipe, the diameter is 2 cm and the flow speed is 18 m/s. What is the flow speed at another point in this pipe, where the diameter is 3 cm?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "4 м/с",
+     "6 м/с",
+     "8 м/с",
+     "12 м/с"
+    ],
+    "en": [
+     "4 m/s",
+     "6 m/s",
+     "8 m/s",
+     "12 m/s"
+    ]
+   },
+   "explain": "v₁d₁² = v₂d₂²: 18 · 4/9 = 8 м/с."
+  },
+  {
+   "id": "high-school-physics-29",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Ящик стоит на наклонной плоскости и не скользит. Как меняется сила нормальной реакции при увеличении угла наклона?",
+    "en": "A box sits on an inclined plane without sliding. As the angle of the plane (measured from the horizontal) increases, the normal force"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "растёт линейно",
+     "убывает линейно",
+     "не меняется",
+     "убывает нелинейно"
+    ],
+    "en": [
+     "increases linearly",
+     "decreases linearly",
+     "does not change",
+     "decreases nonlinearly"
+    ]
+   },
+   "explain": "N = mg·cos α — косинус, а не линейная функция."
+  },
+  {
+   "id": "high-school-physics-32",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Если бы сила тяготения между Луной и Землёй исчезла, как бы двигалась Луна?",
+    "en": "If the force of gravity between the Moon and the Earth were to stop, which statement best describes the resulting motion of the moon?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Продолжила бы вращаться вокруг своей оси и обращаться вокруг Земли",
+     "Продолжила бы вращаться вокруг оси, но перестала бы обращаться вокруг Земли",
+     "Перестала бы вращаться вокруг оси, но обращалась бы вокруг Земли",
+     "Перестала бы и вращаться вокруг оси, и обращаться вокруг Земли"
+    ],
+    "en": [
+     "It would continue rotating on its axis, and it would revolve around the Earth as usual.",
+     "It would continue rotating on its axis, but it would stop revolving around the Earth.",
+     "It would stop rotating on its axis, but it would revolve around the Earth as usual.",
+     "It would stop rotating on its axis, and it would stop revolving around the Earth."
+    ]
+   }
+  },
+  {
+   "id": "high-school-physics-33",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Человек стоит на весах в лифте и видит, что весы показывают меньше его обычного веса. Как может двигаться лифт?",
+    "en": "A person stands on a scale in an elevator. He notices that the scale reading is less than his usual weight. Which of the following could possibly describe the motion of the elevator?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Вниз и замедляется",
+     "Вверх и замедляется",
+     "Вверх с постоянной скоростью",
+     "Вниз с постоянной скоростью"
+    ],
+    "en": [
+     "It is moving downward and slowing down.",
+     "It is moving upward and slowing down.",
+     "It is moving upward at a constant speed.",
+     "It is moving downward at a constant speed."
+    ]
+   },
+   "explain": "Вес меньше — ускорение направлено вниз: так бывает при торможении на подъёме."
+  },
+  {
+   "id": "high-school-physics-35",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "L, M и T — размерности длины, массы и времени. Какая размерность у импульса силы?",
+    "en": "If L, M, and T denote the dimensions of length, mass, and time, respectively, what are the dimensions of impulse?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "LM/T³",
+     "LM/T²",
+     "LM/T",
+     "L²M/T²"
+    ],
+    "en": [
+     "LM/T^3",
+     "LM/T^2",
+     "LM/T",
+     "L^2M/T^2"
+    ]
+   },
+   "explain": "F·t = кг·м/с."
+  },
+  {
+   "id": "high-school-physics-37",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Человек стоит на весах в лифте, который ускоряется вверх. Какая сила образует пару «действие — противодействие» с весом человека (силой притяжения Земли)?",
+    "en": "A man stands on a platform scale in an elevator. The elevator moves upward, speeding up. What is the action-reaction force pair to the man’s weight?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "Сила троса лифта на человека",
+     "Сила человека на весы",
+     "Сила троса на лифт",
+     "Сила притяжения Земли человеком"
+    ],
+    "en": [
+     "The force of the elevator cable on the man",
+     "The force of the man on the scale",
+     "The force of the elevator cable on the elevator",
+     "The force of the man on the Earth"
+    ]
+   },
+   "explain": "Третий закон Ньютона: Земля тянет человека, человек тянет Землю."
+  },
+  {
+   "id": "high-school-physics-38",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "При изотермическом расширении идеальный газ совершает работу 150 Дж. Каков теплообмен?",
+    "en": "During an isothermal expansion, a confined ideal gas does 150 J of work against its surroundings. Which of the following describes the heat transfer during this process?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "Газу передали 150 Дж теплоты",
+     "От газа отвели 150 Дж теплоты",
+     "Газу передали 300 Дж теплоты",
+     "От газа отвели 300 Дж теплоты"
+    ],
+    "en": [
+     "150 J of heat was added to the gas.",
+     "150 J of heat was removed from the gas.",
+     "300 J of heat was added to the gas.",
+     "300 J of heat was removed from the gas."
+    ]
+   },
+   "explain": "При T = const ΔU = 0, значит Q = A."
+  },
+  {
+   "id": "high-school-physics-39",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Тело несёт заряд −1 Кл. Сколько в нём избыточных электронов?",
+    "en": "An object carries a charge of –1 C. How many excess electrons does it contain?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "6,25·10¹⁸",
+     "8,00·10¹⁸",
+     "1,60·10¹⁹",
+     "3,20·10¹⁹"
+    ],
+    "en": [
+     "6.25 × 10^18",
+     "8.00 × 10^18",
+     "1.60 × 10^19",
+     "3.20 × 10^19"
+    ]
+   },
+   "explain": "1 / 1,6·10⁻¹⁹ = 6,25·10¹⁸."
+  },
+  {
+   "id": "college-physics-0",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Квантовая эффективность фотодетектора 0,1. На детектор по одному посылают 100 фотонов. Детектор зарегистрирует фотоны",
+    "en": "The quantum efficiency of a photon detector is 0.1. If 100 photons are sent into the detector, one after the other, the detector will detect photons"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "в среднем 10 раз, со среднеквадратичным отклонением около 4",
+     "в среднем 10 раз, со среднеквадратичным отклонением около 3",
+     "в среднем 10 раз, со среднеквадратичным отклонением около 1",
+     "в среднем 10 раз, со среднеквадратичным отклонением около 0,1"
+    ],
+    "en": [
+     "an average of 10 times, with an rms deviation of about 4",
+     "an average of 10 times, with an rms deviation of about 3",
+     "an average of 10 times, with an rms deviation of about 1",
+     "an average of 10 times, with an rms deviation of about 0.1"
+    ]
+   },
+   "explain": "Биномиальное распределение: σ = √(np(1−p)) = √9 = 3."
+  },
+  {
+   "id": "college-physics-2",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Что верно для любой системы, совершающей обратимый термодинамический процесс?",
+    "en": "Which of the following is true about any system that undergoes a reversible thermodynamic process?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Внутренняя энергия системы не меняется",
+     "Температура системы постоянна",
+     "Энтропия системы вместе с окружением не меняется",
+     "Энтропия системы вместе с окружением обязательно растёт"
+    ],
+    "en": [
+     "There are no changes in the internal energy of the system.",
+     "The temperature of the system remains constant during the process.",
+     "The entropy of the system and its environment remains unchanged.",
+     "The entropy of the system and its environment must increase."
+    ]
+   }
+  },
+  {
+   "id": "college-physics-5",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Чему равно полное спиновое квантовое число электронов в основном состоянии нейтрального азота (Z = 7)?",
+    "en": "Which of the following gives the total spin quantum number of the electrons in the ground state of neutral nitrogen (Z = 7)?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "1/2",
+     "1",
+     "3/2",
+     "5/2"
+    ],
+    "en": [
+     "1/2",
+     "1",
+     "3/2",
+     "5/2"
+    ]
+   },
+   "explain": "2p³: по правилу Хунда три неспаренных электрона, S = 3 · 1/2."
+  },
+  {
+   "id": "college-physics-6",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Есть три одинаковых идеальных конденсатора. Первый зарядили до напряжения V_0 и отключили от батареи. Два других, незаряженных и соединённых последовательно, подключили к первому. Каким станет напряжение на первом?",
+    "en": "Consider three identical, ideal capacitors. The first capacitor is charged to a voltage and then disconnected from the battery. The other two capacitors, initially uncharged and connected in series, are then connected across the first capacitor. What is the final voltage on the first capacitor?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "V_0/5",
+     "V_0/3",
+     "V_0/2",
+     "2V_0/3"
+    ],
+    "en": [
+     "V_0/5",
+     "V_0/3",
+     "V_0/2",
+     "2V_0/3"
+    ]
+   },
+   "explain": "Заряд CV_0 делится между C и C/2: V = CV_0 / (1,5C) = 2V_0/3."
+  },
+  {
+   "id": "college-physics-7",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Протоны для лучевой терапии рака разгоняют примерно до 0,6c. Какую работу нужно совершить над частицей массы m, чтобы разогнать её из покоя до этой скорости?",
+    "en": "Protons used in cancer therapy are typically accelerated to about 0.6c. How much work must be done on a particle of mass m in order for it to reach this speed, assuming it starts at rest?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "0,25mc²",
+     "0,60mc²",
+     "0,67mc²",
+     "1,25mc²"
+    ],
+    "en": [
+     "0.25mc^2",
+     "0.60mc^2",
+     "0.67mc^2",
+     "1.25mc^2"
+    ]
+   },
+   "explain": "γ = 1/√(1 − 0,36) = 1,25; работа = (γ − 1)mc²."
+  },
+  {
+   "id": "college-physics-8",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "По гипотезе де Бройля импульс и длина волны свободной массивной частицы связаны через",
+    "en": "De Broglie hypothesized that the linear momentum and wavelength of a free massive particle are related by which of the following constants?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "постоянную Планка",
+     "постоянную Больцмана",
+     "постоянную Ридберга",
+     "скорость света"
+    ],
+    "en": [
+     "Planck’s constant",
+     "Boltzmann’s constant",
+     "The Rydberg constant",
+     "The speed of light"
+    ]
+   },
+   "explain": "λ = h/p."
+  },
+  {
+   "id": "college-physics-9",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Полная энергия частицы массы m вдвое больше её энергии покоя. Модуль её релятивистского импульса равен",
+    "en": "If the total energy of a particle of mass m is equal to twice its rest energy, then the magnitude of the particle’s relativistic momentum is"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "mc/2",
+     "mc/√2",
+     "mc",
+     "√3·mc"
+    ],
+    "en": [
+     "mc/2",
+     "mc/√2",
+     "mc",
+     "√3·mc"
+    ]
+   },
+   "explain": "E² = (pc)² + (mc²)²: 4 = p²/m²c² + 1, p = √3·mc."
+  },
+  {
+   "id": "college-physics-10",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "В кристаллической решётке алмаза ближайшие соседи каждого атома C находятся в вершинах",
+    "en": "In the diamond structure of elemental carbon, the nearest neighbors of each C atom lie at the corners of a"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "квадрата",
+     "шестиугольника",
+     "куба",
+     "тетраэдра"
+    ],
+    "en": [
+     "square",
+     "hexagon",
+     "cube",
+     "tetrahedron"
+    ]
+   }
+  }
+ ]
+}

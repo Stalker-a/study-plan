@@ -1,0 +1,719 @@
+{
+ "questions": [
+  {
+   "id": "li-mysql-22",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Чем MySQL отличается от SQL?",
+    "en": "How does MySQL differ from SQL?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "SQL — стандартный язык запросов к структурированным данным; MySQL — нереляционная СУБД для SQL-баз.",
+     "SQL — стандартный язык запросов к структурированным данным; MySQL — реляционная СУБД, которая управляет SQL-базами.",
+     "Ничем: это одно и то же.",
+     "MySQL — язык, а SQL — программа."
+    ],
+    "en": [
+     "SQL is a standard language for retrieving and manipulating data from structured databases. MySQL is a nonrelational database management system that is used to manage SQL databases.",
+     "SQL is a standard language for retrieving and manipulating data from structured databases. MySQL is a relational database management system that is used to manage SQL databases.",
+     "They are not different. MySQL and SQL refer to the same thing.",
+     "My SQL is a language, and SQL is a software application."
+    ]
+   }
+  },
+  {
+   "id": "li-mysql-15",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Какая команда изменяет записи в таблице?",
+    "en": "Which MySQL command modifies data records in a table?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "UPDATE",
+     "MODIFY",
+     "CHANGE",
+     "ALTER"
+    ],
+    "en": [
+     "UPDATE",
+     "MODIFY",
+     "CHANGE",
+     "ALTER"
+    ]
+   },
+   "explain": "ALTER меняет структуру таблицы, а не данные."
+  },
+  {
+   "id": "li-mysql-18",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Как удалить запись из таблицы?",
+    "en": "How can you remove a record?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "DELETE",
+     "DELETE FROM",
+     "REMOVE",
+     "REMOVE FROM"
+    ],
+    "en": [
+     "DELETE",
+     "DELETE FROM",
+     "REMOVE",
+     "REMOVE FROM"
+    ]
+   }
+  },
+  {
+   "id": "li-mysql-19",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Что из этого НЕ используется для фильтрации данных?",
+    "en": "Which choice is NOT a statement you would use to filter data?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "GROUP BY",
+     "WHERE",
+     "LIMIT",
+     "LIKE"
+    ],
+    "en": [
+     "GROUP BY",
+     "WHERE",
+     "LIMIT",
+     "LIKE"
+    ]
+   },
+   "explain": "GROUP BY группирует строки, а не отбирает их."
+  },
+  {
+   "id": "li-mysql-20",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Что вернёт запрос?",
+    "en": "What does the following SQL statement return?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Записи Employees, где EmployeeName не содержит «a»",
+     "Записи Employees, где EmployeeName начинается с «a»",
+     "Записи Employees, где EmployeeName содержит «a»",
+     "Записи Employees, где EmployeeName заканчивается на «a»"
+    ],
+    "en": [
+     "Records in Employees where EmployeeName doesn't contain \"a\"",
+     "Records in Employees where EmployeeName starts with \"a\"",
+     "Records in Employees where EmployeeName contains \"a\"",
+     "Records in Employees where EmployeeName ends with \"a\""
+    ]
+   },
+   "code": "SELECT * FROM Employees WHERE EmployeeName LIKE 'a%';",
+   "code_lang": "sql",
+   "explain": "% — любая последовательность символов."
+  },
+  {
+   "id": "li-mysql-23",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Какой запрос упорядочит таблицу фильмов по названию?",
+    "en": "If you need to order a table of movies by name, which query will work?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "SELECT * FROM movies GROUP BY name",
+     "SELECT * FROM movies ORDER BY name",
+     "SELECT * FROM movies ORDER TABLE BY name",
+     "SELECT * FROM movies FILTER BY name"
+    ],
+    "en": [
+     "SELECT * FROM movies GROUP BY name",
+     "SELECT * FROM movies ORDER BY name",
+     "SELECT * FROM movies ORDER TABLE by name",
+     "SELECT * FROM movies FILTER BY name"
+    ]
+   }
+  },
+  {
+   "id": "li-mysql-27",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Как убрать повторяющиеся строки из результата запроса?",
+    "en": "How can you filter duplicate data while retrieving records from a table?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "DISTINCT",
+     "WHERE",
+     "LIMIT",
+     "AS"
+    ],
+    "en": [
+     "DISTINCT",
+     "WHERE",
+     "LIMIT",
+     "AS"
+    ]
+   }
+  },
+  {
+   "id": "li-mysql-30",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Что есть у каждой таблицы в хорошо спроектированной реляционной базе?",
+    "en": "In an efficiently designed relational database, what does every table have?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "Набор триггеров",
+     "Последовательное поле id",
+     "Не меньше трёх столбцов",
+     "Первичный ключ"
+    ],
+    "en": [
+     "A set of triggers",
+     "A sequential id field",
+     "A minimum of three columns",
+     "A primary key"
+    ]
+   }
+  },
+  {
+   "id": "li-mysql-54",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Сотрудники хранятся в таблице employee, а история их должностей и зарплат — в таблице employment (один ко многим). Таблицы связаны полем employeeID. Чем является employment.employeeID?",
+    "en": "An employee table holds main info (name, address); an employment table holds position and salary history (one-to-many), linked by the employeeID field. What is employment.employeeID an example of?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Первичным ключом",
+     "Вторичным ключом",
+     "Внешним ключом",
+     "Альтернативным ключом"
+    ],
+    "en": [
+     "Primary key",
+     "Secondary key",
+     "Foreign key",
+     "Alternate key"
+    ]
+   }
+  },
+  {
+   "id": "li-mysql-77",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Как выбрать всех клиентов, у которых не указан телефон?",
+    "en": "How would you retrieve data on all the customers where no phone number is stored?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "SELECT * FROM customers WHERE PhoneNumber = NULL;",
+     "SELECT * FROM customers WHERE PhoneNumber IS NOT VALID;",
+     "SELECT * FROM customers WHERE PhoneNumber IS NULL;",
+     "SELECT * FROM customers WHERE PhoneNumber IS UNKNOWN;"
+    ],
+    "en": [
+     "SELECT * FROM customers WHERE PhoneNumber = NULL;",
+     "SELECT * FROM customers WHERE PhoneNumber IS NOT VALID;",
+     "SELECT * FROM customers WHERE PhoneNumber IS NULL;",
+     "SELECT * FROM customers WHERE PhoneNumber IS UNKNOWN;"
+    ]
+   },
+   "explain": "Сравнение = NULL всегда даёт NULL (не истину), поэтому нужен IS NULL."
+  },
+  {
+   "id": "li-mysql-88",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Левое и правое соединения (LEFT/RIGHT JOIN) также называют",
+    "en": "Left and right joins are also known as"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Внутренним соединением",
+     "Естественным соединением",
+     "Внешним соединением",
+     "Декартовым соединением"
+    ],
+    "en": [
+     "Inner join",
+     "Natural join",
+     "Outer join",
+     "Cartesian join"
+    ]
+   }
+  },
+  {
+   "id": "li-mysql-90",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Внутри транзакции выполняется несколько операций, и происходит ошибка. Что нужно сделать?",
+    "en": "Inside a transaction, several operations need to be performed. What would you do if an exception happens during that transaction?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "UNDO",
+     "UNCOMMIT",
+     "ROLLBACK",
+     "REVERSE"
+    ],
+    "en": [
+     "UNDO",
+     "UNCOMMIT",
+     "ROLLBACK",
+     "REVERSE"
+    ]
+   }
+  },
+  {
+   "id": "li-mysql-99",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Что из этого — агрегатная функция?",
+    "en": "Which choice is an example of an aggregate function?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "NOW()",
+     "MID()",
+     "FORMAT()",
+     "COUNT()"
+    ],
+    "en": [
+     "NOW()",
+     "MID()",
+     "FORMAT()",
+     "COUNT()"
+    ]
+   }
+  },
+  {
+   "id": "li-mysql-113",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Какой JOIN возвращает все строки левой таблицы и совпадающие строки правой, подставляя NULL, если совпадения нет?",
+    "en": "Which JOIN type returns all rows from the left table and the matching rows from the right table, filling in NULL values if there is no match on the right side?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "INNER JOIN",
+     "LEFT JOIN (LEFT OUTER JOIN)",
+     "RIGHT JOIN (RIGHT OUTER JOIN)",
+     "FULL JOIN (FULL OUTER JOIN)"
+    ],
+    "en": [
+     "INNER JOIN",
+     "LEFT JOIN (or LEFT OUTER JOIN)",
+     "RIGHT JOIN (or RIGHT OUTER JOIN)",
+     "FULL JOIN (or FULL OUTER JOIN)"
+    ]
+   }
+  },
+  {
+   "id": "li-mysql-117",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Какой запрос правильно добавит строку в таблицу users?",
+    "en": "Which of the following is a valid SQL query to insert a new row into the users table?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "INSERT INTO users (name, email) VALUES ('John Doe', 'john.doe@example.com')",
+     "ADD users (name, email) VALUES ('John Doe', 'john.doe@example.com')",
+     "CREATE users (name, email) VALUES ('John Doe', 'john.doe@example.com')",
+     "UPDATE users (name, email) VALUES ('John Doe', 'john.doe@example.com')"
+    ],
+    "en": [
+     "INSERT INTO users (name, email) VALUES ('John Doe', 'john.doe@example.com')",
+     "ADD users (name, email) VALUES ('John Doe', 'john.doe@example.com')",
+     "CREATE users (name, email) VALUES ('John Doe', 'john.doe@example.com')",
+     "UPDATE users (name, email) VALUES ('John Doe', 'john.doe@example.com')"
+    ]
+   }
+  },
+  {
+   "id": "li-mysql-24",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Триггер связан с таблицей и срабатывает при определённом событии. Какие это три события?",
+    "en": "A trigger is a database object associated with a table that activates when a particular event occurs for the table. Which three events are these?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "INSERT, UPDATE, DELETE",
+     "CREATE, ALTER, DROP",
+     "OPEN, FETCH, CLOSE",
+     "DECLARE, SET, SELECT"
+    ],
+    "en": [
+     "INSERT, UPDATE, DELETE",
+     "CREATE, ALTER, DROP",
+     "OPEN, FETCH, CLOSE",
+     "DECLARE, SET, SELECT"
+    ]
+   }
+  },
+  {
+   "id": "li-mysql-28",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Чем DROP отличается от TRUNCATE?",
+    "en": "What is the difference between DROP and TRUNCATE?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "Ничем: обе команды полностью удаляют таблицу.",
+     "Ничем: обе очищают таблицу, сохраняя её определение.",
+     "TRUNCATE удаляет таблицу вместе с определением, DROP только очищает её.",
+     "DROP удаляет таблицу вместе с определением, TRUNCATE только очищает её."
+    ],
+    "en": [
+     "They both refer to the same operation of deleting the table completely.",
+     "They both refer to the same operation of clearing the table, but keeping its definition intact.",
+     "TRUNCATE deletes table completely, removing its definition as well. DROP clears the table but does not delete the definition.",
+     "DROP deletes table completely, removing its definition as well. TRUNCATE clears the table but does not delete the definition."
+    ]
+   }
+  },
+  {
+   "id": "li-mysql-35",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Какое требование к подзапросу в предложении SELECT?",
+    "en": "What is the requirement for using a subquery in the SELECT clause?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Подзапрос должен использовать агрегатную функцию.",
+     "Подзапрос должен ссылаться на ту же таблицу, что и основной.",
+     "Подзапрос должен возвращать одно значение.",
+     "Подзапрос должен возвращать хотя бы одно значение."
+    ],
+    "en": [
+     "The subquery must use an aggregate function.",
+     "The subquery must refer to the same table as the main query.",
+     "The subquery must return a single value.",
+     "The subquery must return at least one value."
+    ]
+   },
+   "explain": "Это скалярный подзапрос: одна строка, один столбец (или пусто — тогда NULL)."
+  },
+  {
+   "id": "li-mysql-43",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Как правильно вставить несколько строк одной командой INSERT?",
+    "en": "Which is the correct syntax for inserting several rows with one INSERT statement?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "INSERT INTO cars (make, model, year) VALUES ('Ford', 'Mustang', 2002) ('Mercedes', 'C', 2003)",
+     "INSERT INTO cars (make, model, year) VALUES ('Ford', 'Mustang', 2002) VALUES ('Mercedes', 'C', 2003)",
+     "INSERT INTO cars (make, model, year) EXTENDED ('Ford', 'Mustang', 2002), ('Mercedes', 'C', 2003)",
+     "INSERT INTO cars (make, model, year) VALUES ('Ford', 'Mustang', 2002), ('Mercedes', 'C', 2003)"
+    ],
+    "en": [
+     "INSERT INTO cars (make, model, year) VALUES ('Ford', 'Mustang', 2002) ('Mercedes', 'C', 2003)",
+     "INSERT INTO cars (make, model, year) VALUES ('Ford', 'Mustang', 2002) VALUES ('Mercedes', 'C', 2003)",
+     "INSERT INTO cars (make, model, year) EXTENDED ('Ford', 'Mustang', 2002), ('Mercedes', 'C', 2003)",
+     "INSERT INTO cars (make, model, year) VALUES ('Ford', 'Mustang', 2002), ('Mercedes', 'C', 2003)"
+    ]
+   }
+  },
+  {
+   "id": "li-mysql-47",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Нужен сложный запрос с рекурсивными подзапросами, но без хранимой процедуры или функции. Что использовать?",
+    "en": "You need to run a complex query with recursive subqueries, but without creating a stored procedure or a function. Which clause do you use?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "COLLATE",
+     "UNION",
+     "FULL JOIN",
+     "WITH"
+    ],
+    "en": [
+     "COLLATE",
+     "UNION",
+     "FULL JOIN",
+     "WITH"
+    ]
+   },
+   "explain": "WITH RECURSIVE — рекурсивное обобщённое табличное выражение (CTE)."
+  },
+  {
+   "id": "li-mysql-55",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Какой синтаксис объявления CTE (обобщённого табличного выражения) правильный?",
+    "en": "What's the correct syntax to declare a CTE (Common Table Expression)?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "WITH (SELECT id FROM users) AS cte, SELECT ...",
+     "WITH (SELECT id FROM users) AS cte SELECT ...",
+     "WITH cte AS (SELECT id FROM users), SELECT ...",
+     "WITH cte AS (SELECT id FROM users) SELECT ..."
+    ],
+    "en": [
+     "WITH (SELECT id FROM users) AS cte, SELECT ...",
+     "WITH (SELECT id FROM users) AS cte SELECT ...",
+     "WITH cte AS (SELECT id FROM users), SELECT ...",
+     "WITH cte AS (SELECT id FROM users) SELECT ..."
+    ]
+   }
+  },
+  {
+   "id": "li-mysql-84",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Зачем нужно обобщённое табличное выражение (CTE)?",
+    "en": "Why would you use a common table expression (CTE)?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "Чтобы определить запросы для повторного использования до конца сессии",
+     "Чтобы создать временные таблицы с часто используемыми выборками",
+     "Чтобы вычислить одно значение из результата и вернуть его разборщику запроса",
+     "Чтобы разбить сложный запрос на части и переиспользовать их внутри запроса"
+    ],
+    "en": [
+     "To define queries for later reuse for the duration of the current session",
+     "To create temporary tables that can be used to pre-select often-used result sets.",
+     "To calculate a new single value from a result set and return it to the query parser.",
+     "To break down complex queries and allow reuse within a query."
+    ]
+   },
+   "explain": "CTE существует только в рамках одного запроса."
+  },
+  {
+   "id": "li-mysql-89",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Как правильно создать представление (view)?",
+    "en": "What is the valid way to create a database view?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "CREATE VIEW v1 SELECT * FROM t1 WHERE col1 > 10;",
+     "CREATE VIEW v1 AS BEGIN SELECT * FROM t1 END;",
+     "CREATE VIEW v1 BEGIN SELECT * FROM t1 END;",
+     "CREATE VIEW v1 AS SELECT * FROM t1;"
+    ],
+    "en": [
+     "CREATE VIEW v1 SELECT * FROM t1 WHERE col1 > 10;",
+     "CREATE VIEW v1 AS BEGIN SELECT * FROM t1 END;",
+     "CREATE VIEW v1 BEGIN SELECT * FROM t1 END;",
+     "CREATE VIEW v1 AS SELECT * FROM t1;"
+    ]
+   }
+  },
+  {
+   "id": "li-mysql-102",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Как сделать поиск по фамилии без учёта регистра?",
+    "en": "How would you make a case-insensitive query?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "SELECT * FROM customers WHERE UPPERCASE(LastName) = 'POTTER';",
+     "SELECT * FROM customers WHERE LOWERCASE(LastName) = 'potter';",
+     "SELECT * FROM customers WHERE UPPER(LastName) = 'POTTER';",
+     "SELECT * FROM customers WHERE UPPER(LastName) = 'Potter';"
+    ],
+    "en": [
+     "SELECT * FROM customers WHERE UPPERCASE(LastName) = 'POTTER';",
+     "SELECT * FROM customers WHERE LOWERCASE(LastName) = 'potter';",
+     "SELECT * FROM customers WHERE UPPER(LastName) = 'POTTER';",
+     "SELECT * FROM customers WHERE UPPER(LastName) = 'Potter';"
+    ]
+   },
+   "explain": "Функций UPPERCASE/LOWERCASE нет; в последнем варианте 'Potter' не совпадёт с верхним регистром."
+  },
+  {
+   "id": "li-mysql-108",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Как выбрать все записи из Persons, где LastName по алфавиту между «Hansen» и «Pettersen» включительно?",
+    "en": "How do you select all the records from a table named Persons where LastName is alphabetically between (and including) \"Hansen\" and \"Pettersen\"?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "SELECT LastName>'Hansen' AND LastName<'Pettersen' FROM Persons",
+     "SELECT * FROM Persons WHERE LastName BETWEEN 'Hansen' AND 'Pettersen'",
+     "SELECT * FROM Persons WHERE LastName>'Hansen' AND LastName<'Pettersen'",
+     "Ничего из перечисленного"
+    ],
+    "en": [
+     "SELECT LastName>'Hansen' AND LastName<'Pettersen' FROM Persons",
+     "SELECT * FROM Persons WHERE LastName BETWEEN 'Hansen' AND 'Pettersen'",
+     "SELECT * FROM Persons WHERE LastName>'Hansen' AND LastName<'Pettersen'",
+     "None of the above"
+    ]
+   },
+   "explain": "BETWEEN включает границы; строгие > и < их исключают."
+  },
+  {
+   "id": "li-mysql-109",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Отношения: Students(Roll_number, Name, Date_of_birth), Courses(Course_number, Course_name, Instructor), Grades(Roll_number, Course_number, Grade). Что вычисляет запрос?",
+    "en": "Relations: Students(Roll_number, Name, Date_of_birth), Courses(Course_number, Course_name, Instructor), Grades(Roll_number, Course_number, Grade). Which set does the query compute?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Имена студентов, получивших A по всем курсам Шрирама",
+     "Имена студентов, получивших A по всем курсам",
+     "Имена студентов, получивших A хотя бы по одному курсу Шрирама",
+     "Ничего из перечисленного"
+    ],
+    "en": [
+     "Names of students who got an A in all courses taught by Sriram",
+     "Names of students who got an A in all courses",
+     "Names of students who got an A in at least one course taught by Sriram",
+     "None of the above"
+    ]
+   },
+   "code": "SELECT DISTINCT Name\nFROM Students, Courses, Grades\nWHERE Students.Roll_number = Grades.Roll_number\n  AND Courses.Instructor = 'Sriram'\n  AND Courses.Course_number = Grades.Course_number\n  AND Grades.Grade = 'A';",
+   "code_lang": "sql",
+   "explain": "Соединение находит хотя бы одну подходящую пару; «по всем» требует деления отношений (NOT EXISTS)."
+  },
+  {
+   "id": "li-mysql-63",
+   "src": "li",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Какая резервная копия содержит все изменения данных с момента последней ПОЛНОЙ копии?",
+    "en": "Which type of backup includes all the changes made to the data since the last full backup was performed?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Снимок (snapshot)",
+     "Логическая",
+     "Дифференциальная",
+     "Инкрементная"
+    ],
+    "en": [
+     "snapshot",
+     "logical",
+     "differential",
+     "incremental"
+    ]
+   },
+   "explain": "Инкрементная — изменения с момента последней копии любого типа."
+  },
+  {
+   "id": "li-mysql-76",
+   "src": "li",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "В чём плюс хранимых процедур для безопасности?",
+    "en": "Explain the security aspect of stored procedures."
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Они небезопасны: их можно запустить из командной строки от root",
+     "Они безопасны: владелец процедуры решает, кому дать доступ",
+     "Они безопасны: приложению можно дать доступ к процедурам, не давая доступа к самим таблицам",
+     "Они небезопасны: они могут удалять таблицы или массово стирать данные"
+    ],
+    "en": [
+     "Stored procedures are not secure, because they can be executed from the command line as the root user",
+     "Stored procedures are secure, because the owner of the stored procedure can decide to whom access is granted",
+     "Stored procedures are secure, because applications can be given access to stored procedures and not any underlying tables",
+     "Stored procedures are not secure, because they can execute statements to drop tables or bulk delete data"
+    ]
+   }
+  }
+ ]
+}

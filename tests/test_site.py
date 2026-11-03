@@ -175,6 +175,82 @@ class SiteTest(unittest.TestCase):
         catalog = self.client.get("/catalog").get_data(as_text=True)
         self.assertIn("cover-art", catalog)
 
+    # --- тесты из банка ---
+
+    def test_bank_loaded_for_every_subject(self):
+        bank = self.app.extensions["study"]["bank"]
+        for s in self.cur.subjects:
+            self.assertGreaterEqual(len(bank.questions(s.id)), 20, s.id)
+            for q in bank.questions(s.id):
+                self.assertTrue(q["q"]["ru"] and q["q"]["en"], q["id"])
+
+    def test_code_output_answers(self):
+        q = {"type": "text", "strict": True, "answer": ["'POO'", "POO"]}
+        self.assertTrue(check_answer(q, '"POO"'))
+        self.assertTrue(check_answer(q, "POO"))
+        self.assertFalse(check_answer(q, "poo"))  # вывод программы зависит от регистра
+        self.assertTrue(check_answer({"type": "text", "strict": True, "answer": ["[1, 1, 2]"]}, "[1,1,2]"))
+
+    def test_bank_pick_prefers_new_and_wrong(self):
+        from bank import mastered_ids, pick
+        questions = [{"id": str(i)} for i in range(10)]
+        mastered = mastered_ids([
+            {"details": {"answers": [{"id": "0", "ok": True}, {"id": "1", "ok": True}, {"id": "2", "ok": True}]}},
+            {"details": {"answers": [{"id": "2", "ok": False}]}},  # последний ответ неверный — снова в работе
+        ])
+        self.assertEqual(mastered, {"0", "1"})
+        chosen = {q["id"] for q in pick(questions, 8, mastered)}
+        self.assertFalse(chosen & mastered)
+        self.assertEqual(len(pick(questions, 30, mastered)), 10)
+
+    def test_bank_test_flow(self):
+        csrf = self.login()
+        page = self.client.get("/tests").get_data(as_text=True)
+        self.assertIn("Тесты", page)
+        self.assertIn("/tests/phys", page)
+        r = self.client.get("/tests/phys?n=10&level=1")
+        self.assertEqual(r.status_code, 200)
+        html = r.get_data(as_text=True)
+        qids = re.findall(r'name="qid" value="([^"]+)"', html)
+        self.assertEqual(len(qids), 10)
+        self.assertIn('class="l-en"', html)
+
+        pool = {q["id"]: q for q in self.app.extensions["study"]["bank"].questions("phys")}
+        self.assertTrue(all(pool[qid]["level"] == 1 for qid in qids))
+        form = {"csrf": csrf, "qid": qids, **{f"a_{qid}": str(pool[qid]["answer"]) for qid in qids}}
+        r = self.client.post("/tests/phys?n=10&level=1", data=form)
+        self.assertEqual(r.status_code, 302)
+        result = self.client.get(r.headers["Location"]).get_data(as_text=True)
+        self.assertIn("10 / 10", result)
+        self.assertIn("/tests/phys?", result)  # кнопка «Ещё тест» с теми же настройками
+        self.assertIn("освоено 10", self.client.get("/tests").get_data(as_text=True))
+        for sid in ("prog", "db", "calc", "linal", "algo"):
+            self.assertEqual(self.client.get(f"/tests/{sid}?n=30").status_code, 200, sid)
+        self.assertEqual(self.client.get("/tests/nope").status_code, 404)
+
+    def test_question_language_cookie(self):
+        self.assertIn('data-qlang="ru"', self.client.get("/login").get_data(as_text=True))
+        self.client.set_cookie("qlang", "en")
+        self.assertIn('data-qlang="en"', self.client.get("/login").get_data(as_text=True))
+        self.client.set_cookie("qlang", "xx")
+        self.assertIn('data-qlang="ru"', self.client.get("/login").get_data(as_text=True))
+
+    def test_old_database_is_migrated(self):
+        import sqlite3
+        import db
+        path = os.path.join(TMP, "old.sqlite3")
+        with sqlite3.connect(path) as conn:
+            conn.execute("CREATE TABLE attempts (id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                         "kind TEXT NOT NULL CHECK (kind IN ('topic', 'placement')), ref TEXT NOT NULL, "
+                         "score INTEGER NOT NULL, total INTEGER NOT NULL, details TEXT NOT NULL, created_at TEXT NOT NULL)")
+            conn.execute("INSERT INTO attempts VALUES (1, 'topic', 'c1', 3, 4, '{}', '2026-11-01T10:00:00')")
+        db.init(path)
+        with sqlite3.connect(path) as conn:
+            conn.execute("INSERT INTO attempts (kind, ref, score, total, details, created_at) "
+                         "VALUES ('bank', 'phys', 1, 1, '{}', '2026-11-03T10:00:00')")
+            self.assertEqual(conn.execute("SELECT COUNT(*) FROM attempts").fetchone()[0], 2)
+            self.assertEqual(conn.execute("SELECT ref FROM attempts WHERE id = 1").fetchone()[0], "c1")
+
 
 if __name__ == "__main__":
     unittest.main()

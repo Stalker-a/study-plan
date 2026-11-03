@@ -639,6 +639,40 @@ a.resource-title:hover { color: var(--brand); }
 .empty .glyph { margin: 0 auto 16px; }
 .empty p { color: var(--text-2); }
 
+/* ---------- Тесты из банка: язык RU/EN, сегментные переключатели ---------- */
+[data-qlang="ru"] .l-en, [data-qlang="en"] .l-ru { display: none; }
+
+.seg {
+  display: inline-flex; flex-shrink: 0; padding: 2px; gap: 2px;
+  border: 1px solid var(--border-strong); border-radius: var(--r-sm); background: var(--bg-subtle);
+}
+.seg-wrap { flex-wrap: wrap; }
+.seg-btn {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center; gap: 2px;
+  min-width: 36px; height: 28px; padding: 0 9px;
+  border: 0; border-radius: 6px; background: none; cursor: pointer;
+  font: 600 0.8125rem/1 var(--font); color: var(--text-2);
+}
+.seg-btn:hover { color: var(--text); }
+.seg-btn input { position: absolute; opacity: 0; pointer-events: none; }
+.seg-btn:has(input:checked),
+[data-qlang="ru"] [data-qlang-set="ru"], [data-qlang="en"] [data-qlang-set="en"] {
+  background: var(--surface); color: var(--text); box-shadow: 0 0 0 1px var(--border-strong);
+}
+.seg-btn:has(input:focus-visible) { outline: 2px solid var(--brand); outline-offset: 1px; }
+.seg-btn .faint { font-weight: 400; font-size: 0.75rem; }
+
+.bank-card { cursor: default; }
+.bank-card:hover { transform: none; }
+.bank-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.bank-row .label { margin: 0; width: 72px; color: var(--text-2); font-weight: 500; }
+.bank-go { margin-left: auto; }
+
+.is-code { font-family: var(--mono); font-size: 0.85em; }
+.option-text.is-code { white-space: pre-wrap; overflow-wrap: anywhere; }
+.answer-row .is-code { white-space: pre-wrap; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }
 }

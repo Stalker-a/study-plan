@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% from "_ui.html" import icon, glyph, meter, lang_switch %}
+{% block title %}Тесты{% endblock %}
+{% block content %}
+<header class="page-header">
+  <div>
+    <div class="eyebrow">{{ icon('tests', 14) }}Тренировка</div>
+    <h1>Тесты</h1>
+    <p>Вопросы из открытых банков — MMLU, CRUXEval и LinkedIn Skill Assessments — в оригинале и в переводе. Язык можно переключить в любой момент, даже посреди теста. Сначала попадаются новые вопросы и те, где ты ошибся.</p>
+  </div>
+  {{ lang_switch() }}
+</header>
+
+<div class="subject-grid">
+  {% for card in cards %}
+  {% set s = card.subject %}
+  <form class="card subject-card bank-card" style="--c: {{ s.accent }}" method="get" action="{{ url_for('site.bank_test', sid=s.id) }}">
+    <div class="subject-top">
+      {{ glyph(s) }}
+      <h3>{{ s.title }}<div class="muted num">{{ card.total }} {{ card.total|plural('вопрос', 'вопроса', 'вопросов') }} · освоено {{ card.mastered }}</div></h3>
+      {% if card.last %}
+      <a class="score-pill {{ 'score-good' if card.last.percent >= pass_percent else 'score-bad' }} num" href="{{ url_for('site.result', aid=card.last.id) }}" title="Последний тест — открыть разбор">{{ card.last.percent }}%</a>
+      {% endif %}
+    </div>
+    {{ meter((100 * card.mastered / card.total)|round|int, 'thin') }}
+
+    <div class="bank-row">
+      <span class="label">Уровень</span>
+      <div class="seg seg-wrap">
+        <label class="seg-btn"><input type="radio" name="level" value="" checked>Все</label>
+        {% for level, count in card.levels.items() %}
+        <label class="seg-btn" title="{{ levels[level] }}: {{ count }}"><input type="radio" name="level" value="{{ level }}">{{ level }}<span class="faint num">·{{ count }}</span></label>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="bank-row">
+      <span class="label">Вопросов</span>
+      <div class="seg">
+        {% for n in sizes %}
+        <label class="seg-btn"><input type="radio" name="n" value="{{ n }}" {{ 'checked' if loop.first }}>{{ n }}</label>
+        {% endfor %}
+      </div>
+      <button class="btn btn-primary btn-sm bank-go">Начать{{ icon('arrow-right', 14) }}</button>
+    </div>
+  </form>
+  {% endfor %}
+</div>
+
+<p class="text-sm faint section">Источники и лицензии: MMLU (MIT), CRUXEval (MIT), LinkedIn Skill Assessments Quizzes (AGPL-3.0). Переводы и пояснения сделаны для этого сайта; подробности — в content/bank/SOURCES.md.</p>
+{% endblock %}

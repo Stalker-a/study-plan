@@ -1,0 +1,781 @@
+{
+ "questions": [
+  {
+   "id": "high-school-mathematics-19",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Какова область значений функции f(x) = 1/(1 − x)?",
+    "en": "What is the range of the function f(x) = 1/(1 − x)? Express your answer in interval notation."
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "(−∞, −1) ∪ (1, ∞)",
+     "(−∞, 0) ∪ (0, ∞)",
+     "[−1, 1]",
+     "(−1, 1)"
+    ],
+    "en": [
+     "(−∞, −1) ∪ (1, ∞)",
+     "(−∞, 0) ∪ (0, ∞)",
+     "[−1, 1]",
+     "(−1, 1)"
+    ]
+   },
+   "explain": "Дробь принимает любое значение, кроме 0."
+  },
+  {
+   "id": "high-school-mathematics-20",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Какая функция обратна к f(x) = 4 − 5x?",
+    "en": "What is the inverse of f(x) = 4 − 5x?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "5/(x − 4)",
+     "(x − 4)/5",
+     "(x + 4)/5",
+     "−(x − 4)/5"
+    ],
+    "en": [
+     "5/(x − 4)",
+     "(x − 4)/5",
+     "(x + 4)/5",
+     "−(x − 4)/5"
+    ]
+   },
+   "explain": "y = 4 − 5x ⇒ x = (4 − y)/5."
+  },
+  {
+   "id": "high-school-mathematics-28",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Какова область определения функции f(x) = (x + 6)/√(x² − 3x − 4)?",
+    "en": "What is the domain of the function f(x) = (x + 6)/√(x² − 3x − 4)?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "(−4, 4)",
+     "[0, 4]",
+     "(−∞, −1) ∪ (4, ∞)",
+     "(−∞, −1) ∪ (−1, 4) ∪ (4, ∞)"
+    ],
+    "en": [
+     "(−4, 4)",
+     "[0, 4]",
+     "(−∞, −1) ∪ (4, ∞)",
+     "(−∞, −1) ∪ (−1, 4) ∪ (4, ∞)"
+    ]
+   },
+   "explain": "Нужно x² − 3x − 4 = (x − 4)(x + 1) > 0."
+  },
+  {
+   "id": "high-school-mathematics-47",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Область определения функции h(x) = √(25 − x²) + √(−(x − 2)) — отрезок. Какова его длина?",
+    "en": "The domain of the function h(x) = √(25 − x²) + √(−(x − 2)) is an interval of what width?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "7",
+     "5",
+     "2",
+     "25"
+    ],
+    "en": [
+     "7",
+     "5",
+     "2",
+     "25"
+    ]
+   },
+   "explain": "−5 ≤ x ≤ 5 и x ≤ 2 ⇒ [−5, 2]."
+  },
+  {
+   "id": "high-school-mathematics-130",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Вычисли log₃ 81.",
+    "en": "Evaluate log₃ 81."
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "4",
+     "0,25",
+     "−1",
+     "27"
+    ],
+    "en": [
+     "4",
+     "0.25",
+     "-1",
+     "27"
+    ]
+   }
+  },
+  {
+   "id": "high-school-mathematics-186",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Вычисли log₈ 2.",
+    "en": "Evaluate log₈ 2."
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "1/4",
+     "4",
+     "3",
+     "1/3"
+    ],
+    "en": [
+     "1/4",
+     "4",
+     "3",
+     "1/3"
+    ]
+   },
+   "explain": "8^(1/3) = 2."
+  },
+  {
+   "id": "high-school-mathematics-199",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "g(x) = f(−x) для всех действительных x, и точка (3, 2) лежит на графике g. Какая точка ОБЯЗАТЕЛЬНО лежит на графике f?",
+    "en": "If g (x) = f (–x) for all real numbers x, and if (3, 2) is a point on the graph of g, which of the following points MUST be on the graph of f ?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "(3, 2)",
+     "(3, −2)",
+     "(−3, 2)",
+     "(−3, −2)"
+    ],
+    "en": [
+     "(3, 2)",
+     "(3, –2)",
+     "(–3, 2)",
+     "(–3, –2)"
+    ]
+   },
+   "explain": "2 = g(3) = f(−3)."
+  },
+  {
+   "id": "high-school-mathematics-216",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Какова область значений функции y = 5 + 3·sin(π − x)?",
+    "en": "What is the range of the function y = 5 + 3 * sin(pi – x)?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "−3 ≤ y ≤ 3",
+     "−2 ≤ y ≤ 8",
+     "0 ≤ y ≤ 6",
+     "2 ≤ y ≤ 8"
+    ],
+    "en": [
+     "–3 ≤ y ≤ 3",
+     "–2 ≤ y ≤ 8",
+     "0 ≤ y ≤ 6",
+     "2 ≤ y ≤ 8"
+    ]
+   }
+  },
+  {
+   "id": "high-school-mathematics-225",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "f(x) = 3x, g(x) = 5x + 3, h(x) = 1 − x². Чему равно f(g(h(x)))?",
+    "en": "If f(x) = 3x, g(x) = 5x + 3, and h(x) = 1 − x², then f(g(h(x))) ="
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "15x² + 15",
+     "−15x² + 18",
+     "−15x² + 24",
+     "−225x² + 90x − 8"
+    ],
+    "en": [
+     "15x² + 15",
+     "−15x² + 18",
+     "−15x² + 24",
+     "−225x² + 90x − 8"
+    ]
+   },
+   "explain": "g(h(x)) = 8 − 5x², умножить на 3."
+  },
+  {
+   "id": "high-school-mathematics-266",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "f — линейная функция с ненулевым угловым коэффициентом, c < d. Что из этого обязательно ЛОЖНО?",
+    "en": "If f is a linear function with nonzero slope, and c < d, which of the following must be FALSE?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "f(c) = f(d)",
+     "f(c) ≠ f(d)",
+     "f(c) > f(d)",
+     "f(c) < f(d)"
+    ],
+    "en": [
+     "f (c) = f (d)",
+     "f (c) ≠ f (d)",
+     "f (c) > f (d)",
+     "f (c) < f (d)"
+    ]
+   }
+  },
+  {
+   "id": "high-school-mathematics-21",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Первый член последовательности равен 2, каждый следующий равен предыдущему, умноженному на −2. Чему равен 5-й член?",
+    "en": "What is the 5th term in a series in which the first term is 2 and each subsequent term is −2 multiplied by the preceding term?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "−16",
+     "32",
+     "−32",
+     "64"
+    ],
+    "en": [
+     "−16",
+     "32",
+     "−32",
+     "64"
+    ]
+   },
+   "explain": "2 · (−2)⁴ = 32."
+  },
+  {
+   "id": "high-school-mathematics-75",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Первый член последовательности равен 1, каждый следующий — сумма всех предыдущих. Каков первый член, превышающий 5000?",
+    "en": "The first term of a given sequence is 1, and each successive term is the sum of all the previous terms of the sequence. What is the value of the first term which exceeds 5000?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "10240",
+     "5001",
+     "5002",
+     "8192"
+    ],
+    "en": [
+     "10240",
+     "5001",
+     "5002",
+     "8192"
+    ]
+   },
+   "explain": "1, 1, 2, 4, 8, … — степени двойки."
+  },
+  {
+   "id": "college-mathematics-36",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Уравнение касательной к графику y = x + eˣ в точке x = 0:",
+    "en": "Which of the following is an equation of the line tangent to the graph of y = x + eˣ at x = 0?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "y = 2x + 1",
+     "y = 2x",
+     "y = x + 2",
+     "y = x + 1"
+    ],
+    "en": [
+     "y = 2x + 1",
+     "y = 2x",
+     "y = x + 2",
+     "y = x + 1"
+    ]
+   },
+   "explain": "y(0) = 1, y′(0) = 1 + e⁰ = 2."
+  },
+  {
+   "id": "high-school-mathematics-29",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Локальный максимум функции y = (ln x)/x равен",
+    "en": "A relative maximum value of the function y = (ln x)/x is"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "1",
+     "e",
+     "2/e",
+     "1/e"
+    ],
+    "en": [
+     "1",
+     "e",
+     "2/e",
+     "1/e"
+    ]
+   },
+   "explain": "y′ = (1 − ln x)/x² = 0 при x = e."
+  },
+  {
+   "id": "high-school-mathematics-239",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Наибольшее значение функции f(x) = x·e⁻ˣ равно",
+    "en": "The maximum value of the function f(x) = x·e⁻ˣ is"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "1/e",
+     "e",
+     "1",
+     "−1"
+    ],
+    "en": [
+     "1/e",
+     "e",
+     "1",
+     "-1"
+    ]
+   },
+   "explain": "f′ = (1 − x)e⁻ˣ = 0 при x = 1."
+  },
+  {
+   "id": "high-school-mathematics-76",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Какое утверждение верно?",
+    "en": "Which statement is true?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "Если f непрерывна в точке c, то f′(c) существует.",
+     "Если f′(c) = 0, то в точке c у f локальный максимум или минимум.",
+     "Если f″(c) = 0, то у графика f в точке c перегиб.",
+     "Если f дифференцируема в точке c, то f непрерывна в точке c."
+    ],
+    "en": [
+     "If f(x) is continuous at x = c, then f′(c) exists.",
+     "If f′(c) = 0, then f has a local maximum or minimum at (c, f (c)).",
+     "If f′′(c) = 0, then the graph of f has an inflection point at (c, f (c)).",
+     "If f is differentiable at x = c, then f is continuous at x = c."
+    ]
+   },
+   "explain": "Контрпримеры: |x| в 0, x³ в 0, x⁴ в 0."
+  },
+  {
+   "id": "college-mathematics-19",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "x₁ = 1 и x₍ₙ₊₁₎ = √(3 + 2xₙ) для всех натуральных n. Если последовательность сходится, то lim xₙ =",
+    "en": "Let x₁ = 1 and x₍ₙ₊₁₎ = √(3 + 2xₙ) for all positive integers n. If it is assumed that {xₙ} converges, then lim xₙ ="
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "3",
+     "e",
+     "√5",
+     "0"
+    ],
+    "en": [
+     "3",
+     "e",
+     "√5",
+     "0"
+    ]
+   },
+   "explain": "L = √(3 + 2L) ⇒ L² − 2L − 3 = 0 ⇒ L = 3."
+  },
+  {
+   "id": "college-mathematics-42",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "f непрерывно дифференцируема на (−1, 4), f(3) = 5 и f′(x) ≥ −1 для всех x. Каково наибольшее возможное значение f(0)?",
+    "en": "If f is a continuously differentiable real-valued function defined on the open interval (-1, 4) such that f(3) = 5 and f'(x) ≥ -1 for all x, what is the greatest possible value of f(0)?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "3",
+     "4",
+     "5",
+     "8"
+    ],
+    "en": [
+     "3",
+     "4",
+     "5",
+     "8"
+    ]
+   },
+   "explain": "По Лагранжу f(3) − f(0) ≥ −3 ⇒ f(0) ≤ 8."
+  },
+  {
+   "id": "college-mathematics-72",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "c > 0 и f(x) = eˣ − cx для всех действительных x. Минимальное значение f равно",
+    "en": "If c > 0 and f(x) = eˣ − cx for all real numbers x, then the minimum value of f is"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "f(c)",
+     "f(eᶜ)",
+     "f(1/c)",
+     "f(ln c)"
+    ],
+    "en": [
+     "f(c)",
+     "f(eᶜ)",
+     "f(1/c)",
+     "f(log c)"
+    ]
+   },
+   "explain": "f′ = eˣ − c = 0 ⇒ x = ln c."
+  },
+  {
+   "id": "college-mathematics-78",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Забором общей длины x огораживают три стороны прямоугольного участка. Какова наибольшая возможная площадь участка?",
+    "en": "A total of x feet of fencing is to form three sides of a level rectangular yard. What is the maximum possible area of the yard, in terms of x ?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "x²/9",
+     "x²/8",
+     "x²/4",
+     "x²"
+    ],
+    "en": [
+     "x^2/9",
+     "x^2/8",
+     "x^2/4",
+     "x^2"
+    ]
+   },
+   "explain": "2a + b = x, S = a(x − 2a) — максимум при a = x/4."
+  },
+  {
+   "id": "high-school-mathematics-217",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Кривая задана параметрически: F(t) = (t² + 1, 2ᵗ). Уравнение касательной в точке, где y = 4:",
+    "en": "Write an equation for the line tangent to the curve defined by F(t) = (t² + 1, 2ᵗ) at the point where y = 4."
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "y − 4 = ln 2 · (x − 2)",
+     "y − 4 = 4 ln 2 · (x − 2)",
+     "y − 4 = 4(x − 5)",
+     "y − 4 = ln 2 · (x − 5)"
+    ],
+    "en": [
+     "y − 4 = ln 2 · (x − 2)",
+     "y − 4 = 4 ln 2 · (x − 2)",
+     "y − 4 = 4(x − 5)",
+     "y − 4 = ln 2 · (x − 5)"
+    ]
+   },
+   "explain": "t = 2, x = 5; dy/dx = 2ᵗ ln 2 / (2t) = ln 2."
+  },
+  {
+   "id": "college-mathematics-15",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "K — непустое подмножество Rⁿ, n > 1. Какие утверждения обязательно верны?\nI. Если K компактно, то всякая непрерывная функция на K ограничена.\nII. Если всякая непрерывная функция на K ограничена, то K компактно.\nIII. Если K компактно, то K связно.",
+    "en": "Let K be a nonempty subset of R^n, where n > 1. Which of the following statements must be true?\nI. If K is compact, then every continuous real-valued function defined on K is bounded.\nII. If every continuous real-valued function defined on K is bounded, then K is compact.\nIII. If K is compact, then K is connected."
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "Только I",
+     "Только II",
+     "Только III",
+     "I и II"
+    ],
+    "en": [
+     "I only",
+     "II only",
+     "III only",
+     "I and II only"
+    ]
+   },
+   "explain": "III неверно: два непересекающихся шара компактны, но не связны."
+  },
+  {
+   "id": "college-mathematics-24",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Утверждение 1: если sₙ → s и tₙ → t (комплексные последовательности), то sₙtₙ → st. Утверждение 2: существует ограниченная последовательность действительных чисел без сходящейся подпоследовательности.",
+    "en": "Statement 1 | Suppose {sₙ} and {tₙ} are sequences of complex numbers such that lim sₙ = s and lim tₙ = t. Then lim sₙtₙ = st. Statement 2 | There exists a bounded sequence of real numbers with no convergent subsequence."
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Верно, верно",
+     "Верно, неверно",
+     "Неверно, верно",
+     "Неверно, неверно"
+    ],
+    "en": [
+     "True, True",
+     "True, False",
+     "False, True",
+     "False, False"
+    ]
+   },
+   "explain": "Утверждение 2 противоречит теореме Больцано — Вейерштрасса."
+  },
+  {
+   "id": "college-mathematics-28",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "f(x, y) = x² − 2xy + y³. Что верно?",
+    "en": "Let f(x, y) = x² − 2xy + y³ for all real x and y. Which of the following is true?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "Все локальные экстремумы f лежат на прямой x = y.",
+     "Все локальные экстремумы f лежат на параболе x = y².",
+     "У f локальный минимум в (0, 0).",
+     "У f абсолютный минимум в (2/3, 2/3)."
+    ],
+    "en": [
+     "f has all of its relative extrema on the line x = y.",
+     "f has all of its relative extrema on the parabola x = y^2.",
+     "f has a relative minimum at (0, 0).",
+     "f has an absolute minimum at (2/3, 2/3)."
+    ]
+   },
+   "explain": "fₓ = 2x − 2y = 0 ⇒ все критические точки на x = y."
+  },
+  {
+   "id": "college-mathematics-45",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Утверждение 1: f: X → Y непрерывна и X компактно — значит, f равномерно непрерывна. Утверждение 2: если f, g: R → R всюду дифференцируемы, то f(g(x)) всюду дифференцируема.",
+    "en": "Statement 1 | f : X → Y is continuous and X is compact. f must be uniformly continuous. Statement 2 | If f(x), g(x) : R → R are everywhere differentiable f(g(x)) must be everywhere differentiable."
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "Верно, верно",
+     "Верно, неверно",
+     "Неверно, верно",
+     "Неверно, неверно"
+    ],
+    "en": [
+     "True, True",
+     "True, False",
+     "False, True",
+     "False, False"
+    ]
+   },
+   "explain": "1 — теорема Кантора (для метрических пространств), 2 — правило дифференцирования сложной функции."
+  },
+  {
+   "id": "college-mathematics-48",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Какие множества могут быть интервалом сходимости степенного ряда?\n(I) [−1, 3)\n(II) (−∞, 0]\n(III) [2, 2] ∪ [3, 3]\n(IV) (−∞, ∞)",
+    "en": "Which of the following are valid intervals of convergence for a power series?\n(I) [−1, 3)\n(II) (−∞, 0]\n(III) [2, 2] ∪ [3, 3]\n(IV) (−∞,∞)"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Только (II)",
+     "Только (IV)",
+     "(I) и (IV)",
+     "(II) и (III)"
+    ],
+    "en": [
+     "Only (II)",
+     "Only (IV )",
+     "(I) and (IV )",
+     "(II) and (III)"
+    ]
+   },
+   "explain": "Интервал сходимости симметричен относительно центра (концы могут входить или нет) либо вся прямая, либо одна точка."
+  },
+  {
+   "id": "college-mathematics-66",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Каково наименьшее значение x + 4z на R³ при условии x² + y² + z² ≤ 2?",
+    "en": "What is the minimum value of the expression x + 4z as a function defined on R³, subject to the constraint x² + y² + z² ≤ 2?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "0",
+     "−2",
+     "−√34",
+     "−√35"
+    ],
+    "en": [
+     "0",
+     "−2",
+     "−√34",
+     "−√35"
+    ]
+   },
+   "explain": "Минимум линейной функции на шаре: −|(1, 0, 4)| · √2 = −√17 · √2."
+  },
+  {
+   "id": "college-mathematics-76",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Утверждение 1: если у функции f на [a, b] есть локальный максимум, то в этой точке f′ обязательно существует и равна 0. Утверждение 2: существуют непостоянные непрерывные отображения из R в Q.",
+    "en": "Statement 1 | Suppose f : [a, b] is a function and suppose f has a local maximum. f'(x) must exist and equal 0? Statement 2 | There exist non-constant continuous maps from R to Q."
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "Верно, верно",
+     "Верно, неверно",
+     "Неверно, верно",
+     "Неверно, неверно"
+    ],
+    "en": [
+     "True, True",
+     "True, False",
+     "False, True",
+     "False, False"
+    ]
+   },
+   "explain": "1: |x| — максимум у −|x| в 0 без производной. 2: образ связного R связен, а связные подмножества Q — точки."
+  },
+  {
+   "id": "college-mathematics-79",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Утверждение 1: если A связно, то замыкание A связно. Утверждение 2: всякая непрерывная функция f: (0, 1) → (0, 1) имеет неподвижную точку.",
+    "en": "Statement 1 | If A is connected, the closure of A must be connected. Statement 2 | Every continuous function f : (0, 1) → (0, 1) has a fixed point."
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Верно, верно",
+     "Верно, неверно",
+     "Неверно, верно",
+     "Неверно, неверно"
+    ],
+    "en": [
+     "True, True",
+     "True, False",
+     "False, True",
+     "False, False"
+    ]
+   },
+   "explain": "Контрпример ко 2: f(x) = x/2."
+  },
+  {
+   "id": "college-mathematics-84",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "f(x, y) = x³ + y³ + 3xy. Найдутся различные точки P и Q такие, что у f",
+    "en": "Let f(x, y) = x^3 + y^3 + 3xy for all real x and y. Then there exist distinct points P and Q such that f has a"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "локальный максимум в P и в Q",
+     "седловая точка в P и в Q",
+     "локальный максимум в P и седловая точка в Q",
+     "локальный минимум в P и седловая точка в Q"
+    ],
+    "en": [
+     "local maximum at P and at Q",
+     "saddle point at P and at Q",
+     "local maximum at P and a saddle point at Q",
+     "local minimum at P and a saddle point at Q"
+    ]
+   },
+   "explain": "Критические точки (0, 0) — седло, (−1, −1) — максимум."
+  }
+ ]
+}

@@ -1,0 +1,819 @@
+{
+ "questions": [
+  {
+   "id": "li-c-2",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Что выведет программа?",
+    "en": "What will be the output of the code below?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "A is greater than B\nC is fun!",
+     "A is greater than B\nB is greater than A\nC is fun!",
+     "A is greater than B\nB is greater than A",
+     "Nothing is printed on Screen"
+    ],
+    "en": [
+     "A is greater than B\nC is fun!",
+     "A is greater than B\nB is greater than A\nC is fun!",
+     "A is greater than B\nB is greater than A",
+     "Nothing is printed on Screen"
+    ]
+   },
+   "code": "int f1 (int a, int b)\n{\n    if (a > b)\n    {\n        printf(\"A is greater than B\\n\");\n        return 1;\n    }\n    else\n    {\n        printf(\"B is greater than A\");\n        return 0;\n    }\n}\n\nmain()\n{\n    if (f1(20,10) || f1(10,20))\n        printf(\"C is fun!\\n\");\n}",
+   "code_lang": "c",
+   "explain": "|| вычисляется лениво: f1(20, 10) вернула 1, и второй вызов не выполняется."
+  },
+  {
+   "id": "li-c-9",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Что вернёт программа?",
+    "en": "What does the program shown below return?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "1",
+     "3",
+     "2",
+     "0"
+    ],
+    "en": [
+     "1",
+     "3",
+     "2",
+     "0"
+    ]
+   },
+   "code": "int main(){\n    int a=1, b=2, c=3, d=4;\n    int x = a;\n    if (a>b)\n    if (b<c) x=b;\n    else x=c;\n    return(x);\n}",
+   "code_lang": "c",
+   "explain": "else относится к ближайшему if (b < c). Внешнее условие a > b ложно, поэтому x остаётся равным a."
+  },
+  {
+   "id": "li-c-10",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Сколько байт памяти займут данные этого объединения (union)?",
+    "en": "Using the union declaration below, how many bytes of memory will the data of this type occupy?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "32",
+     "54",
+     "30",
+     "52"
+    ],
+    "en": [
+     "32",
+     "54",
+     "30",
+     "52"
+    ]
+   },
+   "code": "union Cars {\n    char make[20];\n    char model[30];\n    short year;\n} car;",
+   "code_lang": "c",
+   "explain": "Union занимает размер самого большого члена (с учётом выравнивания): 30."
+  },
+  {
+   "id": "li-c-15",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "В какой области памяти выделяется динамическая память (malloc)?",
+    "en": "In which segment does dynamic memory allocation take place?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Сегмент BSS",
+     "Стек",
+     "Куча (heap)",
+     "Сегмент данных"
+    ],
+    "en": [
+     "BSS Segment",
+     "stack",
+     "heap",
+     "data segment"
+    ]
+   }
+  },
+  {
+   "id": "li-c-21",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Что выведет программа?",
+    "en": "What is the output of this program?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "32",
+     "Ошибка во время выполнения",
+     "-32",
+     "0"
+    ],
+    "en": [
+     "32",
+     "Runtime error",
+     "-32",
+     "0"
+    ]
+   },
+   "code": "main() {\n    char c1='a' , c2='A';\n    int i=c2-c1;\n    printf(\"%d\", i);\n}",
+   "code_lang": "c",
+   "explain": "'A' = 65, 'a' = 97."
+  },
+  {
+   "id": "li-c-22",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Чем scanf() отличается от sscanf()?",
+    "en": "What is the difference between scanf() and sscanf() functions?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "scanf() читает данные, оформленные как строка; sscanf() читает строку с экрана.",
+     "scanf() читает форматированные данные с клавиатуры (stdin); sscanf() — из строки.",
+     "scanf() читает строку с клавиатуры; sscanf() — строку из строки.",
+     "scanf() читает форматированные данные из файла; sscanf() — из выбранной строки."
+    ],
+    "en": [
+     "The scanf() function reads data formatted as a string; The sscanf() function reads string input from the screen.",
+     "The scanf() function reads formatted data from the keyboard; The sscanf() function reads formatted input from a string.",
+     "The scanf() function reads string data from the keyboard; The sscanf() function reads string data from a string.",
+     "The scanf() function reads formatted data from a file; The sscanf() function reads input from a selected string"
+    ]
+   }
+  },
+  {
+   "id": "li-c-23",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Какая команда НЕДОПУСТИМА при таком объявлении?",
+    "en": "What is not a valid command with this declaration?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "printf(\"%c\", string[1][2]);",
+     "printf(\"%s\", string[1][2]);",
+     "printf(\"%s\", string[1]);",
+     "printf(string[1]);"
+    ],
+    "en": [
+     "printf(\"%c\", string[1][2]);",
+     "printf(\"%s\", string[1][2]);",
+     "printf(\"%s\", string[1]);",
+     "printf(string[1]);"
+    ]
+   },
+   "code": "char *string[20] = { \"one\", \"two\", \"three\"};",
+   "code_lang": "c",
+   "explain": "string[1][2] — это символ, а %s ждёт указатель на строку."
+  },
+  {
+   "id": "li-c-24",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Чему эквивалентно выражение player->name?",
+    "en": "What is the expression player->name equivalent to?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "player.name",
+     "(*player).name",
+     "*player.name",
+     "player.*name"
+    ],
+    "en": [
+     "player.name",
+     "(*player).name",
+     "*player.name",
+     "player.*name"
+    ]
+   }
+  },
+  {
+   "id": "li-c-31",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Что возвращает strcmp(str1, str2)?",
+    "en": "What does the strcmp(str1, str2); function return?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "0, если строки равны; отрицательное число, если str1 меньше str2; положительное, если str1 больше str2",
+     "1 (истина), если строки равны, и 0, если нет",
+     "1, если строки равны, и NULL, если нет",
+     "0, если строки равны; отрицательное число, если str2 меньше str1; положительное, если str2 больше str1"
+    ],
+    "en": [
+     "0 if str1 and str2 are the same, a negative number if str1 is less than str2, a positive number if str1 is greater than str2",
+     "true (1) if str1 and str2 are the same, false (0) if str1 and str2 are not the same",
+     "true (1) if str1 and str2 are the same, NULL if str1 and str2 are not the same",
+     "0 if str1 and str2 are the same, a negative number if str2 is less than str1, a positive number if str2 is greater than str1"
+    ]
+   }
+  },
+  {
+   "id": "li-c-33",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Какой способ объявить строку НЕВЕРНЫЙ?",
+    "en": "Which is not a correct way to declare a string variable?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "char *string = \"Hello World\";",
+     "char string = \"Hello World\";",
+     "char string[20] = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd'};",
+     "char string[] = \"Hello World\";"
+    ],
+    "en": [
+     "char *string = \"Hello World\";",
+     "char string = \"Hello World\";",
+     "char string[20] = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd'};",
+     "char string[] = \"Hello World\";"
+    ]
+   },
+   "explain": "char — один символ, в него нельзя положить строковый литерал."
+  },
+  {
+   "id": "li-c-34",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Какой вариант — правильная защита от повторного включения (include guard) для mylib.h?",
+    "en": "Which choice is an include guard for the header file mylib.h?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "#ifdef MYLIB_H\n#undef MYLIB_H\n\n// mylib.h content\n\n#endif /* MYLIB_H */",
+     "#ifndef MYLIB_H\n#define MYLIB_H\n\n// mylib.h content\n\n#endif /* MYLIB_H */",
+     "#define MYLIB_H\n#include \"mylib.h\"\n\n#undef MYLIB_H",
+     "#ifdef MYLIB_H\n#define MYLIB_H\n\n// mylib.h content\n\n#endif /* MYLIB_H */"
+    ],
+    "en": [
+     "#ifdef MYLIB_H\n#undef MYLIB_H\n\n// mylib.h content\n\n#endif /* MYLIB_H */",
+     "#ifndef MYLIB_H\n#define MYLIB_H\n\n// mylib.h content\n\n#endif /* MYLIB_H */",
+     "#define MYLIB_H\n#include \"mylib.h\"\n\n#undef MYLIB_H",
+     "#ifdef MYLIB_H\n#define MYLIB_H\n\n// mylib.h content\n\n#endif /* MYLIB_H */"
+    ]
+   }
+  },
+  {
+   "id": "li-c-35",
+   "src": "li",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Сколько раз выполнится тело цикла while?",
+    "en": "How many times does the code inside the while loop get executed in this program?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "100",
+     "3",
+     "5",
+     "50"
+    ],
+    "en": [
+     "100",
+     "3",
+     "5",
+     "50"
+    ]
+   },
+   "code": "main(){\n int x=1;\n while(x++<100){\n    x*=x;\n    if(x<10) continue;\n    if(x>50) break;\n }\n}",
+   "code_lang": "c",
+   "explain": "x: 1→2→4 (continue), 4→5→25, 25→26→676 > 50 (break)."
+  },
+  {
+   "id": "li-c-42",
+   "src": "li",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Что выведет программа?",
+    "en": "What does this program display?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "K",
+     "M",
+     "H",
+     "G"
+    ],
+    "en": [
+     "K",
+     "M",
+     "H",
+     "G"
+    ]
+   },
+   "code": "main(){\n    char *p = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";\n    int i;\n    for (i=0;i<5;i++) *p++; *p++;\n    printf(\"%c\",*p++);\n}",
+   "code_lang": "c",
+   "explain": "Цикл сдвигает p на 5, ещё один *p++ — на 6: p указывает на 'G'."
+  },
+  {
+   "id": "li-c-44",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Какой оператор даёт адрес переменной?",
+    "en": "Which operator is used to get the address of a variable?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "%",
+     "**",
+     "*",
+     "&"
+    ],
+    "en": [
+     "%",
+     "**",
+     "*",
+     "&"
+    ]
+   }
+  },
+  {
+   "id": "li-python-2",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Что делает встроенная функция any() со списком?",
+    "en": "What happens when you use the built-in function any() on a list?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Возвращает случайный элемент списка.",
+     "Возвращает True, если хотя бы один элемент списка истинен, иначе False.",
+     "Принимает список и элемент и возвращает True, если элемент есть в списке.",
+     "Отвечает на вопрос «есть ли в списке хоть какие-то элементы?»"
+    ],
+    "en": [
+     "The any() function will randomly return any item from the list.",
+     "The any() function returns True if any item in the list evaluates to True. Otherwise, it returns False.",
+     "The any() function takes the list and an item to check for, and returns True if any item in the list matches it.",
+     "The any() function returns a Boolean that answers \"Are there any items in this list?\""
+    ]
+   }
+  },
+  {
+   "id": "li-python-6",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Как называется такая запись?",
+    "en": "What is the term to describe this code?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Присваивание кортежа",
+     "Распаковка кортежа",
+     "Сопоставление кортежа",
+     "Дублирование кортежа"
+    ],
+    "en": [
+     "Tuple assignment.",
+     "Tuple unpacking.",
+     "Tuple matching.",
+     "Tuple duplication."
+    ]
+   },
+   "code": "count, fruit, price = (2, 'apple', 3.5)",
+   "code_lang": "python"
+  },
+  {
+   "id": "li-python-9",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "За какое время выполняется доступ к значению словаря по ключу?",
+    "en": "What is the runtime of accessing a value in a dictionary by using its key?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "O(n), линейное время",
+     "O(log n), логарифмическое время",
+     "O(n²), квадратичное время",
+     "O(1), константное время"
+    ],
+    "en": [
+     "O(n), also called linear time.",
+     "O(log n), also called logarithmic time.",
+     "O(n^2), also called quadratic time.",
+     "O(1), also called constant time."
+    ]
+   },
+   "explain": "dict — хеш-таблица; O(1) в среднем."
+  },
+  {
+   "id": "li-python-10",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Как правильно объявить класс Game, наследующий от LogicGame?",
+    "en": "What is the correct syntax for defining a class called Game that inherits from a parent class called LogicGame?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "class Game(LogicGame): pass",
+     "def Game(LogicGame): pass",
+     "def Game.LogicGame(): pass",
+     "class Game.LogicGame(): pass"
+    ],
+    "en": [
+     "class Game(LogicGame): pass",
+     "def Game(LogicGame): pass",
+     "def Game.LogicGame(): pass",
+     "class Game.LogicGame(): pass"
+    ]
+   }
+  },
+  {
+   "id": "li-python-13",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Что вернёт выражение?",
+    "en": "What would this expression return?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "[('Freshman', 2019), ('Sophomore', 2020), ('Junior', 2021), ('Senior', 2022)]",
+     "[(2019, 2020, 2021, 2022), ('Freshman', 'Sophomore', 'Junior', 'Senior')]",
+     "[('Freshman', 'Sophomore', 'Junior', 'Senior'), (2019, 2020, 2021, 2022)]",
+     "[(2019, 'Freshman'), (2020, 'Sophomore'), (2021, 'Junior'), (2022, 'Senior')]"
+    ],
+    "en": [
+     "[('Freshman', 2019), ('Sophomore', 2020), ('Junior', 2021), ('Senior', 2022)]",
+     "[(2019, 2020, 2021, 2022), ('Freshman', 'Sophomore', 'Junior', 'Senior')]",
+     "[('Freshman', 'Sophomore', 'Junior', 'Senior'), (2019, 2020, 2021, 2022)]",
+     "[(2019, 'Freshman'), (2020, 'Sophomore'), (2021, 'Junior'), (2022, 'Senior')]"
+    ]
+   },
+   "code": "college_years = ['Freshman', 'Sophomore', 'Junior', 'Senior']\nlist(enumerate(college_years, 2019))",
+   "code_lang": "python",
+   "explain": "enumerate даёт пары (номер, элемент), второй аргумент — начальный номер."
+  },
+  {
+   "id": "li-python-21",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Что делает встроенная функция map()?",
+    "en": "What does the built-in map() function do?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Сводит несколько значений итерируемого объекта к одному.",
+     "Применяет функцию к каждому элементу итерируемого объекта и выдаёт результаты.",
+     "Превращает сложное значение в набор простых.",
+     "Создаёт соответствие между элементами разных итерируемых объектов."
+    ],
+    "en": [
+     "It reduces multiple values in an iterable to a single value.",
+     "It applies a function to each item in an iterable and yields the results.",
+     "It converts a complex value type into simpler value types.",
+     "It creates a mapping between elements of different iterables."
+    ]
+   },
+   "explain": "В Python 3 map возвращает ленивый итератор."
+  },
+  {
+   "id": "li-python-22",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Что вернёт функция без явного return?",
+    "en": "If you don't explicitly return a value from a function, what happens?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Будет ошибка RuntimeError.",
+     "Функция вернёт None.",
+     "Функция вернёт True.",
+     "Функция зациклится."
+    ],
+    "en": [
+     "The function raises a RuntimeError.",
+     "The function returns None.",
+     "The function returns True.",
+     "The function enters an infinite loop."
+    ]
+   }
+  },
+  {
+   "id": "li-python-23",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Зачем нужен оператор pass?",
+    "en": "What is the purpose of the pass statement in Python?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Пропускает yield в генераторе и возвращает None.",
+     "Это пустая операция — заглушка в функциях, классах и т. п.",
+     "Передаёт управление из одного блока в другой.",
+     "Пропускает остаток итерации цикла и переходит к следующей."
+    ],
+    "en": [
+     "It skips the yield statement of a generator and returns None.",
+     "It is a null operation used mainly as a placeholder in functions, classes, etc.",
+     "It passes control from one statement block to another.",
+     "It skips the rest of a while or for loop and returns to the start of the loop."
+    ]
+   },
+   "explain": "Последний вариант — это continue."
+  },
+  {
+   "id": "li-python-29",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Что делает встроенная функция all() со списком?",
+    "en": "What happens when you use the built-in function all() on a list?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "Проверяет, одинаковы ли все элементы.",
+     "Возвращает True, если все элементы можно превратить в строки.",
+     "Возвращает все значения списка.",
+     "Возвращает True, если все элементы истинны, иначе False."
+    ],
+    "en": [
+     "It answers \"Are all the items in this list the same?\"",
+     "It returns True if all the items in the list can be converted to strings.",
+     "It returns all the values in the list.",
+     "It returns True if all items in the list evaluate to True. Otherwise, it returns False."
+    ]
+   },
+   "explain": "all([]) == True: для пустого списка условие выполнено."
+  },
+  {
+   "id": "li-python-32",
+   "src": "li",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Какова сложность метода списка append()?",
+    "en": "What is the runtime complexity of the list's built-in `.append()` method?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "O(1), константное время",
+     "O(log n), логарифмическое время",
+     "O(n²), квадратичное время",
+     "O(n), линейное время"
+    ],
+    "en": [
+     "O(1), also called constant time.",
+     "O(log n), also called logarithmic time.",
+     "O(n^2), also called quadratic time.",
+     "O(n), also called linear time."
+    ]
+   },
+   "explain": "Амортизированно O(1): изредка список перевыделяет память с запасом."
+  },
+  {
+   "id": "li-python-33",
+   "src": "li",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "В чём главное различие set и list?",
+    "en": "What is the key difference between a set and a list?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "set — упорядоченный набор уникальных элементов, list — неупорядоченный набор с повторами.",
+     "Из list можно получать элементы, а из set — нельзя.",
+     "set — упорядоченный набор с повторами, list — неупорядоченный набор уникальных элементов.",
+     "set — неупорядоченный набор уникальных элементов, list — упорядоченный набор, где возможны повторы."
+    ],
+    "en": [
+     "A set is an ordered collection of unique items. A list is an unordered collection of non-unique items.",
+     "Elements can be retrieved from a list but they cannot be retrieved from a set.",
+     "A set is an ordered collection of non-unique items. A list is an unordered collection of unique items.",
+     "A set is an unordered collection of unique items. A list is an ordered collection of non-unique items."
+    ]
+   }
+  },
+  {
+   "id": "crux-3",
+   "src": "crux",
+   "level": 1,
+   "type": "text",
+   "q": {
+    "ru": "Что вернёт вызов?",
+    "en": "What does the call return?"
+   },
+   "answer": [
+    "'bcksrutq'",
+    "bcksrutq"
+   ],
+   "code": "def f(text, value):\n    text_list = list(text)\n    text_list.append(value)\n    return ''.join(text_list)\n\nf('bcksrut', 'q')",
+   "code_lang": "python"
+  },
+  {
+   "id": "crux-14",
+   "src": "crux",
+   "level": 1,
+   "type": "text",
+   "q": {
+    "ru": "Что вернёт вызов?",
+    "en": "What does the call return?"
+   },
+   "answer": [
+    "'POO'",
+    "POO"
+   ],
+   "code": "def f(s):\n    arr = list(s.strip())\n    arr.reverse()\n    return ''.join(arr)\n\nf('   OOP   ')",
+   "code_lang": "python"
+  },
+  {
+   "id": "crux-17",
+   "src": "crux",
+   "level": 1,
+   "type": "text",
+   "q": {
+    "ru": "Что вернёт вызов?",
+    "en": "What does the call return?"
+   },
+   "answer": [
+    "9"
+   ],
+   "code": "def f(text):\n    return text.find(\",\")\n\nf(\"There are, no, commas, in this text\")",
+   "code_lang": "python"
+  },
+  {
+   "id": "crux-20",
+   "src": "crux",
+   "level": 1,
+   "type": "text",
+   "q": {
+    "ru": "Что вернёт вызов?",
+    "en": "What does the call return?"
+   },
+   "answer": [
+    "',saw'",
+    ",saw"
+   ],
+   "code": "def f(text):\n    result = ''\n    for i in range(len(text)-1, -1, -1):\n        result += text[i]\n    return result\n\nf('was,')",
+   "code_lang": "python"
+  },
+  {
+   "id": "crux-13",
+   "src": "crux",
+   "level": 2,
+   "type": "text",
+   "q": {
+    "ru": "Что вернёт вызов?",
+    "en": "What does the call return?"
+   },
+   "answer": [
+    "2"
+   ],
+   "code": "def f(names):\n    count = len(names)\n    numberOfNames = 0\n    for i in names:\n        if i.isalpha():\n            numberOfNames += 1\n    return numberOfNames\n\nf(['sharron', 'Savannah', 'Mike Cherokee'])",
+   "code_lang": "python",
+   "explain": "isalpha() ложно для 'Mike Cherokee' из-за пробела."
+  },
+  {
+   "id": "crux-21",
+   "src": "crux",
+   "level": 2,
+   "type": "text",
+   "q": {
+    "ru": "Что вернёт вызов?",
+    "en": "What does the call return?"
+   },
+   "answer": [
+    "[1, 1, 2, 2, 2]"
+   ],
+   "code": "def f(array):\n    n = array.pop()\n    array.extend([n, n])\n    return array\n\nf([1, 1, 2, 2])",
+   "code_lang": "python"
+  },
+  {
+   "id": "crux-28",
+   "src": "crux",
+   "level": 2,
+   "type": "text",
+   "q": {
+    "ru": "Что вернёт вызов?",
+    "en": "What does the call return?"
+   },
+   "answer": [
+    "True"
+   ],
+   "code": "def f(mylist):\n    revl = mylist[:]\n    revl.reverse()\n    mylist.sort(reverse=True)\n    return mylist == revl\n\nf([5, 8])",
+   "code_lang": "python",
+   "explain": "revl — копия [8, 5]; mylist после сортировки по убыванию тоже [8, 5]."
+  },
+  {
+   "id": "crux-37",
+   "src": "crux",
+   "level": 2,
+   "type": "text",
+   "q": {
+    "ru": "Что вернёт вызов?",
+    "en": "What does the call return?"
+   },
+   "answer": [
+    "['123', '23', '3']"
+   ],
+   "code": "def f(text):\n    text_arr = []\n    for j in range(len(text)):\n        text_arr.append(text[j:])\n    return text_arr\n\nf('123')",
+   "code_lang": "python"
+  },
+  {
+   "id": "crux-31",
+   "src": "crux",
+   "level": 3,
+   "type": "text",
+   "q": {
+    "ru": "Что вернёт вызов?",
+    "en": "What does the call return?"
+   },
+   "answer": [
+    "8"
+   ],
+   "code": "def f(string):\n    upper = 0\n    for c in string:\n        if c.isupper():\n            upper += 1\n    return upper * (2,1)[upper % 2]\n\nf('PoIOarTvpoead')",
+   "code_lang": "python",
+   "explain": "Заглавных 4 (P, I, O, T); 4 % 2 = 0, (2, 1)[0] = 2; 4 · 2 = 8."
+  },
+  {
+   "id": "crux-32",
+   "src": "crux",
+   "level": 3,
+   "type": "text",
+   "q": {
+    "ru": "Что вернёт вызов?",
+    "en": "What does the call return?"
+   },
+   "answer": [
+    "'*ume;*vo'",
+    "*ume;*vo"
+   ],
+   "code": "def f(s, sep):\n    reverse = ['*' + e for e in s.split(sep)]\n    return ';'.join(reversed(reverse))\n\nf('volume', 'l')",
+   "code_lang": "python",
+   "explain": "split('l') → ['vo', 'ume'], с '*' и в обратном порядке."
+  }
+ ]
+}
