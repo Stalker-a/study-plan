@@ -11,8 +11,9 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v=css_version) }}">
 </head>
 <body class="{% block body_class %}{% endblock %}">
-{% set in_tests = nav_section is defined and nav_section == 'tests' %}
-{% set current_subject = None if in_tests else (subject.id if subject is defined and subject else (summary.subject.id if summary is defined else None)) %}
+{% set section = nav_section if nav_section is defined else None %}
+{% set in_tests = section == 'tests' %}
+{% set current_subject = None if section else (subject.id if subject is defined and subject else (summary.subject.id if summary is defined else None)) %}
 {% if nav_subjects is defined %}
 <div class="app">
   <aside class="sidebar">
@@ -20,6 +21,9 @@
     <nav class="nav">
       <a class="nav-item {{ 'active' if request.endpoint == 'site.dashboard' }}" href="{{ url_for('site.dashboard') }}">
         {{ icon('home') }}<span class="nav-text">Обзор</span>
+      </a>
+      <a class="nav-item {{ 'active' if section == 'goals' }}" href="{{ url_for('site.goals_root') }}">
+        {{ icon('goal') }}<span class="nav-text">Дерево целей</span>
       </a>
       <a class="nav-item {{ 'active' if request.endpoint == 'site.catalog' }}" href="{{ url_for('site.catalog') }}">
         {{ icon('library') }}<span class="nav-text">Каталог книг</span>
@@ -75,6 +79,7 @@
 
   <nav class="tabbar">
     <a class="tab {{ 'active' if request.endpoint in ('site.dashboard', 'site.subject', 'site.topic', 'site.topic_test', 'site.placement', 'site.result') and not in_tests }}" href="{{ url_for('site.dashboard') }}">{{ icon('home') }}Обзор</a>
+    <a class="tab {{ 'active' if section == 'goals' }}" href="{{ url_for('site.goals_root') }}">{{ icon('goal') }}Цели</a>
     <a class="tab {{ 'active' if request.endpoint == 'site.catalog' }}" href="{{ url_for('site.catalog') }}">{{ icon('library') }}Каталог</a>
     <a class="tab {{ 'active' if in_tests }}" href="{{ url_for('site.tests') }}">{{ icon('tests') }}Тесты</a>
     {% if nav_last_book %}

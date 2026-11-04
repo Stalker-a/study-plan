@@ -673,6 +673,94 @@ a.resource-title:hover { color: var(--brand); }
 .option-text.is-code { white-space: pre-wrap; overflow-wrap: anywhere; }
 .answer-row .is-code { white-space: pre-wrap; }
 
+/* ---------- Дерево целей ---------- */
+.gtree { padding: 0; overflow: hidden; background:
+  radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--c) 10%, transparent), transparent 60%), var(--surface); }
+.gtree-canvas { position: relative; overflow-x: auto; padding: 24px 16px 28px; }
+.gtree-lines { position: absolute; top: 0; left: 0; pointer-events: none; overflow: visible; }
+.gtree-lines path {
+  fill: none; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round;
+  opacity: 0.22; transition: opacity 0.2s;
+}
+.gtree-lines path.is-half { opacity: 0.55; stroke-dasharray: 2 8; }
+.gtree-lines path.is-lit { opacity: 1; filter: drop-shadow(0 0 5px currentColor); }
+
+.gtarget { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; margin-bottom: 56px; }
+.gtarget-title { font-size: 1.25rem; max-width: 30ch; }
+.gtarget-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px; font-size: 0.8125rem; color: var(--text-2); }
+
+.gbranches { position: relative; z-index: 1; display: flex; justify-content: center; gap: 12px; min-width: max-content; margin: 0 auto; }
+.gbranch { display: flex; flex-direction: column; align-items: center; width: 132px; }
+.gsteps { display: flex; flex-direction: column; align-items: center; gap: 26px; margin-top: 34px; }
+
+.gnode { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; color: var(--text); text-decoration: none; }
+.gnode:hover .gdot { transform: scale(1.08); }
+.glabel { font-size: 0.75rem; line-height: 1.3; max-width: 124px; overflow-wrap: anywhere; }
+.glabel-hub { font-weight: 650; text-transform: uppercase; letter-spacing: 0.04em; color: var(--c); }
+.gsub { font-size: 0.6875rem; color: var(--text-3); margin-top: -3px; }
+.gdue { display: inline-flex; align-items: center; gap: 3px; font-size: 0.6875rem; color: var(--text-3); }
+.gdue.is-late { color: var(--danger, #ef4444); }
+
+/* Кружок шага: не начато — тусклый контур, в работе — светящийся контур, готово — заливка. */
+.gdot {
+  position: relative; display: grid; place-items: center; flex-shrink: 0;
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 3px solid color-mix(in srgb, var(--c) 35%, var(--border)); background: var(--bg);
+  color: var(--text-3); font-size: 0.75rem; transition: transform 0.15s;
+}
+.st-doing > .gdot { border-color: var(--c); color: var(--c); box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 22%, transparent), 0 0 18px color-mix(in srgb, var(--c) 45%, transparent); }
+.gstep.st-done > .gdot, .gstep > .gdot:has(.icon) { background: var(--c); border-color: var(--c); color: #0b0c10; box-shadow: 0 0 14px color-mix(in srgb, var(--c) 55%, transparent); }
+.gdot-badge {
+  position: absolute; top: -8px; right: -12px; padding: 1px 5px; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--c); color: var(--c); font-size: 0.625rem; font-weight: 700;
+}
+
+/* Ромбы: ветка и главная цель. Содержимое поворачивается обратно. */
+.gdiamond { width: 50px; height: 50px; border-radius: 10px; transform: rotate(45deg); background: color-mix(in srgb, var(--c) 16%, var(--bg)); border-color: var(--c); }
+.gdiamond > b { transform: rotate(-45deg); color: var(--c); font-size: 0.8125rem; }
+.gnode:hover .gdiamond { transform: rotate(45deg) scale(1.08); }
+.gdiamond.is-full { background: var(--c); box-shadow: 0 0 22px color-mix(in srgb, var(--c) 55%, transparent); }
+.gdiamond.is-full > b { color: #0b0c10; }
+.gdiamond-lg { width: 76px; height: 76px; border-radius: 14px; border-width: 3px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--c) 35%, var(--bg)), var(--bg)); box-shadow: 0 0 30px color-mix(in srgb, var(--c) 30%, transparent); }
+.gdiamond-lg > b { font-size: 1.05rem; color: var(--text); }
+
+.gempty { position: relative; z-index: 1; max-width: 46ch; margin: 0 auto; text-align: center; color: var(--text-2); }
+.gtree-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; padding: 10px 16px; border-top: 1px solid var(--border); }
+.gtree-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.lg { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--c); }
+.lg-done { background: var(--c); }
+.lg-todo { opacity: 0.4; }
+
+.gpanel { display: flex; flex-direction: column; gap: 14px; }
+.gpanel .card-header { margin: 0; padding: 0 0 12px; }
+.gnote { margin: 0; white-space: pre-wrap; color: var(--text-2); }
+.gstatus { align-self: flex-start; }
+.gstatus .seg-btn.is-on { background: var(--surface); color: var(--text); box-shadow: 0 0 0 1px var(--border-strong); }
+.gedit summary { list-style: none; width: fit-content; }
+.gedit summary::-webkit-details-marker { display: none; }
+.gform { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+.gform .label { margin: 6px 0 0; }
+.gform textarea.field { height: auto; padding: 10px 14px; resize: vertical; }
+.gform .btn { align-self: flex-start; margin-top: 8px; }
+.gform-row { display: grid; gap: 8px; }
+@media (min-width: 560px) { .gform-row { grid-template-columns: 1fr 1fr; } }
+.gcolors { display: flex; flex-wrap: wrap; gap: 8px; }
+.gcolor { position: relative; cursor: pointer; }
+.gcolor input { position: absolute; opacity: 0; pointer-events: none; }
+.gcolor span { display: block; width: 26px; height: 26px; border-radius: 50%; background: var(--c); border: 2px solid transparent; }
+.gcolor .gcolor-auto { width: auto; padding: 0 9px; line-height: 22px; font-size: 0.75rem; background: var(--bg-subtle); border-color: var(--border-strong); border-radius: 999px; color: var(--text-2); }
+.gcolor input:checked + span { outline: 2px solid var(--text); outline-offset: 2px; }
+.gcolor input:focus-visible + span { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+.glist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.glist-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); min-width: 0; }
+.glist-item .grow { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); }
+.gmini { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--c); opacity: 0.5; }
+.gmini.st-doing { opacity: 1; }
+.gmini.st-done { opacity: 1; background: var(--c); }
+.gadd { display: flex; gap: 8px; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }
 }

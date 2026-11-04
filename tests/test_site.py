@@ -12,6 +12,7 @@ TMP = tempfile.mkdtemp()
 os.environ["SITE_PASSWORD"] = "unit-test-password"
 os.environ["DB_PATH"] = os.path.join(TMP, "test.sqlite3")
 os.environ["SECRET_KEY"] = "unit-test-secret"
+os.environ["GOALS_SEED"] = os.path.join(TMP, "no-seed.json")  # личное наполнение в тестах не нужно
 
 from app import create_app  # noqa: E402
 from content import check_answer, correct_answer_text  # noqa: E402
@@ -234,6 +235,59 @@ class SiteTest(unittest.TestCase):
         self.assertIn('data-qlang="en"', self.client.get("/login").get_data(as_text=True))
         self.client.set_cookie("qlang", "xx")
         self.assertIn('data-qlang="ru"', self.client.get("/login").get_data(as_text=True))
+
+    # --- дерево целей ---
+
+    def test_goal_progress(self):
+        from goals import Node, compute_progress
+
+        def node(nid, status="todo", subject=None, children=()):
+            return Node(nid, None, f"n{nid}", "", status, None, subject, None, 0, list(children))
+
+        root = node(1, children=[node(2, "done"), node(3, subject="calc"),
+                                 node(4, children=[node(5, "done"), node(6)])])
+        self.assertEqual(compute_progress(root, {"calc": 40}), round((100 + 40 + 50) / 3))
+        self.assertEqual(root.leaf_count, 4)
+
+    def test_goal_tree_flow(self):
+        csrf = self.login()
+        r = self.client.get("/goals")
+        self.assertEqual(r.status_code, 302)
+        root_url = r.headers["Location"]
+        root_id = int(root_url.rsplit("/", 1)[1])
+        self.assertIn("Главная цель", self.client.get(root_url).get_data(as_text=True))
+
+        for title in ("Учёба", "Языки"):
+            self.client.post(f"/goals/{root_id}/add", data={"csrf": csrf, "title": title})
+        page = self.client.get(root_url).get_data(as_text=True)
+        study_id = int(re.search(r'href="/goals/(\d+)"[^>]*>\s*<span class="gdot gdiamond[^"]*"><b class="num">\d+</b></span>\s*'
+                                 r'<span class="glabel glabel-hub">Учёба', page).group(1))
+        self.assertIn("Языки", page)
+
+        # Шаг, привязанный к предмету, получает прогресс из учебного плана; «готово» — 100%.
+        self.client.post(f"/goals/{study_id}/add", data={"csrf": csrf, "title": "Матанализ"})
+        step_id = max(int(x) for x in re.findall(r"/goals/(\d+)", self.client.get(f"/goals/{study_id}").get_data(as_text=True)))
+        r = self.client.post(f"/goals/{step_id}/edit", data={"csrf": csrf, "title": "Матанализ", "note": "",
+                                                              "status": "todo", "due": "2026-12-31", "subject": "calc"})
+        self.assertEqual(r.status_code, 302)
+        self.assertIn("31.12.2026", self.client.get(f"/goals/{step_id}").get_data(as_text=True))
+        self.client.post(f"/goals/{step_id}/status", data={"csrf": csrf, "status": "done"})
+        self.assertIn("100%", self.client.get(f"/goals/{study_id}").get_data(as_text=True))
+
+        # Неверные данные и защита главной цели.
+        bad = {"csrf": csrf, "title": "x", "status": "todo"}
+        self.assertEqual(self.client.post(f"/goals/{step_id}/edit", data={**bad, "due": "завтра"}).status_code, 400)
+        self.assertEqual(self.client.post(f"/goals/{step_id}/edit", data={**bad, "subject": "nope"}).status_code, 400)
+        self.assertEqual(self.client.post(f"/goals/{step_id}/edit", data={**bad, "color": "red"}).status_code, 400)
+        self.assertEqual(self.client.post(f"/goals/{root_id}/delete", data={"csrf": csrf}).status_code, 400)
+        self.assertEqual(self.client.get("/goals/999999").status_code, 404)
+
+        # Порядок и удаление с поддеревом.
+        self.client.post(f"/goals/{study_id}/move", data={"csrf": csrf, "dir": "down"})
+        page = self.client.get(root_url).get_data(as_text=True)
+        self.assertLess(page.index(">Языки<"), page.index(">Учёба<"))
+        self.client.post(f"/goals/{study_id}/delete", data={"csrf": csrf})
+        self.assertEqual(self.client.get(f"/goals/{step_id}").status_code, 404)
 
     def test_old_database_is_migrated(self):
         import sqlite3

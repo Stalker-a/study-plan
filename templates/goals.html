@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% from "_ui.html" import icon, meter %}
+{% block title %}{{ node.title }}{% endblock %}
+
+{% macro due_label(n) -%}
+{%- if n.due -%}
+<span class="gdue {{ 'is-late' if n.due < today and n.status != 'done' }}">{{ icon('clock', 12) }}{{ n.due[8:10] }}.{{ n.due[5:7] }}.{{ n.due[:4] }}</span>
+{%- endif -%}
+{%- endmacro %}
+
+{% block content %}
+<div style="--c: {{ color }}">
+  <nav class="crumbs">
+    {% for c in crumbs %}
+      {% if not loop.last %}<a href="{{ url_for('site.goal_view', nid=c.id) }}">{{ c.title }}</a>{{ icon('chevron-right', 12) }}
+      {% else %}<span>{{ c.title }}</span>{% endif %}
+    {% endfor %}
+  </nav>
+
+  {# ---------- Дерево: цель наверху, ветки снизу ведут к ней ---------- #}
+  <section class="gtree card">
+    <div class="gtree-canvas" id="gtree">
+      <svg class="gtree-lines" aria-hidden="true"></svg>
+
+      <div class="gtarget" data-id="{{ node.id }}">
+        <span class="gdot gdiamond gdiamond-lg st-{{ node.status }} {{ 'is-full' if node.progress == 100 }}"><b class="num">{{ node.progress }}%</b></span>
+        <h1 class="gtarget-title">{{ node.title }}</h1>
+        <div class="gtarget-meta">
+          <span>{{ statuses[node.status] }}</span>
+          {% if node.children %}<span class="num">{{ node.leaf_count }} {{ node.leaf_count|plural('шаг', 'шага', 'шагов') }} до цели</span>{% endif %}
+          {{ due_label(node) }}
+        </div>
+      </div>
+
+      {% if branches %}
+      <div class="gbranches">
+        {% for b in branches %}
+        {% set kids = b.node.children %}
+        <div class="gbranch" style="--c: {{ b.color }}">
+          <a class="gnode ghub st-{{ b.node.status }}" href="{{ url_for('site.goal_view', nid=b.node.id) }}"
+             data-id="{{ b.node.id }}" data-to="{{ node.id }}" data-lit="{{ b.node.progress }}">
+            <span class="gdot gdiamond {{ 'is-full' if b.node.progress == 100 }}"><b class="num">{{ b.node.progress }}</b></span>
+            <span class="glabel glabel-hub">{{ b.node.title }}</span>
+            {% if kids %}<span class="gsub num">{{ kids|length }} {{ kids|length|plural('шаг', 'шага', 'шагов') }}</span>{% endif %}
+          </a>
+          <div class="gsteps">
+            {# Шаги идут снизу вверх: первый — в самом низу, последний — у ромба ветки. #}
+            {% for i in range(kids|length - 1, -1, -1) %}
+            {% set s = kids[i] %}
+            <a class="gnode gstep st-{{ s.status }}" href="{{ url_for('site.goal_view', nid=s.id) }}"
+               data-id="{{ s.id }}" data-to="{{ kids[i + 1].id if i + 1 < kids|length else b.node.id }}" data-lit="{{ s.progress }}">
+              <span class="gdot">
+                {% if s.status == 'done' or s.progress == 100 %}{{ icon('check', 16) }}{% else %}<b class="num">{{ i + 1 }}</b>{% endif %}
+                {% if s.children %}<span class="gdot-badge num">+{{ s.children|length }}</span>{% endif %}
+              </span>
+              <span class="glabel">{{ s.title }}</span>
+              {% if s.subject_id or (s.children and s.progress) %}<span class="gsub num">{{ s.progress }}%</span>{% endif %}
+              {{ due_label(s) }}
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="gempty">
+        <p>Здесь пока нет шагов. Разбей «{{ node.title }}» на шаги ниже — каждый станет веткой дерева, а у каждой ветки может быть своя дорожка.</p>
+      </div>
+      {% endif %}
+    </div>
+    <div class="gtree-legend text-xs faint">
+      <span><i class="lg lg-done"></i>готово</span><span><i class="lg lg-doing"></i>в работе</span><span><i class="lg lg-todo"></i>не начато</span>
+      <span>Нажми на ветку или шаг — откроется его собственная дорожка.</span>
+    </div>
+  </section>
+
+  {# ---------- Карточка узла и редактирование ---------- #}
+  <div class="grid-main section" id="edit">
+    <div class="card card-pad gpanel">
+      <div class="card-header">
+        <h2>{{ 'Главная цель' if node.parent_id is none else 'Этот шаг' }}</h2>
+        <span class="num muted">{{ node.progress }}%</span>
+      </div>
+      {{ meter(node.progress) }}
+      {% if node.note %}<p class="gnote">{{ node.note }}</p>{% endif %}
+      {% if node.subject_id %}
+        {% for s in subjects if s.id == node.subject_id %}
+        <p class="text-sm muted">Прогресс берётся из учебного плана: <a href="{{ url_for('site.subject', sid=s.id) }}">{{ s.title }}</a>.</p>
+        {% endfor %}
+      {% endif %}
+
+      <div class="seg gstatus" role="group" aria-label="Статус">
+        {% for key, label in statuses.items() %}
+        <form method="post" action="{{ url_for('site.goal_status', nid=node.id) }}" class="inline">
+          <input type="hidden" name="csrf" value="{{ csrf_token }}">
+          <button class="seg-btn {{ 'is-on' if node.status == key }}" name="status" value="{{ key }}">{{ label }}</button>
+        </form>
+        {% endfor %}
+      </div>
+
+      <details class="gedit">
+        <summary class="btn btn-sm">{{ icon('pencil', 14) }}Изменить</summary>
+        <form method="post" action="{{ url_for('site.goal_edit', nid=node.id) }}" class="gform">
+          <input type="hidden" name="csrf" value="{{ csrf_token }}">
+          <input type="hidden" name="status" value="{{ node.status }}">
+          <label class="label" for="g-title">Название</label>
+          <input class="field" id="g-title" name="title" value="{{ node.title }}" maxlength="120" required>
+          <label class="label" for="g-note">Описание, критерий «готово», ссылки</label>
+          <textarea class="field" id="g-note" name="note" rows="4" maxlength="2000">{{ node.note }}</textarea>
+          <div class="gform-row">
+            <div>
+              <label class="label" for="g-due">Срок</label>
+              <input class="field" id="g-due" type="date" name="due" value="{{ node.due or '' }}">
+            </div>
+            <div>
+              <label class="label" for="g-subject">Прогресс из предмета</label>
+              <select class="field" id="g-subject" name="subject">
+                <option value="">— вручную —</option>
+                {% for s in subjects %}<option value="{{ s.id }}" {{ 'selected' if s.id == node.subject_id }}>{{ s.title }}</option>{% endfor %}
+              </select>
+            </div>
+          </div>
+          <span class="label">Цвет ветки</span>
+          <div class="gcolors">
+            <label class="gcolor" title="как у ветки"><input type="radio" name="color" value="" {{ 'checked' if not node.color }}><span class="gcolor-auto">авто</span></label>
+            {% for c in palette %}
+            <label class="gcolor" style="--c: {{ c }}"><input type="radio" name="color" value="{{ c }}" {{ 'checked' if node.color == c }}><span></span></label>
+            {% endfor %}
+          </div>
+          <button class="btn btn-primary">{{ icon('check', 14) }}Сохранить</button>
+        </form>
+      </details>
+    </div>
+
+    <div class="card card-pad gpanel">
+      <div class="card-header"><h2>Шаги внутри</h2><span class="num muted">{{ node.children|length }}</span></div>
+      {% if node.children %}
+      <ol class="glist">
+        {% for child in node.children %}
+        <li class="glist-item">
+          <span class="gmini st-{{ child.status }}" style="--c: {{ branches[loop.index0].color }}"></span>
+          <a class="grow" href="{{ url_for('site.goal_view', nid=child.id) }}">{{ child.title }}</a>
+          <span class="num faint text-sm">{{ child.progress }}%</span>
+          <form method="post" action="{{ url_for('site.goal_move', nid=child.id) }}" class="inline">
+            <input type="hidden" name="csrf" value="{{ csrf_token }}">
+            <button class="btn btn-ghost btn-icon btn-sm" name="dir" value="up" aria-label="Раньше" {{ 'disabled' if loop.first }}>{{ icon('arrow-up', 14) }}</button>
+            <button class="btn btn-ghost btn-icon btn-sm" name="dir" value="down" aria-label="Позже" {{ 'disabled' if loop.last }}>{{ icon('arrow-down', 14) }}</button>
+          </form>
+          <form method="post" action="{{ url_for('site.goal_delete', nid=child.id) }}" class="inline"
+                data-confirm="Удалить «{{ child.title }}» вместе со всеми шагами внутри?" onsubmit="return confirm(this.dataset.confirm)">
+            <input type="hidden" name="csrf" value="{{ csrf_token }}">
+            <button class="btn btn-ghost btn-icon btn-sm" aria-label="Удалить">{{ icon('trash', 14) }}</button>
+          </form>
+        </li>
+        {% endfor %}
+      </ol>
+      <p class="text-xs faint">Порядок = путь к цели: первый шаг — в самом низу ветки.</p>
+      {% endif %}
+      <form method="post" action="{{ url_for('site.goal_add', nid=node.id) }}" class="gadd">
+        <input type="hidden" name="csrf" value="{{ csrf_token }}">
+        <input class="field" name="title" placeholder="Новый шаг…" maxlength="120" required>
+        <button class="btn btn-primary btn-icon" aria-label="Добавить шаг">{{ icon('plus', 16) }}</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Линии дерева: от каждого узла вверх к тому, к чему он ведёт. Готовые участки «горят».
+  (function () {
+    const canvas = document.getElementById("gtree");
+    const svg = canvas.querySelector(".gtree-lines");
+    const NS = "http://www.w3.org/2000/svg";
+
+    // Линия выходит из верха кружка и входит под подпись узла выше — так текст не перечёркивается.
+    function anchor(el, side) {
+      const box = canvas.getBoundingClientRect();
+      const dot = el.querySelector(".gdot").getBoundingClientRect();
+      const y = side === "top" ? dot.top : el.getBoundingClientRect().bottom + 6;
+      return { x: dot.left + dot.width / 2 - box.left + canvas.scrollLeft, y: y - box.top + canvas.scrollTop };
+    }
+
+    function route(a, b) {
+      // Вертикально вверх, поворот по горизонтали на середине, снова вверх — со скруглёнными углами.
+      if (Math.abs(a.x - b.x) < 1) return `M${a.x} ${a.y}V${b.y}`;
+      const mid = b.y + (a.y - b.y) / 2;
+      const r = Math.min(14, Math.abs(a.x - b.x) / 2, (a.y - b.y) / 2);
+      const dir = b.x > a.x ? 1 : -1;
+      return `M${a.x} ${a.y}V${mid + r}Q${a.x} ${mid} ${a.x + dir * r} ${mid}` +
+             `H${b.x - dir * r}Q${b.x} ${mid} ${b.x} ${mid - r}V${b.y}`;
+    }
+
+    function draw() {
+      svg.setAttribute("width", canvas.scrollWidth);
+      svg.setAttribute("height", canvas.scrollHeight);
+      svg.replaceChildren();
+      canvas.querySelectorAll("[data-to]").forEach((el) => {
+        const target = canvas.querySelector(`[data-id="${el.dataset.to}"]`);
+        if (!target) return;
+        const path = document.createElementNS(NS, "path");
+        path.setAttribute("d", route(anchor(el, "top"), anchor(target, "bottom")));
+        const color = getComputedStyle(el).getPropertyValue("--c").trim();
+        path.setAttribute("stroke", color);
+        path.style.color = color;  // для свечения (drop-shadow берёт currentColor)
+        const lit = Number(el.dataset.lit);
+        path.setAttribute("class", lit >= 100 ? "is-lit" : lit > 0 || el.classList.contains("st-doing") ? "is-half" : "");
+        svg.appendChild(path);
+      });
+    }
+
+    draw();
+    window.addEventListener("resize", draw);
+    if (document.fonts) document.fonts.ready.then(draw);
+  })();
+</script>
+{% endblock %}

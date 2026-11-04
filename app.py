@@ -19,6 +19,7 @@ from flask import (Blueprint, Flask, Response, abort, current_app, flash, g, red
                    render_template, request, send_file, session, url_for)
 
 import db
+import goals
 from bank import LANGS, SIZES, QuestionBank, mastered_ids, pick
 from content import (ContentError, Curriculum, Library, Subject, Topic, check_answer,
                      correct_answer_text, given_answer_text, prepare_questions)
@@ -54,6 +55,8 @@ def create_app() -> Flask:
         SECRET_KEY=_load_secret_key(),
         SITE_PASSWORD=password,
         DB_PATH=os.environ.get("DB_PATH") or str(INSTANCE_DIR / "progress.sqlite3"),
+        # личное стартовое наполнение дерева целей — только локально, в git не попадает
+        GOALS_SEED=Path(os.environ.get("GOALS_SEED") or INSTANCE_DIR / "goals_seed.json"),
         PERMANENT_SESSION_LIFETIME=timedelta(days=30),
         SESSION_COOKIE_SAMESITE="Lax",
     )
@@ -522,6 +525,116 @@ def bank_test(sid):
     return render_template("test.html", title=title, questions=prepare_questions(chosen),
                            back_url=url_for("site.tests"), subject=subj, bilingual=True,
                            nav_section="tests")
+
+
+# ---------- Дерево целей ----------
+
+def _goal_tree() -> tuple[dict[int, goals.Node], goals.Node]:
+    c = conn()
+    goals.ensure_root(c, current_app.config["GOALS_SEED"])
+    nodes = goals.load_nodes(c)
+    root = goals.root_of(nodes)
+    progress = get_progress()
+    goals.compute_progress(root, {s.id: progress.summary(s)["percent"] for s in cur().subjects})
+    return nodes, root
+
+
+def _goal_or_404(nodes: dict[int, goals.Node], nid: int) -> goals.Node:
+    return nodes.get(nid) or abort(404)
+
+
+@bp.route("/goals")
+def goals_root():
+    _, root = _goal_tree()
+    return redirect(url_for("site.goal_view", nid=root.id))
+
+
+@bp.route("/goals/<int:nid>")
+def goal_view(nid):
+    nodes, root = _goal_tree()
+    node = _goal_or_404(nodes, nid)
+    # Цвета веток на экране: первая ветка сохраняет цвет узла, остальные идут дальше по палитре.
+    base = goals.branch_color(nodes, node)
+    start = goals.PALETTE.index(base) if base in goals.PALETTE else 0
+    branches = [{"node": child, "color": child.color or goals.PALETTE[(start + i) % len(goals.PALETTE)]}
+                for i, child in enumerate(node.children)]
+    siblings = nodes[node.parent_id].children if node.parent_id in nodes else []
+    return render_template(
+        "goals.html", node=node, root=root, branches=branches, color=base,
+        crumbs=goals.path_to(nodes, node), siblings=siblings, today=date.today().isoformat(),
+        statuses=goals.STATUSES, palette=goals.PALETTE, subjects=cur().subjects, nav_section="goals",
+    )
+
+
+def _form_goal_fields() -> dict:
+    title = request.form.get("title", "").strip()
+    status = request.form.get("status", "todo")
+    due = request.form.get("due", "").strip() or None
+    subject_id = request.form.get("subject", "") or None
+    color = request.form.get("color", "") or None
+    if not title or status not in goals.STATUSES:
+        abort(400, "Нужно название и правильный статус.")
+    if due:
+        try:
+            date.fromisoformat(due)
+        except ValueError:
+            abort(400, "Срок — дата в формате ГГГГ-ММ-ДД.")
+    if subject_id and subject_id not in cur().subject_by_id:
+        abort(400, "Неизвестный предмет.")
+    if color and color not in goals.PALETTE:
+        abort(400, "Неизвестный цвет.")
+    return {"title": title, "note": request.form.get("note", "").strip(), "status": status,
+            "due": due, "subject_id": subject_id, "color": color}
+
+
+@bp.route("/goals/<int:nid>/edit", methods=["POST"])
+def goal_edit(nid):
+    nodes, _ = _goal_tree()
+    _goal_or_404(nodes, nid)
+    goals.update_node(conn(), nid, **_form_goal_fields())
+    return redirect(url_for("site.goal_view", nid=nid))
+
+
+@bp.route("/goals/<int:nid>/status", methods=["POST"])
+def goal_status(nid):
+    nodes, _ = _goal_tree()
+    node = _goal_or_404(nodes, nid)
+    status = request.form.get("status")
+    if status not in goals.STATUSES:
+        abort(400)
+    goals.set_status(conn(), nid, status)
+    return redirect(url_for("site.goal_view", nid=node.id))
+
+
+@bp.route("/goals/<int:nid>/add", methods=["POST"])
+def goal_add(nid):
+    nodes, _ = _goal_tree()
+    _goal_or_404(nodes, nid)
+    title = request.form.get("title", "").strip()
+    if not title:
+        flash("Напиши название шага.")
+    else:
+        goals.add_child(conn(), nid, title)
+    return redirect(url_for("site.goal_view", nid=nid) + "#edit")
+
+
+@bp.route("/goals/<int:nid>/move", methods=["POST"])
+def goal_move(nid):
+    nodes, _ = _goal_tree()
+    node = _goal_or_404(nodes, nid)
+    parent = nodes.get(node.parent_id) or abort(400, "Главную цель двигать некуда.")
+    goals.move(conn(), node, parent.children, -1 if request.form.get("dir") == "up" else 1)
+    return redirect(url_for("site.goal_view", nid=parent.id) + "#edit")
+
+
+@bp.route("/goals/<int:nid>/delete", methods=["POST"])
+def goal_delete(nid):
+    nodes, _ = _goal_tree()
+    node = _goal_or_404(nodes, nid)
+    parent = nodes.get(node.parent_id) or abort(400, "Главную цель удалить нельзя — её можно переименовать.")
+    goals.delete(conn(), node)
+    flash(f"Удалено: «{node.title}» и всё, что внутри.")
+    return redirect(url_for("site.goal_view", nid=parent.id) + "#edit")
 
 
 # ---------- Книги ----------

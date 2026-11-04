@@ -31,6 +31,19 @@ CREATE TABLE IF NOT EXISTS problem_done (
     PRIMARY KEY (topic_id, idx)
 );
 CREATE INDEX IF NOT EXISTS attempts_ref ON attempts (kind, ref);
+CREATE TABLE IF NOT EXISTS goal_node (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    parent_id  INTEGER REFERENCES goal_node (id),  -- NULL у главной цели
+    title      TEXT NOT NULL,
+    note       TEXT NOT NULL DEFAULT '',
+    status     TEXT NOT NULL DEFAULT 'todo' CHECK (status IN ('todo', 'doing', 'done')),
+    due        TEXT,                               -- срок YYYY-MM-DD
+    subject_id TEXT,                               -- привязка к предмету: прогресс из учебного плана
+    color      TEXT,                               -- цвет ветки #RRGGBB
+    position   INTEGER NOT NULL DEFAULT 0,
+    updated_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS goal_node_parent ON goal_node (parent_id, position);
 CREATE TABLE IF NOT EXISTS book_position (
     book_id    TEXT PRIMARY KEY,
     page       INTEGER NOT NULL,
