@@ -176,6 +176,17 @@ class SiteTest(unittest.TestCase):
         catalog = self.client.get("/catalog").get_data(as_text=True)
         self.assertIn("cover-art", catalog)
 
+    def test_extra_books_dir_takes_only_known_books(self):
+        from content import Library
+        root, extra = Path(tempfile.mkdtemp()), Path(tempfile.mkdtemp())
+        (root / "Своя книга.pdf").write_bytes(b"%PDF")
+        (extra / "Зональный трейдинг.pdf").write_bytes(b"%PDF")
+        (extra / "Чужая книга.pdf").write_bytes(b"%PDF")
+        meta = {"douglas": {"match": "Зональный трейдинг", "title": "Дуглас", "folder": "08 Трейдинг"}}
+        lib = Library(root, meta, (extra,))
+        self.assertEqual(sorted(b.path.name for b in lib.by_id.values()), ["Зональный трейдинг.pdf", "Своя книга.pdf"])
+        self.assertEqual(lib.by_key["douglas"].folder, "08 Трейдинг")
+
     # --- тесты из банка ---
 
     def test_bank_loaded_for_every_subject(self):

@@ -1,0 +1,819 @@
+{
+ "questions": [
+  {
+   "id": "electrical-engineering-10",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Исправный диод должен иметь",
+    "en": "A working diode must have"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Большое сопротивление и в прямом, и в обратном направлении",
+     "Малое сопротивление в прямом направлении и большое в обратном",
+     "Большое сопротивление в прямом направлении и малое в обратном",
+     "Малое сопротивление в обоих направлениях"
+    ],
+    "en": [
+     "High resistance when forward or reverse biased",
+     "Low resistance when forward biased, while high resistance when reverse bias",
+     "High resistance when forward biased, while low resistance when reverse bias",
+     "Low resistance when forward or reverse biased"
+    ]
+   }
+  },
+  {
+   "id": "electrical-engineering-12",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Сколько бит нужно, чтобы хранить одну цифру в двоично-десятичном коде (BCD)?",
+    "en": "How many bits are required to store one BCD digit ?"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "en": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ]
+   },
+   "explain": "Цифры 0–9 требуют 4 бита (2³ = 8 < 10)."
+  },
+  {
+   "id": "electrical-engineering-14",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "1 фарад по определению равен",
+    "en": "1 F is theoretically equal to"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "1 Ом сопротивления",
+     "Отношению 1 В к 1 Кл",
+     "Отношению 1 Кл к 1 В",
+     "Ничему из перечисленного"
+    ],
+    "en": [
+     "1 ohm of resistance",
+     "ratio of 1 V to 1 C",
+     "ratio of 1 C to 1 V",
+     "none of these"
+    ]
+   },
+   "explain": "C = q / U."
+  },
+  {
+   "id": "electrical-engineering-15",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Сколько строк в таблице истинности элемента И-НЕ (NAND) с тремя входами?",
+    "en": "How many entries will be in the truth table of a 3 input NAND gate ?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "3",
+     "6",
+     "8",
+     "9"
+    ],
+    "en": [
+     "3",
+     "6",
+     "8",
+     "9"
+    ]
+   },
+   "explain": "2³ = 8 комбинаций входов."
+  },
+  {
+   "id": "electrical-engineering-33",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Шестнадцатеричное число переводят в двоичное. Сколько бит соответствует одной шестнадцатеричной цифре?",
+    "en": "If a Hexadecimal number needs to convert to binary. For each hexadecimal digit, there will be how many bits"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "1",
+     "2",
+     "4",
+     "8"
+    ],
+    "en": [
+     "1",
+     "2",
+     "4",
+     "8"
+    ]
+   }
+  },
+  {
+   "id": "electrical-engineering-36",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "В чём измеряется магнитный поток?",
+    "en": "Magnetic flux has the unit of"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Ньютон",
+     "Ампер-виток",
+     "Вебер",
+     "Тесла"
+    ],
+    "en": [
+     "Newton",
+     "Ampere turn",
+     "Weber",
+     "Tesla"
+    ]
+   },
+   "explain": "Тесла — единица индукции, Вб = Тл · м²."
+  },
+  {
+   "id": "electrical-engineering-46",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Стек также называют",
+    "en": "Stack is also known as"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Память FIFO",
+     "Флеш-память",
+     "Память LIFO",
+     "Память LILO"
+    ],
+    "en": [
+     "FIFO memory",
+     "Flash memory",
+     "LIFO memory",
+     "LILO memory"
+    ]
+   }
+  },
+  {
+   "id": "electrical-engineering-53",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "p-n переход (диод) при обратном смещении работает как",
+    "en": "A diode (p-n junction) when reverse biased act as"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "Замкнутый ключ",
+     "Стабилитрон",
+     "Конденсатор",
+     "Разомкнутый ключ"
+    ],
+    "en": [
+     "On Switch",
+     "Zener diode",
+     "Capacitor",
+     "Off Switch"
+    ]
+   }
+  },
+  {
+   "id": "electrical-engineering-55",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "От чего зависит удельное сопротивление проводника?",
+    "en": "The resistivity of the conductor depends on"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "От площади сечения",
+     "От длины",
+     "От материала",
+     "Ни от чего из этого"
+    ],
+    "en": [
+     "area of the conductor.",
+     "length of the conductor.",
+     "type of material.",
+     "none of these."
+    ]
+   },
+   "explain": "Сопротивление куска зависит от длины и сечения, а удельное — свойство материала (и температуры)."
+  },
+  {
+   "id": "electrical-engineering-84",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Четыре конденсатора по 40 мкФ соединены параллельно. Эквивалентная ёмкость:",
+    "en": "Four capacitors each of 40 µF are connected in parallel, the equivalent capacitance of the system will be"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "160 мкФ",
+     "10 мкФ",
+     "40 мкФ",
+     "5 мкФ"
+    ],
+    "en": [
+     "160 µF",
+     "10 µF",
+     "40 µF",
+     "5 µF"
+    ]
+   }
+  },
+  {
+   "id": "electrical-engineering-88",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Чтобы получить большую ёмкость, диэлектрическая проницаемость диэлектрика должна быть",
+    "en": "To obtain a high value of capacitance, the permittivity of dielectric medium should be"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "низкой",
+     "нулевой",
+     "высокой",
+     "равной единице"
+    ],
+    "en": [
+     "low",
+     "zero",
+     "high",
+     "unity"
+    ]
+   }
+  },
+  {
+   "id": "electrical-engineering-95",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Что из этого — цифровое устройство?",
+    "en": "Which of the following is a digital device"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "Регулятор оборотов вентилятора",
+     "Микрофон",
+     "Сопротивление материала",
+     "Выключатель света"
+    ],
+    "en": [
+     "Regulator of a fan",
+     "Microphone",
+     "Resistance of a material",
+     "Light switch"
+    ]
+   },
+   "explain": "У выключателя два состояния: включено и выключено."
+  },
+  {
+   "id": "electrical-engineering-98",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Пять конденсаторов по 5 мкФ соединены последовательно. Эквивалентная ёмкость:",
+    "en": "Five capacitors each of 5 µF are connected in series, the equivalent capacitance of the system will be"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "5 мкФ",
+     "25 мкФ",
+     "10 мкФ",
+     "1 мкФ"
+    ],
+    "en": [
+     "5 µF",
+     "25 µF",
+     "10 µF",
+     "1 µF"
+    ]
+   },
+   "explain": "При последовательном соединении складываются обратные величины: 1/C = 5 · 1/5."
+  },
+  {
+   "id": "electrical-engineering-106",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Чему примерно равна диэлектрическая проницаемость воздуха?",
+    "en": "What is the value of dielectric constant of air?"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "Меньше 1",
+     "0",
+     "1",
+     "Ничему из этого"
+    ],
+    "en": [
+     "Less than 1",
+     "0.",
+     "1.",
+     "none of these."
+    ]
+   }
+  },
+  {
+   "id": "electrical-engineering-107",
+   "src": "mmlu",
+   "level": 1,
+   "type": "choice",
+   "q": {
+    "ru": "Температура — это величина",
+    "en": "Temperature variation is a/an"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "цифровая",
+     "аналоговая",
+     "и цифровая, и аналоговая",
+     "ни то ни другое"
+    ],
+    "en": [
+     "Digital quantity",
+     "Analog quantity",
+     "Either Digital or Analog quantity",
+     "None"
+    ]
+   }
+  },
+  {
+   "id": "electrical-engineering-2",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Какие логические элементы называют универсальными?",
+    "en": "Which of these sets of logic gates are designated as universal gates?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "ИЛИ-НЕ, И-НЕ",
+     "Исключающее ИЛИ, ИЛИ-НЕ, И-НЕ",
+     "ИЛИ, НЕ, И",
+     "ИЛИ-НЕ, И-НЕ, исключающее ИЛИ-НЕ"
+    ],
+    "en": [
+     "NOR, NAND",
+     "XOR, NOR, NAND",
+     "OR, NOT, AND",
+     "NOR, NAND, XNOR"
+    ]
+   },
+   "explain": "Из одних только NAND (или только NOR) можно собрать любую логическую функцию."
+  },
+  {
+   "id": "electrical-engineering-26",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "В режиме переключения (toggle) у JK-триггера",
+    "en": "In the toggle mode a JK flip-flop has"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "J = 0, K = 0",
+     "J = 1, K = 1",
+     "J = 0, K = 1",
+     "J = 1, K = 0"
+    ],
+    "en": [
+     "J = 0, K = 0.",
+     "J = 1, K = 1.",
+     "J = 0, K = 1.",
+     "J = 1, K = 0."
+    ]
+   }
+  },
+  {
+   "id": "electrical-engineering-32",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "ЭДС, наводимая в катушке индуктивности, равна",
+    "en": "The voltage induced in an inductor is represented as,"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "произведению индуктивности на ток",
+     "отношению индуктивности к току",
+     "отношению тока к индуктивности",
+     "произведению индуктивности на скорость изменения тока"
+    ],
+    "en": [
+     "product of its inductance and current through it.",
+     "ratio of its inductance to current through it.",
+     "ratio of current through it to its inductance.",
+     "product of its inductance and rate of change of current through it."
+    ]
+   },
+   "explain": "U = L · di/dt — поэтому при резком выключении тока возникает выброс напряжения."
+  },
+  {
+   "id": "electrical-engineering-38",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "D-защёлку называют «прозрачной», когда",
+    "en": "A D-flip-flop is said to be transparent when"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "выход в LOW",
+     "выход в HIGH",
+     "выход повторяет тактовый сигнал",
+     "выход повторяет вход"
+    ],
+    "en": [
+     "the output is LOW",
+     "the output is HIGH",
+     "the output follows clock",
+     "the output follow input"
+    ]
+   }
+  },
+  {
+   "id": "electrical-engineering-41",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "В какой памяти ячейка состоит из одного транзистора и одного конденсатора?",
+    "en": "Which of the following memories uses one transistor and one capacitor as basic memory unit"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "SRAM",
+     "DRAM",
+     "И в SRAM, и в DRAM",
+     "Ни в какой"
+    ],
+    "en": [
+     "SRAM",
+     "DRAM",
+     "Both SRAM and DRAM",
+     "None"
+    ]
+   },
+   "explain": "Поэтому DRAM нужно постоянно регенерировать — конденсатор разряжается."
+  },
+  {
+   "id": "electrical-engineering-43",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Выход системы влияет на её вход. Это",
+    "en": "The output of the system has an effect upon the input quantity, then the system is a"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "разомкнутая система управления",
+     "замкнутая система управления (с обратной связью)",
+     "любая из двух",
+     "ни одна из двух"
+    ],
+    "en": [
+     "open loop control system.",
+     "closed loop control system.",
+     "either A or B.",
+     "none of the above."
+    ]
+   },
+   "explain": "Пример — сервопривод: он сравнивает текущий угол с заданным."
+  },
+  {
+   "id": "electrical-engineering-56",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Наименьшее изменение измеряемой величины, на которое реагирует прибор, — это",
+    "en": "The smallest change in measured variable to which instrument will respond is"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "разрешение",
+     "точность",
+     "воспроизводимость",
+     "чувствительность"
+    ],
+    "en": [
+     "resolution",
+     "accuracy",
+     "precision",
+     "sensitivity"
+    ]
+   }
+  },
+  {
+   "id": "electrical-engineering-61",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Длину кабеля увеличили вдвое. Его ёмкость C станет",
+    "en": "Length of the cable is doubled, its capacitance C will be"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "в 4 раза меньше",
+     "в 2 раза меньше",
+     "в 2 раза больше",
+     "прежней"
+    ],
+    "en": [
+     "one-fourth.",
+     "one-half.",
+     "doubled.",
+     "unchanged."
+    ]
+   }
+  },
+  {
+   "id": "electrical-engineering-62",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Как называются электроны в полупроводнике p-типа?",
+    "en": "Electrons in p-type material of a semi-conductor are called as"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Неосновными или основными носителями",
+     "Неосновными носителями",
+     "Основными носителями",
+     "Валентными носителями"
+    ],
+    "en": [
+     "either minority carriers or majority carriers",
+     "minority carriers",
+     "majority carriers",
+     "valance carriers"
+    ]
+   },
+   "explain": "В p-типе основные носители — дырки."
+  },
+  {
+   "id": "electrical-engineering-73",
+   "src": "mmlu",
+   "level": 2,
+   "type": "choice",
+   "q": {
+    "ru": "Мощность, рассеиваемая идеальной катушкой индуктивности, равна",
+    "en": "Power dissipation in ideal inductor is"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "максимальной",
+     "минимальной",
+     "нулю",
+     "конечному значению"
+    ],
+    "en": [
+     "Maximum",
+     "Minimum",
+     "Zero",
+     "A finite value"
+    ]
+   },
+   "explain": "Идеальная катушка запасает и отдаёт энергию, но не превращает её в тепло."
+  },
+  {
+   "id": "electrical-engineering-0",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Критерий Баркгаузена для генератора требует, чтобы",
+    "en": "The Barkhausen criterion for an oscillator"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "коэффициент усиления петли был равен единице",
+     "коэффициент усиления петли был меньше единицы",
+     "фаза сигнала обратной связи относительно входа была 0° или 360°",
+     "выполнялись оба условия: A и C"
+    ],
+    "en": [
+     "Loop gain should be unity",
+     "Loop gain should be less than unity",
+     "The phase of the feedback signal with respect to input should be 0° or 360°",
+     "Both A and C"
+    ]
+   }
+  },
+  {
+   "id": "electrical-engineering-24",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Релаксационные генераторы, управляемые напряжением (ГУН), формируют",
+    "en": "Relaxation Voltage controlled oscillators are used to generate"
+   },
+   "answer": 3,
+   "options": {
+    "ru": [
+     "синусоиду",
+     "треугольный сигнал",
+     "пилообразный сигнал",
+     "оба: B и C"
+    ],
+    "en": [
+     "Sinusoidal wave",
+     "Triangular wave",
+     "Sawtooth wave",
+     "Both B and C"
+    ]
+   }
+  },
+  {
+   "id": "electrical-engineering-39",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "На осциллографе фигура Лиссажу с 5 горизонтальными и 2 вертикальными касаниями. Частота на горизонтальном входе 100 Гц. Какая частота на вертикальном входе?",
+    "en": "A Lissajous pattern on an oscilloscope has 5 horizontal tangencies and 2 vertical tangencies. The frequency of the horizontal input is 100 Hz. The frequency of the vertical input will be"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "500 Гц",
+     "250 Гц",
+     "400 Гц",
+     "625 Гц"
+    ],
+    "en": [
+     "500 Hz.",
+     "250 Hz.",
+     "400 Hz.",
+     "625 Hz."
+    ]
+   },
+   "explain": "f_верт / f_гор = число горизонтальных касаний / число вертикальных = 5/2."
+  },
+  {
+   "id": "electrical-engineering-68",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Защёлка (latch) чувствительна к",
+    "en": "A latch is ________ sensitive"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "и уровню, и фронту",
+     "фронту",
+     "уровню",
+     "ни к чему"
+    ],
+    "en": [
+     "both level and edge",
+     "edge",
+     "level",
+     "None"
+    ]
+   },
+   "explain": "Триггер (flip-flop) срабатывает по фронту, защёлка — по уровню."
+  },
+  {
+   "id": "electrical-engineering-100",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Основная функция генератора —",
+    "en": "One of the following is the primary function of an oscillator"
+   },
+   "answer": 2,
+   "options": {
+    "ru": [
+     "формировать синусоиду",
+     "формировать несинусоидальные сигналы",
+     "создавать незатухающие колебания постоянной амплитуды и заданной частоты",
+     "ничего из перечисленного"
+    ],
+    "en": [
+     "produces sinusoidal oscillations",
+     "generates non sinusoidal waveforms",
+     "generates sustained oscillations at a constant amplitude and specific frequency",
+     "none of the above"
+    ]
+   }
+  },
+  {
+   "id": "electrical-engineering-111",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Что защищает тиристор (SCR) от большой скорости нарастания напряжения dV/dt?",
+    "en": "Which of the following is used in SCR to protect from high dV / dt?"
+   },
+   "answer": 0,
+   "options": {
+    "ru": [
+     "Снаббер (RC-цепь)",
+     "Предохранитель",
+     "Выравнивающая цепь",
+     "Автоматический выключатель"
+    ],
+    "en": [
+     "Snubber circuit.",
+     "Fuse.",
+     "Equalizing circuit.",
+     "Circuit breaker."
+    ]
+   }
+  },
+  {
+   "id": "electrical-engineering-112",
+   "src": "mmlu",
+   "level": 3,
+   "type": "choice",
+   "q": {
+    "ru": "Как называются команды программы, которые при ассемблировании не превращаются в машинные инструкции?",
+    "en": "What are the sets of commands in a program which are not translated into machine instructions during assembly process, called?"
+   },
+   "answer": 1,
+   "options": {
+    "ru": [
+     "Мнемоники",
+     "Директивы",
+     "Идентификаторы",
+     "Операнды"
+    ],
+    "en": [
+     "Mnemonics",
+     "Directives",
+     "Identifiers",
+     "Operands"
+    ]
+   }
+  }
+ ]
+}

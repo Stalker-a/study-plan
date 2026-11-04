@@ -28,6 +28,7 @@ from reader import PdfRenderer
 BASE_DIR = Path(__file__).parent
 INSTANCE_DIR = BASE_DIR / "instance"
 DEFAULT_BOOKS_DIR = r"C:\учеба\книги"
+DEFAULT_EXTRA_BOOKS_DIRS = r"C:\книги"  # оттуда берутся только книги из учебного плана; несколько папок — через «;»
 COVER_WIDTH = 400
 LOGIN_MAX_FAILS = 5
 LOGIN_LOCK_SECONDS = 60
@@ -63,9 +64,10 @@ def create_app() -> Flask:
     books_dir = Path(os.environ.get("BOOKS_DIR", DEFAULT_BOOKS_DIR))
     if not books_dir.is_dir():
         print(f"Внимание: папка с книгами не найдена: {books_dir}")
+    extra_dirs = tuple(Path(p) for p in os.environ.get("EXTRA_BOOKS_DIRS", DEFAULT_EXTRA_BOOKS_DIRS).split(";") if p)
     app.extensions["study"] = {
         "curriculum": curriculum,
-        "library": Library(books_dir, curriculum.books),
+        "library": Library(books_dir, curriculum.books, extra_dirs),
         "renderer": PdfRenderer(),
         "bank": question_bank,
     }

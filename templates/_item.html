@@ -15,7 +15,7 @@
       {% if item.missing %}<span class="badge badge-warning">файла нет в папке</span>{% endif %}
     </div>
   {% else %}
-    <span class="resource-title">Своя задача</span>
+    <span class="resource-title">{{ item.title or 'Своя задача' }}</span>
   {% endif %}
   <div class="resource-text">{{ item.what or item.text }}</div>
 </div>

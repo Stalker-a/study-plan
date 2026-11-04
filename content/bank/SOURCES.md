@@ -6,6 +6,8 @@
 |---|---|---|---|
 | `college-…`, `high-school-…`, `conceptual-…`, `abstract-algebra-…` | [MMLU](https://github.com/hendrycks/test) — D. Hendrycks et al., «Measuring Massive Multitask Language Understanding» (2021); данные: [cais/mmlu](https://huggingface.co/datasets/cais/mmlu) | MIT | физика, матанализ, линейная алгебра, алгоритмы (тестовая выборка) |
 | `crux-…` | [CRUXEval](https://github.com/facebookresearch/cruxeval) — A. Gu et al. (2024); данные: [cruxeval-org/cruxeval](https://huggingface.co/datasets/cruxeval-org/cruxeval) | MIT | «что вернёт функция» на Python |
+| `electrical-engineering-…` | MMLU (см. выше) | MIT | электроника и цифровая логика; два вопроса с ошибочным ответом в исходнике исключены |
+| `own-…` | Составлены для этого сайта | как у проекта | трейдинг и криптовалюта: открытого банка с подходящей лицензией не нашлось |
 | `li-…` | [LinkedIn Skill Assessments Quizzes](https://github.com/Ebazhanov/linkedin-skill-assessments-quizzes) — Ebazhanov and contributors | AGPL-3.0 | квизы C, Python, MySQL (общий SQL) |
 
 Номер в конце id — номер вопроса в исходном наборе: строка тестовой выборки для MMLU и CRUXEval, номер `Qn` в markdown-файле квиза для LinkedIn.

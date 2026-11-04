@@ -52,10 +52,15 @@ class BookFile:
 
 
 class Library:
-    """Файлы книг из папки BOOKS_DIR, сопоставленные с описаниями из curriculum.json."""
+    """Файлы книг из папки BOOKS_DIR, сопоставленные с описаниями из curriculum.json.
 
-    def __init__(self, books_dir: Path, book_meta: dict):
+    Из дополнительных папок (extra_dirs) берутся только книги, описанные в curriculum.json:
+    там могут лежать и другие файлы, которые в каталоге не нужны.
+    """
+
+    def __init__(self, books_dir: Path, book_meta: dict, extra_dirs: tuple[Path, ...] = ()):
         self.books_dir = books_dir
+        self.extra_dirs = extra_dirs
         self.book_meta = book_meta
         self.by_id: dict[str, BookFile] = {}
         self.by_key: dict[str, BookFile] = {}
@@ -63,23 +68,30 @@ class Library:
 
     def rescan(self) -> None:
         by_id, by_key = {}, {}
-        if self.books_dir.is_dir():
-            for path in sorted(self.books_dir.rglob("*")):
+        roots = [(self.books_dir, "", False)] + [(d, f"extra:{d.name}/", True) for d in self.extra_dirs]
+        for root, id_prefix, only_known in roots:
+            if not root.is_dir():
+                continue
+            for path in sorted(root.rglob("*")):
                 if path.suffix.lower() not in BOOK_EXTENSIONS or not path.is_file():
                     continue
-                rel = path.relative_to(self.books_dir).as_posix()
-                book = BookFile(
-                    id=hashlib.sha1(rel.encode("utf-8")).hexdigest()[:12],
-                    path=path,
-                    folder=path.parent.name if path.parent != self.books_dir else "",
-                )
-                for key, meta in self.book_meta.items():
-                    if meta["match"] in path.name:
-                        book.key, book.meta = key, meta
-                        by_key[key] = book
-                        break
+                key, meta = self._match(path.name)
+                if only_known and key is None:
+                    continue
+                rel = id_prefix + path.relative_to(root).as_posix()  # у книг основной папки id не меняется
+                folder = path.parent.name if path.parent != root else ""
+                book = BookFile(id=hashlib.sha1(rel.encode("utf-8")).hexdigest()[:12], path=path,
+                                folder=meta.get("folder", folder), key=key, meta=meta)
+                if key:
+                    by_key[key] = book
                 by_id[book.id] = book
         self.by_id, self.by_key = by_id, by_key
+
+    def _match(self, file_name: str) -> tuple[str | None, dict]:
+        for key, meta in self.book_meta.items():
+            if meta["match"] in file_name:
+                return key, meta
+        return None, {}
 
     def folders(self) -> dict[str, list[BookFile]]:
         grouped: dict[str, list[BookFile]] = {}
